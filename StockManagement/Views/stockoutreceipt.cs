@@ -27,6 +27,8 @@ namespace StockManagement.Views
         private void stockinreceipt_Load(object sender, EventArgs e)
         {
             gridControl1.DataSource = Model.StockoutReceipts.getReceipts();
+            gridView1.Columns.Remove(gridView1.Columns["id"]);
+            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
