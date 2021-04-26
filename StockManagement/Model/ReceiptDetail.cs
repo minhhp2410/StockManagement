@@ -21,7 +21,7 @@ namespace StockManagement.Model
         [JsonProperty("partName")]
         public string partName { get; set; }
         [JsonProperty("price")]
-        public float price { get; set; }
+        public float? price { get; set; }
         [JsonProperty("currency")]
         public string currency { get; set; }
 

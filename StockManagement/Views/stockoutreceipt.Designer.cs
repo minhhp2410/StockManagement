@@ -94,6 +94,7 @@ namespace StockManagement.Views
             this.Controls.Add(this.groupControl1);
             this.Name = "stockoutreceipt";
             this.Text = "Thông tin phiếu";
+            this.Load += new System.EventHandler(this.stockoutreceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

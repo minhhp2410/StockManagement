@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -16,7 +17,8 @@ namespace StockManagement.Views
     public partial class CreateStockinPlan : DevExpress.XtraEditors.XtraForm
     {
         public string planID="",quotationNumber="",note="";
-
+        List<Model.DataInventory> inventories = new List<Model.DataInventory>();
+        List<Model.PlanDetail> planDetails = new List<Model.PlanDetail>();
         public CreateStockinPlan()
         {
             InitializeComponent();
@@ -33,11 +35,42 @@ namespace StockManagement.Views
 
         }
 
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            if(comboBoxEdit2.Text!= "")
+            {
+                string partNumber = comboBoxEdit2.Text.Split('-')[0];
+                Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
+                List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
+                planDetailss.AddRange(planDetails.ToArray());
+                if (planDetailss.FindIndex(a => a.partNumber == data.partNumber) < 0)
+                {
+
+                    planDetailss.Add(new Model.PlanDetail
+                    {
+                        partName = data.partName,
+                        partNumber = data.partNumber,
+                        position = data.position,
+                        price = data.price,
+                        quantity = 0,
+                        currency = data.currency,
+                        unit = data.unit
+                    });
+                    gridControl1.DataSource = planDetailss;
+                    planDetails.Clear();
+                    planDetails.AddRange(planDetailss.ToArray());
+                    return;
+                }
+                MessageBox.Show("Săn phẩm đã tồn tại");
+            }    
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            planDetails = new List<Model.PlanDetail>();
             string res = Model.RestSharpC.execCommand2("quotationitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
             JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
-            List<Model.PlanDetail> planDetails = new List<Model.PlanDetail>();
+            
             quoationItems.Data.ToList().ForEach(i =>
             {
                 planDetails.Add(new Model.PlanDetail() { 
@@ -50,6 +83,7 @@ namespace StockManagement.Views
                     unit=i.Unit
                 });
             });
+            
             gridControl1.DataSource = planDetails;
             gridView1.Columns.Remove(gridView1.Columns["id"]);
             gridView1.Columns.Remove(gridView1.Columns["planID"]);
@@ -61,7 +95,8 @@ namespace StockManagement.Views
 
         private void CreateStockinPlan_Load(object sender, EventArgs e)
         {
-            if(planID!="")
+            gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            if (planID!="")
             {
                 gridControl1.DataSource = Model.PlanDetail.getPlanList("stockinplandetails", planID);
                 groupControl1.Text = "thông tin chi tiết " + planID;
@@ -70,7 +105,18 @@ namespace StockManagement.Views
                 simpleButton1.Enabled = false;
                 textBox1.Text = note;
                 textEdit1.Text = quotationNumber;
-            }    
+            }
+            else
+            {
+                gridControl1.DataSource = new List<Model.PlanDetail>();
+            }
+            gridView1.Columns.Remove(gridView1.Columns["id"]);
+            gridView1.Columns.Remove(gridView1.Columns["planID"]);
+            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
+            inventories = Model.Inventory.getInventories();
+            collection.AddRange(inventories.Select(s=> s.partNumber+"-"+s.partName as object).ToArray());
         }
     }
 }

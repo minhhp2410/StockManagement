@@ -24,7 +24,7 @@ namespace StockManagement.Views
             CreateStockoutReceipt createStockoutReceipt = new CreateStockoutReceipt();
             createStockoutReceipt.ShowDialog();
         }
-        private void stockinreceipt_Load(object sender, EventArgs e)
+        private void stockoutreceipt_Load(object sender, EventArgs e)
         {
             gridControl1.DataSource = Model.StockoutReceipts.getReceipts();
             gridView1.Columns.Remove(gridView1.Columns["id"]);

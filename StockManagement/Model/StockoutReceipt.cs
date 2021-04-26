@@ -34,8 +34,8 @@ namespace StockManagement.Model
         [JsonProperty("message")]
         public string message { get; set; }
         [JsonProperty("data")]
-        public List<StockinReceiptData> datum { get; set; }
-        public static List<StockinReceiptData> getReceipts()
+        public List<StockoutReceiptData> datum { get; set; }
+        public static List<StockoutReceiptData> getReceipts()
         {
             try
             {
@@ -43,12 +43,12 @@ namespace StockManagement.Model
                 RestRequest request = new RestRequest("stockoutreceipts", Method.GET);
                 IRestResponse response = client.Execute(request);
                 request.RequestFormat = DataFormat.Json;// Execute the Request
-                StockinReceipts receipt = JsonConvert.DeserializeObject<StockinReceipts>(response.Content);
+                StockoutReceipts receipt = JsonConvert.DeserializeObject<StockoutReceipts>(response.Content);
                 if (receipt != null)
                     return receipt.datum;
-                return new List<StockinReceiptData>();
+                return new List<StockoutReceiptData>();
             }
-            catch { return new List<StockinReceiptData>(); }
+            catch { return new List<StockoutReceiptData>(); }
         }
     }
     class StockoutReceipt

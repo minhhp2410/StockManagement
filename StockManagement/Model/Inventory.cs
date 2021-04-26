@@ -43,7 +43,7 @@ namespace StockManagement.Model
         public string message { get; set; }
         [JsonProperty("data")]
         public List<DataInventory> datum { get; set; }
-        public List<DataInventory> getInventories()
+        public static List<DataInventory> getInventories()
         {
             try
             {

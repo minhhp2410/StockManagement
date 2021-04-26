@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace StockManagement.Views
     public partial class CreateStockoutPlan : DevExpress.XtraEditors.XtraForm
     {
         public string note = "", planID = "", poNumber = "";
+        List<Model.DataInventory> inventories = new List<Model.DataInventory>();
+        List<Model.PlanDetail> planDetails = new List<Model.PlanDetail>();
         public CreateStockoutPlan()
         {
             InitializeComponent();
@@ -25,11 +28,41 @@ namespace StockManagement.Views
             Model.PlanDetail.insertStockoutPlanDetail(gridView1, "stockoutplandetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
         }
 
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEdit2.Text != "")
+            {
+                string partNumber = comboBoxEdit2.Text.Split('-')[0];
+                Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
+                List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
+                planDetailss.AddRange(planDetails.ToArray());
+                if (planDetailss.FindIndex(a => a.partNumber == data.partNumber) < 0)
+                {
+
+                    planDetailss.Add(new Model.PlanDetail
+                    {
+                        partName = data.partName,
+                        partNumber = data.partNumber,
+                        position = data.position,
+                        price = data.price,
+                        quantity = 0,
+                        currency = data.currency,
+                        unit = data.unit
+                    });
+                    gridControl1.DataSource = planDetailss;
+                    planDetails.Clear();
+                    planDetails.AddRange(planDetailss.ToArray());
+                    return;
+                }
+                MessageBox.Show("Săn phẩm đã tồn tại");
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            planDetails.Clear();
             string res = Model.RestSharpC.execCommand5("poitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
             JsonHeadPOItem poItems = JsonConvert.DeserializeObject<JsonHeadPOItem>(res);
-            List<Model.PlanDetail> planDetails = new List<Model.PlanDetail>();
             poItems.Data.ToList().ForEach(i =>
             {
                 planDetails.Add(new Model.PlanDetail()
@@ -48,7 +81,6 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["planID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            gridControl1.DataSource = planDetails;
         }
 
         private void CreateStockoutPlan_Load(object sender, EventArgs e)
@@ -63,6 +95,17 @@ namespace StockManagement.Views
                 textBox1.Text = note;
                 textEdit1.Text = poNumber;
             }
+            else
+            {
+                gridControl1.DataSource = planDetails;
+            }
+            gridView1.Columns.Remove(gridView1.Columns["id"]);
+            gridView1.Columns.Remove(gridView1.Columns["planID"]);
+            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
+            inventories = Model.Inventory.getInventories();
+            collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
         }
     }
 }

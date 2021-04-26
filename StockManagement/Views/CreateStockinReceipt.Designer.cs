@@ -30,6 +30,8 @@ namespace StockManagement.Views
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -43,8 +45,6 @@ namespace StockManagement.Views
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
@@ -76,6 +76,24 @@ namespace StockManagement.Views
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "Nhập kho";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(433, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(303, 16);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Lấy list sản phẩm theo mã Quotation/Kế hoạch nhập";
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.simpleButton3.Location = new System.Drawing.Point(798, 58);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(100, 43);
+            this.simpleButton3.TabIndex = 13;
+            this.simpleButton3.Text = "In";
+            // 
             // simpleButton2
             // 
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -85,6 +103,7 @@ namespace StockManagement.Views
             this.simpleButton2.Size = new System.Drawing.Size(29, 22);
             this.simpleButton2.TabIndex = 12;
             this.simpleButton2.Text = "+";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // labelControl4
             // 
@@ -137,6 +156,7 @@ namespace StockManagement.Views
             this.button1.TabIndex = 5;
             this.button1.Text = "Tìm kiếm";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textEdit1
             // 
@@ -199,24 +219,6 @@ namespace StockManagement.Views
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButton3.Location = new System.Drawing.Point(798, 58);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(100, 43);
-            this.simpleButton3.TabIndex = 13;
-            this.simpleButton3.Text = "In";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(433, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(303, 16);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Lấy list sản phẩm theo mã Quotation/Kế hoạch nhập";
             // 
             // CreateStockinReceipt
             // 

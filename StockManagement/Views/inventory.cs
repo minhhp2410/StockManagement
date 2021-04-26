@@ -13,7 +13,6 @@ namespace StockManagement.Views
 {
     public partial class inventory : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        Inventory invent = new Inventory();
         public inventory()
         {
             InitializeComponent();
@@ -21,7 +20,7 @@ namespace StockManagement.Views
         }
         void loadInventory()
         {
-            gridControl1.DataSource = invent.getInventories();
+            gridControl1.DataSource = Inventory.getInventories();
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["createdAt"].Visible = false;
         }
