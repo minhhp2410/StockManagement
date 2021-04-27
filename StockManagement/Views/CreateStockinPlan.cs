@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors.Controls;
 using Newtonsoft.Json;
 using RestSharp;
+using StockManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,7 +44,7 @@ namespace StockManagement.Views
                 Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
                 List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
                 planDetailss.AddRange(planDetails.ToArray());
-                if (planDetailss.FindIndex(a => a.partNumber == data.partNumber) < 0)
+                if (planDetails.FindIndex(a => a.partNumber == data.partNumber) < 0)
                 {
 
                     planDetailss.Add(new Model.PlanDetail
@@ -64,6 +65,17 @@ namespace StockManagement.Views
                 MessageBox.Show("Săn phẩm đã tồn tại");
             }    
         }
+
+        private void gridControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode== Keys.Delete)
+            {
+                object row = gridView1.GetFocusedRow();
+                gridView1.DeleteRow(gridView1.FindRow(row));
+                planDetails.Remove(row as PlanDetail);
+            }    
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -95,7 +107,6 @@ namespace StockManagement.Views
 
         private void CreateStockinPlan_Load(object sender, EventArgs e)
         {
-            gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             if (planID!="")
             {
                 gridControl1.DataSource = Model.PlanDetail.getPlanList("stockinplandetails", planID);

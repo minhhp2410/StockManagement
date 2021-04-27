@@ -30,6 +30,7 @@ namespace StockManagement.Views
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -44,7 +45,6 @@ namespace StockManagement.Views
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
@@ -76,6 +76,16 @@ namespace StockManagement.Views
             this.groupControl1.TabIndex = 6;
             this.groupControl1.Text = "Xuất kho";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(433, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(263, 16);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Lấy list sản phẩm theo mã PO/Kế hoạch xuất";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // simpleButton3
             // 
             this.simpleButton3.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -94,6 +104,7 @@ namespace StockManagement.Views
             this.simpleButton2.Size = new System.Drawing.Size(29, 22);
             this.simpleButton2.TabIndex = 12;
             this.simpleButton2.Text = "+";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // labelControl4
             // 
@@ -146,6 +157,7 @@ namespace StockManagement.Views
             this.button1.TabIndex = 5;
             this.button1.Text = "Tìm kiếm";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textEdit1
             // 
@@ -163,6 +175,7 @@ namespace StockManagement.Views
             this.simpleButton1.Size = new System.Drawing.Size(100, 43);
             this.simpleButton1.TabIndex = 2;
             this.simpleButton1.Text = "Lưu";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // labelControl2
             // 
@@ -204,21 +217,12 @@ namespace StockManagement.Views
             this.gridControl1.TabIndex = 7;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridControl1_KeyDown);
             // 
             // gridView1
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(433, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(263, 16);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Lấy list sản phẩm theo mã PO/Kế hoạch xuất";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // CreateStockoutReceipt
             // 
@@ -229,6 +233,7 @@ namespace StockManagement.Views
             this.Controls.Add(this.groupControl1);
             this.Name = "CreateStockoutReceipt";
             this.Text = "Xuất kho";
+            this.Load += new System.EventHandler(this.CreateStockoutReceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();

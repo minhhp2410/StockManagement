@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using Newtonsoft.Json;
+using StockManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace StockManagement.Views
                 Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
                 List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
                 planDetailss.AddRange(planDetails.ToArray());
-                if (planDetailss.FindIndex(a => a.partNumber == data.partNumber) < 0)
+                if (planDetails.FindIndex(a => a.partNumber == data.partNumber) < 0)
                 {
 
                     planDetailss.Add(new Model.PlanDetail
@@ -58,9 +59,19 @@ namespace StockManagement.Views
             }
         }
 
+        private void gridControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                object row = gridView1.GetFocusedRow();
+                gridView1.DeleteRow(gridView1.FindRow(row));
+                planDetails.Remove(row as PlanDetail);
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            planDetails.Clear();
+            planDetails = new List<PlanDetail>();
             string res = Model.RestSharpC.execCommand5("poitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
             JsonHeadPOItem poItems = JsonConvert.DeserializeObject<JsonHeadPOItem>(res);
             poItems.Data.ToList().ForEach(i =>

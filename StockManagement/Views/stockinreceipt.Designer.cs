@@ -29,11 +29,13 @@ namespace StockManagement.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -50,6 +52,7 @@ namespace StockManagement.Views
             this.gridControl1.TabIndex = 7;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridControl1_KeyDown);
             this.gridControl1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gridControl1_MouseDoubleClick);
             // 
             // gridView1
@@ -75,6 +78,7 @@ namespace StockManagement.Views
             this.simpleButton2.Size = new System.Drawing.Size(75, 38);
             this.simpleButton2.TabIndex = 1;
             this.simpleButton2.Text = "Hủy phiếu";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // btnAdd
             // 
@@ -86,6 +90,11 @@ namespace StockManagement.Views
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Nhập kho";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // stockinreceipt
             // 
@@ -112,5 +121,6 @@ namespace StockManagement.Views
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private System.Windows.Forms.Timer timer1;
     }
 }

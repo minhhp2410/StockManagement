@@ -24,12 +24,16 @@ namespace StockManagement.Views
             CreateStockinReceipt createStockinReceipt = new CreateStockinReceipt();
             createStockinReceipt.ShowDialog();
         }
-
-        private void stockinreceipt_Load(object sender, EventArgs e)
+        void reLoad()
         {
            gridControl1.DataSource= Model.StockinReceipts.getReceipts();
             gridView1.Columns.Remove(gridView1.Columns["id"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["isDeleted"]);
+        }
+        private void stockinreceipt_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -40,6 +44,32 @@ namespace StockManagement.Views
             createStockinReceipt.note = data.note;
             createStockinReceipt.quotationNumber = data.quotationNumber;
             createStockinReceipt.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            reLoad();
+        }
+        void deleteReceipt()
+        {
+            StockinReceiptData data = gridView1.GetFocusedRow() as StockinReceiptData;
+            if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.receiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (StockinReceipt.deleteStockinReceipt(data.receiptID))
+                {
+
+                }
+        }
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            deleteReceipt();
+        }
+
+        private void gridControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode== Keys.Delete)
+            {
+                deleteReceipt();
+            }    
         }
     }
 }

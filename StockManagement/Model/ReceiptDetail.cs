@@ -124,13 +124,24 @@ namespace StockManagement.Model
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);  // Execute the Request
         }
-        //public static List<ReceiptDetail> getReceiptList(string table, string ID)
-        //{
-        //    var client = new RestClient(Properties.Resources.apiEndPoint + table + "/" + ID);
-        //    var request = new RestRequest(Method.GET);
-        //    IRestResponse response = client.Execute(request);// Execute the Request
-        //    request.RequestFormat = DataFormat.Json;
-        //    return JsonConvert.DeserializeObject<getJson>(response.Content).datum;
-        //}
+        public static List<ReceiptDetail> getReceiptList(string table, string ID)
+        {
+            var client = new RestClient(Properties.Resources.apiEndPoint + table + "/" + ID);
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);// Execute the Request
+            request.RequestFormat = DataFormat.Json;
+            return JsonConvert.DeserializeObject<getJson1>(response.Content).datum;
+        }
+    }
+
+    class getJson1
+    {
+        [JsonProperty("status")]
+        public string status { get; set; }
+        [JsonProperty("message")]
+        public string message { get; set; }
+        [JsonProperty("data")]
+        public List<ReceiptDetail> datum { get; set; }
     }
 }
+

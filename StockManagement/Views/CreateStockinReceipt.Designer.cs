@@ -173,6 +173,7 @@ namespace StockManagement.Views
             this.simpleButton1.Size = new System.Drawing.Size(100, 43);
             this.simpleButton1.TabIndex = 2;
             this.simpleButton1.Text = "Lưu";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // labelControl2
             // 
@@ -214,6 +215,7 @@ namespace StockManagement.Views
             this.gridControl1.TabIndex = 5;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridControl1_KeyDown);
             // 
             // gridView1
             // 

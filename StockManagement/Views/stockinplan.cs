@@ -30,11 +30,15 @@ namespace StockManagement.Views
 
         }
 
-        private void stockinplan_Load(object sender, EventArgs e)
+        public void reLoad()
         {
             gridControl1.DataSource = StockinPlans.getPlans();
             gridView1.Columns.Remove(gridView1.Columns["id"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+        }
+        private void stockinplan_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -45,6 +49,11 @@ namespace StockManagement.Views
             createStockinPlan.note = data.note;
             createStockinPlan.quotationNumber = data.quotationNumber;
             createStockinPlan.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            reLoad();
         }
     }
 }
