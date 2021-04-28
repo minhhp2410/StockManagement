@@ -35,7 +35,7 @@ namespace StockManagement.Views
         }
         private void stockoutreceipt_Load(object sender, EventArgs e)
         {
-            timer1.Start();
+            reLoad();
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)

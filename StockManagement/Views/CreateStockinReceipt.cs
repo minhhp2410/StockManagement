@@ -46,40 +46,12 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
-            inventories = Model.Inventory.getInventories();
-            collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
+            //ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
+            //inventories = Model.Inventory.getInventories();
+            //collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            if (comboBoxEdit2.Text != "")
-            {
-                string partNumber = comboBoxEdit2.Text.Split('-')[0];
-                Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
-                List<Model.ReceiptDetail> ReceiptDetailss = new List<Model.ReceiptDetail>();
-                ReceiptDetailss.AddRange(ReceiptDetails.ToArray());
-                if (ReceiptDetails.FindIndex(a => a.partNumber == data.partNumber) < 0)
-                {
 
-                    ReceiptDetailss.Add(new Model.ReceiptDetail
-                    {
-                        partName = data.partName,
-                        partNumber = data.partNumber,
-                        position = data.position,
-                        price = data.price,
-                        quantity = 0,
-                        currency = data.currency,
-                        unit = data.unit
-                    });
-                    gridControl1.DataSource = ReceiptDetailss;
-                    ReceiptDetails.Clear();
-                    ReceiptDetails.AddRange(ReceiptDetailss.ToArray());
-                    return;
-                }
-                MessageBox.Show("Săn phẩm đã tồn tại");
-            }
-        }
 
         private void gridControl1_KeyDown(object sender, KeyEventArgs e)
         {

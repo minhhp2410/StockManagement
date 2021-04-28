@@ -27,7 +27,7 @@ namespace StockManagement.Views
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Model.ReceiptDetail.insertStockoutReceiptDetail(gridView1, "stockoutreceiptdetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
-            f.reload();
+            f.reLoad();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -35,35 +35,7 @@ namespace StockManagement.Views
 
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            if (comboBoxEdit2.Text != "")
-            {
-                string partNumber = comboBoxEdit2.Text.Split('-')[0];
-                Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
-                List<Model.ReceiptDetail> receiptDetailss = new List<Model.ReceiptDetail>();
-                receiptDetailss.AddRange(receiptDetails.ToArray());
-                if (receiptDetails.FindIndex(a => a.partNumber == data.partNumber) < 0)
-                {
 
-                    receiptDetailss.Add(new Model.ReceiptDetail
-                    {
-                        partName = data.partName,
-                        partNumber = data.partNumber,
-                        position = data.position,
-                        price = data.price,
-                        quantity = 0,
-                        currency = data.currency,
-                        unit = data.unit
-                    });
-                    gridControl1.DataSource = receiptDetailss;
-                    receiptDetails.Clear();
-                    receiptDetails.AddRange(receiptDetailss.ToArray());
-                    return;
-                }
-                MessageBox.Show("Săn phẩm đã tồn tại");
-            }
-        }
 
         private void CreateStockoutReceipt_Load(object sender, EventArgs e)
         {
@@ -85,9 +57,7 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
-            inventories = Model.Inventory.getInventories();
-            collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
+
         }
 
         private void gridControl1_KeyDown(object sender, KeyEventArgs e)
