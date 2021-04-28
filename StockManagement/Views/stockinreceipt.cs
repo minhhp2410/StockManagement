@@ -22,6 +22,7 @@ namespace StockManagement.Views
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CreateStockinReceipt createStockinReceipt = new CreateStockinReceipt();
+            createStockinReceipt.f = this;
             createStockinReceipt.ShowDialog();
         }
         void reLoad()
@@ -43,6 +44,7 @@ namespace StockManagement.Views
             createStockinReceipt.receiptID = data.receiptID;
             createStockinReceipt.note = data.note;
             createStockinReceipt.quotationNumber = data.quotationNumber;
+            createStockinReceipt.StartPosition = FormStartPosition.CenterScreen;
             createStockinReceipt.Show();
         }
 

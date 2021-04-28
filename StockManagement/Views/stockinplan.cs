@@ -22,6 +22,7 @@ namespace StockManagement.Views
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CreateStockinPlan createStockinPlan = new CreateStockinPlan();
+            createStockinPlan.f = this;
             createStockinPlan.ShowDialog();
         }
 
@@ -38,7 +39,7 @@ namespace StockManagement.Views
         }
         private void stockinplan_Load(object sender, EventArgs e)
         {
-            timer1.Start();
+            reLoad();
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -48,12 +49,8 @@ namespace StockManagement.Views
             createStockinPlan.planID = data.planID;
             createStockinPlan.note = data.note;
             createStockinPlan.quotationNumber = data.quotationNumber;
+            createStockinPlan.StartPosition = FormStartPosition.CenterScreen;
             createStockinPlan.Show();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            reLoad();
         }
     }
 }

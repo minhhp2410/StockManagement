@@ -39,6 +39,11 @@ namespace StockManagement.Model
         {
             try
             {
+                if(quotationNumber.Contains("KHN"))
+                {
+                    StockinPlanData data = StockinPlan.getPlan(quotationNumber);
+                    quotationNumber = data.quotationNumber;
+                }    
                 Model.StockinReceipt stockinPlan = Model.StockinReceipt.addStockinReceipt(new Model.StockinReceiptData
                 {
                     note = note,
@@ -47,6 +52,7 @@ namespace StockManagement.Model
                     store = store,
                     isDeleted= false
                 });
+                
                 List<Model.ReceiptDetail> item = new List<Model.ReceiptDetail>();
                 for (int i = 0; i < grid.RowCount; i++)
                 {
@@ -80,6 +86,11 @@ namespace StockManagement.Model
         {
             try
             {
+                if (poNumber.Contains("KHX"))
+                {
+                    StockoutPlanData data = StockoutPlan.getPlan(poNumber);
+                    poNumber = data.poNumber;
+                }
                 Model.StockoutReceipt stockoutReceipt = Model.StockoutReceipt.addStockoutReceipt(new Model.StockoutReceiptData
                 {
                     note = note,

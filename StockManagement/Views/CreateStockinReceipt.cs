@@ -17,6 +17,7 @@ namespace StockManagement.Views
     public partial class CreateStockinReceipt : DevExpress.XtraEditors.XtraForm
     {
         public string receiptID = "", quotationNumber = "", note = "";
+        public stockinreceipt f = new stockinreceipt();
         List<Model.DataInventory> inventories = new List<Model.DataInventory>();
         List<Model.ReceiptDetail> ReceiptDetails = new List<Model.ReceiptDetail>();
         private void simpleButton1_Click(object sender, EventArgs e)

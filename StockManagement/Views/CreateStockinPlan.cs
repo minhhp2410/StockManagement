@@ -18,6 +18,7 @@ namespace StockManagement.Views
     public partial class CreateStockinPlan : DevExpress.XtraEditors.XtraForm
     {
         public string planID="",quotationNumber="",note="";
+        public stockinplan f = new stockinplan();
         List<Model.DataInventory> inventories = new List<Model.DataInventory>();
         List<Model.PlanDetail> planDetails = new List<Model.PlanDetail>();
         public CreateStockinPlan()
@@ -29,6 +30,7 @@ namespace StockManagement.Views
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Model.PlanDetail.insertStockinPlanDetail(gridView1, "stockinplandetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            f.reLoad();
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)

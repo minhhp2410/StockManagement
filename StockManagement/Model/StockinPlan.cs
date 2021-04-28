@@ -48,6 +48,7 @@ namespace StockManagement.Model
             }
             catch { return new List<StockinPlanData>(); }
         }
+
     }
     class StockinPlan
     {
@@ -69,6 +70,21 @@ namespace StockManagement.Model
                 return JsonConvert.DeserializeObject<StockinPlan>(response.Content);
             }
             catch { return new StockinPlan(); }
+        }
+        public static StockinPlanData getPlan(string planID)
+        {
+            try
+            {
+                RestClient client = new RestClient(Properties.Resources.apiEndPoint);
+                RestRequest request = new RestRequest("stockinplans/" + planID, Method.GET);
+                IRestResponse response = client.Execute(request);
+                request.RequestFormat = DataFormat.Json;// Execute the Request
+                StockinPlan plan = JsonConvert.DeserializeObject<StockinPlan>(response.Content);
+                if (plan != null)
+                    return plan.data;
+                return new StockinPlanData();
+            }
+            catch { return new StockinPlanData(); }
         }
     }
 }

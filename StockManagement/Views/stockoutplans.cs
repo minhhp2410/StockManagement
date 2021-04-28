@@ -22,6 +22,7 @@ namespace StockManagement.Views
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CreateStockoutPlan createStockoutPlan = new CreateStockoutPlan();
+            createStockoutPlan.f = this;
             createStockoutPlan.ShowDialog();
         }
 
@@ -48,6 +49,7 @@ namespace StockManagement.Views
             createStockoutPlan.planID = data.planID;
             createStockoutPlan.note = data.note;
             createStockoutPlan.poNumber = data.poNumber;
+            createStockoutPlan.StartPosition = FormStartPosition.CenterScreen;
             createStockoutPlan.Show();
         }
 

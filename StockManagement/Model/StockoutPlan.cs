@@ -42,6 +42,21 @@ namespace StockManagement.Model
             IRestResponse response = client.Execute(request);  // Execute the Request
             return JsonConvert.DeserializeObject<StockoutPlan>(response.Content);
         }
+        public static StockoutPlanData getPlan(string planID)
+        {
+            try
+            {
+                RestClient client = new RestClient(Properties.Resources.apiEndPoint);
+                RestRequest request = new RestRequest("stockinplans/" + planID, Method.GET);
+                IRestResponse response = client.Execute(request);
+                request.RequestFormat = DataFormat.Json;// Execute the Request
+                StockoutPlan plan = JsonConvert.DeserializeObject<StockoutPlan>(response.Content);
+                if (plan != null)
+                    return plan.data;
+                return new StockoutPlanData();
+            }
+            catch { return new StockoutPlanData(); }
+        }
     }
     class StockoutPlans
     {
