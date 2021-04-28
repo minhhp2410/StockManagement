@@ -23,6 +23,7 @@ namespace StockManagement.Views
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Model.ReceiptDetail.insertStockinReceiptDetail(gridView1, "stockinreceiptdetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            f.reLoad();
         }
 
         private void CreateStockinReceipt_Load(object sender, EventArgs e)

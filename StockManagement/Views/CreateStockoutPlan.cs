@@ -28,6 +28,7 @@ namespace StockManagement.Views
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Model.PlanDetail.insertStockoutPlanDetail(gridView1, "stockoutplandetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            f.reLoad();
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)

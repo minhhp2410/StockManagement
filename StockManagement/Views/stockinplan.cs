@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StockManagement.Model;
+using System.Threading;
 
 namespace StockManagement.Views
 {
@@ -39,7 +40,7 @@ namespace StockManagement.Views
         }
         private void stockinplan_Load(object sender, EventArgs e)
         {
-            reLoad();
+                reLoad();   
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)

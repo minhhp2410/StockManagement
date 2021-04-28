@@ -26,7 +26,8 @@ namespace StockManagement.Views
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.ReceiptDetail.insertStockoutPlanDetail(gridView1, "stockoutreceiptdetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            Model.ReceiptDetail.insertStockoutReceiptDetail(gridView1, "stockoutreceiptdetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            f.reload();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -68,7 +69,7 @@ namespace StockManagement.Views
         {
             if (receiptID != "")
             {
-                gridControl1.DataSource = Model.PlanDetail.getPlanList("stockoutreceiptdetails", receiptID);
+                gridControl1.DataSource = Model.ReceiptDetail.getReceiptList("stockoutreceiptdetails", receiptID);
                 groupControl1.Text = "thông tin chi tiết " + receiptID;
                 this.Text = "thông tin chi tiết " + receiptID;
                 button1.Enabled = false;
@@ -102,10 +103,9 @@ namespace StockManagement.Views
         private void button1_Click(object sender, EventArgs e)
         {
             receiptDetails = new List<ReceiptDetail>();
-            MessageBox.Show(textEdit1.Text.Contains("KHX").ToString());
             if (!textEdit1.Text.Contains("KHX"))
             {
-                string res = Model.RestSharpC.execCommand2("quotationitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
+                string res = Model.RestSharpC.execCommand5("poitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
                 JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
                 quoationItems.Data.ToList().ForEach(i =>
                 {

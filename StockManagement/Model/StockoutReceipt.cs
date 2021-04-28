@@ -58,7 +58,7 @@ namespace StockManagement.Model
         [JsonProperty("message")]
         public string message { get; set; }
         [JsonProperty("data")]
-        public StockinReceiptData data { get; set; }
+        public StockoutReceiptData data { get; set; }
         public static StockoutReceipt addStockoutReceipt(StockoutReceiptData item)
         {
             try

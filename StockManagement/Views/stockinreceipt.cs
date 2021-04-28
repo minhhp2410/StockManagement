@@ -25,7 +25,7 @@ namespace StockManagement.Views
             createStockinReceipt.f = this;
             createStockinReceipt.ShowDialog();
         }
-        void reLoad()
+        public void reLoad()
         {
            gridControl1.DataSource= Model.StockinReceipts.getReceipts();
             gridView1.Columns.Remove(gridView1.Columns["id"]);
@@ -34,7 +34,7 @@ namespace StockManagement.Views
         }
         private void stockinreceipt_Load(object sender, EventArgs e)
         {
-            timer1.Start();
+            reLoad();
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)

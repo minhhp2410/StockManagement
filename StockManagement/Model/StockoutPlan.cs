@@ -47,7 +47,7 @@ namespace StockManagement.Model
             try
             {
                 RestClient client = new RestClient(Properties.Resources.apiEndPoint);
-                RestRequest request = new RestRequest("stockinplans/" + planID, Method.GET);
+                RestRequest request = new RestRequest("stockoutplans/" + planID, Method.GET);
                 IRestResponse response = client.Execute(request);
                 request.RequestFormat = DataFormat.Json;// Execute the Request
                 StockoutPlan plan = JsonConvert.DeserializeObject<StockoutPlan>(response.Content);

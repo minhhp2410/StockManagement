@@ -82,7 +82,7 @@ namespace StockManagement.Model
                 throw ex;
             }
         }
-        public static void insertStockoutPlanDetail(GridView grid, string table, string note, string poNumber, string store)
+        public static void insertStockoutReceiptDetail(GridView grid, string table, string note, string poNumber, string store)
         {
             try
             {
