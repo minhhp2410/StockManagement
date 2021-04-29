@@ -88,5 +88,14 @@ namespace StockManagement
         {
             openForm(new stockoutreceipt());
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.GetType() == typeof(UserLogin))
+                    f.Show();
+            }
+        }
     }
 }

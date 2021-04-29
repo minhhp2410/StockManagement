@@ -94,6 +94,7 @@
     <Compile Include="Model\StockinReceipt.cs" />
     <Compile Include="Model\StockoutPlan.cs" />
     <Compile Include="Model\StockinPlan.cs" />
+    <Compile Include="Model\user.cs" />
     <Compile Include="Views\BaoCaoThongKe.cs">
       <SubType>Form</SubType>
     </Compile>

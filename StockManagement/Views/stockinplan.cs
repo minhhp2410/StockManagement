@@ -24,6 +24,7 @@ namespace StockManagement.Views
         {
             CreateStockinPlan createStockinPlan = new CreateStockinPlan();
             createStockinPlan.f = this;
+            createStockinPlan.StartPosition = FormStartPosition.CenterScreen;
             createStockinPlan.ShowDialog();
         }
 

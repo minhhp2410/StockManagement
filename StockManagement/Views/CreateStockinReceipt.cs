@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Columns;
 using Newtonsoft.Json;
 using StockManagement.Model;
 using System;
@@ -46,9 +48,13 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            //ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
-            //inventories = Model.Inventory.getInventories();
-            //collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
+            for(int i=0;i<gridView1.Columns.Count;i++)
+            {
+                if(gridView1.Columns[i].FieldName!="actualQty")
+                {
+                    gridView1.Columns[i].OptionsColumn.AllowEdit = false;
+                }    
+            }
         }
 
 

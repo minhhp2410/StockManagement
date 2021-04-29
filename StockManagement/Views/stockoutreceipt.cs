@@ -22,6 +22,7 @@ namespace StockManagement.Views
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CreateStockoutReceipt createStockoutReceipt = new CreateStockoutReceipt();
+            createStockoutReceipt.StartPosition = FormStartPosition.CenterScreen;
             createStockoutReceipt.f = this;
             createStockoutReceipt.ShowDialog();
         }

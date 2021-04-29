@@ -57,7 +57,13 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                if (gridView1.Columns[i].FieldName != "actualQty")
+                {
+                    gridView1.Columns[i].OptionsColumn.AllowEdit = false;
+                }
+            }
         }
 
         private void gridControl1_KeyDown(object sender, KeyEventArgs e)
