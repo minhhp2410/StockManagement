@@ -13,9 +13,9 @@ using System.Threading;
 
 namespace StockManagement.Views
 {
-    public partial class stockinplan : DevExpress.XtraEditors.XtraForm
+    public partial class FormStockinPlan : DevExpress.XtraEditors.XtraForm
     {
-        public stockinplan()
+        public FormStockinPlan()
         {
             InitializeComponent();
         }

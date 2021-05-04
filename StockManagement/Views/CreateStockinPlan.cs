@@ -18,7 +18,7 @@ namespace StockManagement.Views
     public partial class CreateStockinPlan : DevExpress.XtraEditors.XtraForm
     {
         public string planID="",quotationNumber="",note="";
-        public stockinplan f = new stockinplan();
+        public FormStockinPlan f = new FormStockinPlan();
         List<Model.DataInventory> inventories = new List<Model.DataInventory>();
         List<Model.PlanDetail> planDetails = new List<Model.PlanDetail>();
         public CreateStockinPlan()

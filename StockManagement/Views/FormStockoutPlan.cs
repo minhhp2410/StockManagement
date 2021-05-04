@@ -12,9 +12,9 @@ using StockManagement.Model;
 
 namespace StockManagement.Views
 {
-    public partial class stockoutplan : DevExpress.XtraEditors.XtraForm
+    public partial class FormStockoutPlan : DevExpress.XtraEditors.XtraForm
     {
-        public stockoutplan()
+        public FormStockoutPlan()
         {
             InitializeComponent();
         }

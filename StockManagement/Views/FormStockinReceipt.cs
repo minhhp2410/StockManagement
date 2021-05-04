@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace StockManagement.Views
 {
-    public partial class stockinreceipt : DevExpress.XtraEditors.XtraForm
+    public partial class FormStockinReceipt : DevExpress.XtraEditors.XtraForm
     {
-        public stockinreceipt()
+        public FormStockinReceipt()
         {
             InitializeComponent();
         }

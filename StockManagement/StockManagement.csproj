@@ -94,7 +94,7 @@
     <Compile Include="Model\StockinReceipt.cs" />
     <Compile Include="Model\StockoutPlan.cs" />
     <Compile Include="Model\StockinPlan.cs" />
-    <Compile Include="Model\user.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Views\BaoCaoThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,29 +114,29 @@
     <Compile Include="Report\rpStockOut.Designer.cs">
       <DependentUpon>rpStockOut.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\inventory.cs">
+    <Compile Include="Views\FormInventory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\inventory.Designer.cs">
-      <DependentUpon>inventory.cs</DependentUpon>
+    <Compile Include="Views\FormInventory.Designer.cs">
+      <DependentUpon>FormInventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\stockinreceipt.cs">
+    <Compile Include="Views\FormStockinReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\stockinreceipt.Designer.cs">
-      <DependentUpon>stockinreceipt.cs</DependentUpon>
+    <Compile Include="Views\FormStockinReceipt.Designer.cs">
+      <DependentUpon>FormStockinReceipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\stockoutplans.cs">
+    <Compile Include="Views\FormStockoutPlan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\stockoutplans.Designer.cs">
-      <DependentUpon>stockoutplans.cs</DependentUpon>
+    <Compile Include="Views\FormStockoutPlan.Designer.cs">
+      <DependentUpon>FormStockoutPlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\stockinplan.cs">
+    <Compile Include="Views\FormStockinPlan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\stockinplan.Designer.cs">
-      <DependentUpon>stockinplan.cs</DependentUpon>
+    <Compile Include="Views\FormStockinPlan.Designer.cs">
+      <DependentUpon>FormStockinPlan.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateStockoutReceipt.cs">
       <SubType>Form</SubType>
@@ -162,11 +162,11 @@
     <Compile Include="Views\CreateStockinPlan.Designer.cs">
       <DependentUpon>CreateStockinPlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\stockoutreceipt.cs">
+    <Compile Include="Views\FormStockoutReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\stockoutreceipt.Designer.cs">
-      <DependentUpon>stockoutreceipt.cs</DependentUpon>
+    <Compile Include="Views\FormStockoutReceipt.Designer.cs">
+      <DependentUpon>FormStockoutReceipt.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserLogin.cs">
       <SubType>Form</SubType>
@@ -211,17 +211,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\inventory.resx">
-      <DependentUpon>inventory.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormInventory.resx">
+      <DependentUpon>FormInventory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\stockinreceipt.resx">
-      <DependentUpon>stockinreceipt.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormStockinReceipt.resx">
+      <DependentUpon>FormStockinReceipt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\stockoutplans.resx">
-      <DependentUpon>stockoutplans.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormStockoutPlan.resx">
+      <DependentUpon>FormStockoutPlan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\stockinplan.resx">
-      <DependentUpon>stockinplan.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormStockinPlan.resx">
+      <DependentUpon>FormStockinPlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CreateStockoutReceipt.resx">
       <DependentUpon>CreateStockoutReceipt.cs</DependentUpon>
@@ -235,8 +235,8 @@
     <EmbeddedResource Include="Views\CreateStockinPlan.resx">
       <DependentUpon>CreateStockinPlan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\stockoutreceipt.resx">
-      <DependentUpon>stockoutreceipt.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormStockoutReceipt.resx">
+      <DependentUpon>FormStockoutReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>

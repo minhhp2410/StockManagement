@@ -11,9 +11,9 @@ using StockManagement.Model;
 
 namespace StockManagement.Views
 {
-    public partial class inventory : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class FormInventory : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public inventory()
+        public FormInventory()
         {
             InitializeComponent();
             

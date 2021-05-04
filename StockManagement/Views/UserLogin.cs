@@ -28,7 +28,7 @@ namespace StockManagement
         {
             RestClient client = new RestClient(Properties.Resources.apiEndPoint+"auth/");
             RestRequest request = new RestRequest(Method.POST);
-            Model.user Account = new Model.user
+            Model.User Account = new Model.User
             {
                 email = textBox1.Text,
                 password = textBox2.Text

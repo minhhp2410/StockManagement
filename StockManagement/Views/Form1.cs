@@ -66,27 +66,27 @@ namespace StockManagement
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            openForm(new inventory());
+            openForm(new FormInventory());
         }
 
         private void btnStockinPlan_ItemClick(object sender, ItemClickEventArgs e)
         {
-            openForm(new stockinplan());
+            openForm(new FormStockinPlan());
         }
 
         private void btnStockoutPlan_ItemClick(object sender, ItemClickEventArgs e)
         {
-            openForm(new stockoutplan());
+            openForm(new FormStockoutPlan());
         }
 
         private void btnStockinReceipt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            openForm(new stockinreceipt());
+            openForm(new FormStockinReceipt());
         }
 
         private void btnStockoutReceipt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            openForm(new stockoutreceipt());
+            openForm(new FormStockoutReceipt());
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

@@ -1,7 +1,7 @@
 ﻿
 namespace StockManagement.Views
 {
-    partial class stockinreceipt
+    partial class FormStockinReceipt
     {
         /// <summary>
         /// Required designer variable.
