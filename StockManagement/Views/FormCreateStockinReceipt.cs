@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace StockManagement.Views
 {
-    public partial class CreateStockinReceipt : DevExpress.XtraEditors.XtraForm
+    public partial class FormCreateStockinReceipt : DevExpress.XtraEditors.XtraForm
     {
         public string receiptID = "", quotationNumber = "", note = "";
         public FormStockinReceipt f = new FormStockinReceipt();
@@ -118,7 +118,7 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
         }
 
-        public CreateStockinReceipt()
+        public FormCreateStockinReceipt()
         {
             InitializeComponent();
         }

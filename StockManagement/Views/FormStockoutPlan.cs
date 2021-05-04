@@ -21,7 +21,7 @@ namespace StockManagement.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CreateStockoutPlan createStockoutPlan = new CreateStockoutPlan();
+            FormCreateStockoutPlan createStockoutPlan = new FormCreateStockoutPlan();
             createStockoutPlan.StartPosition = FormStartPosition.CenterScreen;
             createStockoutPlan.f = this;
             createStockoutPlan.ShowDialog();
@@ -46,7 +46,7 @@ namespace StockManagement.Views
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             StockoutPlanData data = gridView1.GetFocusedRow() as StockoutPlanData;
-            CreateStockoutPlan createStockoutPlan = new CreateStockoutPlan();
+            FormCreateStockoutPlan createStockoutPlan = new FormCreateStockoutPlan();
             createStockoutPlan.planID = data.planID;
             createStockoutPlan.note = data.note;
             createStockoutPlan.poNumber = data.poNumber;

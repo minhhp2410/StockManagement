@@ -22,7 +22,7 @@ namespace StockManagement.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CreateStockinPlan createStockinPlan = new CreateStockinPlan();
+            FormCreateStockinPlan createStockinPlan = new FormCreateStockinPlan();
             createStockinPlan.f = this;
             createStockinPlan.StartPosition = FormStartPosition.CenterScreen;
             createStockinPlan.ShowDialog();
@@ -47,7 +47,7 @@ namespace StockManagement.Views
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             StockinPlanData data = gridView1.GetFocusedRow() as StockinPlanData;
-            CreateStockinPlan createStockinPlan = new CreateStockinPlan();
+            FormCreateStockinPlan createStockinPlan = new FormCreateStockinPlan();
             createStockinPlan.planID = data.planID;
             createStockinPlan.note = data.note;
             createStockinPlan.quotationNumber = data.quotationNumber;

@@ -14,13 +14,13 @@ using System.Windows.Forms;
 
 namespace StockManagement.Views
 {
-    public partial class CreateStockoutReceipt : DevExpress.XtraEditors.XtraForm
+    public partial class FormCreateStockoutReceipt : DevExpress.XtraEditors.XtraForm
     {
         public string receiptID = "", poNumber = "", note = "";
         public FormStockoutReceipt f = new FormStockoutReceipt();
         List<Model.DataInventory> inventories = new List<Model.DataInventory>();
         List<Model.ReceiptDetail> receiptDetails = new List<Model.ReceiptDetail>();
-        public CreateStockoutReceipt()
+        public FormCreateStockoutReceipt()
         {
             InitializeComponent();
         }

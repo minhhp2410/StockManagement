@@ -21,7 +21,7 @@ namespace StockManagement.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CreateStockinReceipt createStockinReceipt = new CreateStockinReceipt();
+            FormCreateStockinReceipt createStockinReceipt = new FormCreateStockinReceipt();
             createStockinReceipt.StartPosition = FormStartPosition.CenterScreen;
             createStockinReceipt.f = this;
             createStockinReceipt.ShowDialog();
@@ -41,7 +41,7 @@ namespace StockManagement.Views
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             StockinReceiptData data = gridView1.GetFocusedRow() as StockinReceiptData;
-            CreateStockinReceipt createStockinReceipt= new CreateStockinReceipt();
+            FormCreateStockinReceipt createStockinReceipt= new FormCreateStockinReceipt();
             createStockinReceipt.receiptID = data.receiptID;
             createStockinReceipt.note = data.note;
             createStockinReceipt.quotationNumber = data.quotationNumber;

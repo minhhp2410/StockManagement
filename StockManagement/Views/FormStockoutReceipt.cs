@@ -21,7 +21,7 @@ namespace StockManagement.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CreateStockoutReceipt createStockoutReceipt = new CreateStockoutReceipt();
+            FormCreateStockoutReceipt createStockoutReceipt = new FormCreateStockoutReceipt();
             createStockoutReceipt.StartPosition = FormStartPosition.CenterScreen;
             createStockoutReceipt.f = this;
             createStockoutReceipt.ShowDialog();
@@ -42,7 +42,7 @@ namespace StockManagement.Views
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             StockoutReceiptData data = gridView1.GetFocusedRow() as StockoutReceiptData;
-            CreateStockoutReceipt createStockoutReceipt = new CreateStockoutReceipt();
+            FormCreateStockoutReceipt createStockoutReceipt = new FormCreateStockoutReceipt();
             createStockoutReceipt.receiptID = data.receiptID;
             createStockoutReceipt.note = data.note;
             createStockoutReceipt.poNumber = data.poNumber;

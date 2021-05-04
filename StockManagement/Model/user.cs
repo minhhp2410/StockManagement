@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StockManagement.Model
 {
-    class user
+    class User
     {
         public string email { get; set; }
         public string password { get; set; }
