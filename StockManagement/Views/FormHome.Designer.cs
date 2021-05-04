@@ -1,6 +1,6 @@
 ﻿namespace StockManagement
 {
-    partial class Form1
+    partial class FormHome
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHome));
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rbStock = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
@@ -39,8 +39,8 @@
             this.btnStockoutPlan = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.btnInventory = new DevExpress.XtraBars.BarButtonItem();
-            this.btnStockinReceipt = new DevExpress.XtraBars.BarButtonItem();
-            this.btnStockoutReceipt = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStockout = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -116,8 +116,8 @@
             // 
             this.ribbonPageGroup2.AllowTextClipping = false;
             this.ribbonPageGroup2.ItemLinks.Add(this.btnInventory);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnStockinReceipt);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnStockoutReceipt);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnStockin);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnStockout);
             this.ribbonPageGroup2.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.OneRow;
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Kho";
@@ -133,27 +133,27 @@
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
             this.btnInventory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
-            // btnStockinReceipt
+            // btnStockin
             // 
-            this.btnStockinReceipt.Caption = "Nhập kho";
-            this.btnStockinReceipt.Id = 17;
-            this.btnStockinReceipt.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStockinReceipt.ImageOptions.Image")));
-            this.btnStockinReceipt.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnStockinReceipt.ImageOptions.LargeImage")));
-            this.btnStockinReceipt.Name = "btnStockinReceipt";
-            this.btnStockinReceipt.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            this.btnStockin.Caption = "Nhập kho";
+            this.btnStockin.Id = 17;
+            this.btnStockin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStockinReceipt.ImageOptions.Image")));
+            this.btnStockin.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnStockinReceipt.ImageOptions.LargeImage")));
+            this.btnStockin.Name = "btnStockin";
+            this.btnStockin.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
-            this.btnStockinReceipt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockinReceipt_ItemClick);
+            this.btnStockin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockinReceipt_ItemClick);
             // 
-            // btnStockoutReceipt
+            // btnStockout
             // 
-            this.btnStockoutReceipt.Caption = "Xuất kho";
-            this.btnStockoutReceipt.Id = 18;
-            this.btnStockoutReceipt.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStockoutReceipt.ImageOptions.Image")));
-            this.btnStockoutReceipt.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnStockoutReceipt.ImageOptions.LargeImage")));
-            this.btnStockoutReceipt.Name = "btnStockoutReceipt";
-            this.btnStockoutReceipt.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            this.btnStockout.Caption = "Xuất kho";
+            this.btnStockout.Id = 18;
+            this.btnStockout.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStockoutReceipt.ImageOptions.Image")));
+            this.btnStockout.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnStockoutReceipt.ImageOptions.LargeImage")));
+            this.btnStockout.Name = "btnStockout";
+            this.btnStockout.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
-            this.btnStockoutReceipt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockoutReceipt_ItemClick);
+            this.btnStockout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStockoutReceipt_ItemClick);
             // 
             // ribbonPageGroup3
             // 
@@ -181,8 +181,8 @@
             this.ribbonControl1.SearchEditItem,
             this.btnStockinPlan,
             this.btnStockoutPlan,
-            this.btnStockinReceipt,
-            this.btnStockoutReceipt,
+            this.btnStockin,
+            this.btnStockout,
             this.barButtonItem4,
             this.btnInventory,
             this.barButtonItem6});
@@ -212,7 +212,7 @@
             this.panelControl1.Size = new System.Drawing.Size(1050, 465);
             this.panelControl1.TabIndex = 11;
             // 
-            // Form1
+            // FormHome
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.Appearance.Options.UseFont = true;
@@ -223,10 +223,10 @@
             this.Controls.Add(this.ribbonControl1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
-            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("Form1.IconOptions.LargeImage")));
+            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("FormHome.IconOptions.LargeImage")));
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.MinimumSize = new System.Drawing.Size(550, 4);
-            this.Name = "Form1";
+            this.Name = "FormHome";
             this.Ribbon = this.ribbonControl1;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang Chủ";
@@ -250,8 +250,8 @@
         private DevExpress.XtraBars.BarButtonItem btnStockinPlan;
         private DevExpress.XtraBars.BarButtonItem btnStockoutPlan;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.BarButtonItem btnStockinReceipt;
-        private DevExpress.XtraBars.BarButtonItem btnStockoutReceipt;
+        private DevExpress.XtraBars.BarButtonItem btnStockin;
+        private DevExpress.XtraBars.BarButtonItem btnStockout;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;

@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using RestSharp;
 using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace StockManagement
 {
     public partial class UserLogin : DevExpress.XtraEditors.XtraForm
     {
+        FormHome home = new FormHome();
+        string roles = "";
         public UserLogin()
         {
             InitializeComponent();
@@ -40,6 +43,9 @@ namespace StockManagement
             try
             {
                 token = JsonConvert.DeserializeObject<Model.GetToken>(res.Content).message;
+                var handler = new JwtSecurityTokenHandler();
+                var decodedToken = handler.ReadJwtToken(token);
+                roles= decodedToken.Claims.ElementAt(2).Value;
             }
             catch
             {
@@ -53,11 +59,24 @@ namespace StockManagement
         {
             if(login())
             {
-                Form1 form1 = new Form1();
-                form1.Show();
-                this.Hide();
-                txtPassword.Clear();
-                return;
+                try
+                {
+                    home.roles = roles;
+                    home.Show();
+                    this.Hide();
+                    txtPassword.Clear();
+                    return;
+                }
+                catch (Exception)
+                {
+                    home = new FormHome();
+                    home.roles = roles;
+                    home.Show();
+                    this.Hide();
+                    txtPassword.Clear();
+                    return;
+                }
+                
             }
             txtPassword.Clear();
             MessageBox.Show("email hoặc password không đúng");

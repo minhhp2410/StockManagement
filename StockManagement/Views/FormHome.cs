@@ -19,13 +19,14 @@ using DevExpress.XtraBars.Ribbon;
 
 namespace StockManagement
 {
-    public partial class Form1 : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class FormHome : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         //private String URL = "http://localhost:8000/api/v1/";
+        public string roles = "";
 
        Form currentForm = new Form(); 
 
-        public Form1()
+        public FormHome()
         {
             InitializeComponent();
         }
@@ -58,10 +59,16 @@ namespace StockManagement
             f.Show();
         }
         #endregion
-
+        void rolesToUI()
+        {
+            bool planUI = roles.Contains("KD");
+            bool stockUI= roles.Contains("SK");
+            ribbonPageGroup1.Visible = planUI;
+            btnStockin.Visibility = btnStockout.Visibility = stockUI==true? BarItemVisibility.Always:BarItemVisibility.Never ;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            rolesToUI();
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -91,6 +98,7 @@ namespace StockManagement
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             foreach (Form f in Application.OpenForms)
             {
                 if (f.GetType() == typeof(UserLogin))
