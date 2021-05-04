@@ -81,12 +81,12 @@ namespace StockManagement
 
         private void btnStockinReceipt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            openForm(new FormStockinReceipt());
+            openForm(new FormStockin());
         }
 
         private void btnStockoutReceipt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            openForm(new FormStockoutReceipt());
+            openForm(new FormStockout());
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

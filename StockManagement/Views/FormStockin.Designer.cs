@@ -1,7 +1,7 @@
 ﻿
 namespace StockManagement.Views
 {
-    partial class FormStockoutReceipt
+    partial class FormStockin
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,11 @@ namespace StockManagement.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -48,8 +46,8 @@ namespace StockManagement.Views
             this.gridControl1.Location = new System.Drawing.Point(0, 63);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(832, 363);
-            this.gridControl1.TabIndex = 5;
+            this.gridControl1.Size = new System.Drawing.Size(882, 379);
+            this.gridControl1.TabIndex = 7;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             this.gridControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridControl1_KeyDown);
@@ -62,23 +60,23 @@ namespace StockManagement.Views
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.simpleButton2);
+            this.groupControl1.Controls.Add(this.btnDelete);
             this.groupControl1.Controls.Add(this.btnAdd);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(832, 63);
-            this.groupControl1.TabIndex = 4;
-            this.groupControl1.Text = "Lịch sử xuất kho";
+            this.groupControl1.Size = new System.Drawing.Size(882, 63);
+            this.groupControl1.TabIndex = 6;
+            this.groupControl1.Text = "Lịch sử nhập kho";
             // 
-            // simpleButton2
+            // btnDelete
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(90, 23);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 38);
-            this.simpleButton2.TabIndex = 1;
-            this.simpleButton2.Text = "Hủy phiếu";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.btnDelete.Location = new System.Drawing.Point(90, 23);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 38);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Hủy phiếu";
+            this.btnDelete.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // btnAdd
             // 
@@ -87,23 +85,20 @@ namespace StockManagement.Views
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 38);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Xuất kho";
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Nhập kho";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // timer1
+            // FormStockin
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // stockoutreceipt
-            // 
-            this.ClientSize = new System.Drawing.Size(832, 426);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(882, 442);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupControl1);
-            this.Name = "stockoutreceipt";
+            this.Name = "FormStockin";
             this.Text = "Thông tin phiếu";
-            this.Load += new System.EventHandler(this.stockoutreceipt_Load);
+            this.Load += new System.EventHandler(this.stockinreceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -117,8 +112,7 @@ namespace StockManagement.Views
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
-        private System.Windows.Forms.Timer timer1;
     }
 }

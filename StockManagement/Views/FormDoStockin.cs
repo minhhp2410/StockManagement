@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Columns;
 using Newtonsoft.Json;
 using StockManagement.Model;
 using System;
@@ -14,40 +16,29 @@ using System.Windows.Forms;
 
 namespace StockManagement.Views
 {
-    public partial class FormCreateStockoutReceipt : DevExpress.XtraEditors.XtraForm
+    public partial class FormDoStockin : DevExpress.XtraEditors.XtraForm
     {
-        public string receiptID = "", poNumber = "", note = "";
-        public FormStockoutReceipt f = new FormStockoutReceipt();
+        public string receiptID = "", quotationNumber = "", note = "";
+        public FormStockin f = new FormStockin();
         List<Model.DataInventory> inventories = new List<Model.DataInventory>();
-        List<Model.ReceiptDetail> receiptDetails = new List<Model.ReceiptDetail>();
-        public FormCreateStockoutReceipt()
-        {
-            InitializeComponent();
-        }
+        List<Model.ReceiptDetail> ReceiptDetails = new List<Model.ReceiptDetail>();
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.ReceiptDetail.insertStockoutReceiptDetail(gridView1, "stockoutreceiptdetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            Model.ReceiptDetail.insertStockinReceiptDetail(gridView1, "stockinreceiptdetails", txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void CreateStockoutReceipt_Load(object sender, EventArgs e)
+        private void CreateStockinReceipt_Load(object sender, EventArgs e)
         {
             if (receiptID != "")
             {
-                gridControl1.DataSource = Model.ReceiptDetail.getReceiptList("stockoutreceiptdetails", receiptID);
+                gridControl1.DataSource = Model.PlanDetail.getPlanList("stockinreceiptdetails", receiptID);
                 groupControl1.Text = "thông tin chi tiết " + receiptID;
                 this.Text = "thông tin chi tiết " + receiptID;
-                button1.Enabled = false;
-                simpleButton1.Enabled = false;
-                textBox1.Text = note;
-                textEdit1.Text = poNumber;
+                btnSearch.Enabled = false;
+                btnSave.Enabled = false;
+                txtNote.Text = note;
+                txtSearch.Text = quotationNumber;
             }
             else
             {
@@ -57,14 +48,16 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            for (int i = 0; i < gridView1.Columns.Count; i++)
+            for(int i=0;i<gridView1.Columns.Count;i++)
             {
-                if (gridView1.Columns[i].FieldName != "actualQty")
+                if(gridView1.Columns[i].FieldName!="actualQty")
                 {
                     gridView1.Columns[i].OptionsColumn.AllowEdit = false;
-                }
+                }    
             }
         }
+
+
 
         private void gridControl1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -72,20 +65,20 @@ namespace StockManagement.Views
             {
                 object row = gridView1.GetFocusedRow();
                 gridView1.DeleteRow(gridView1.FindRow(row));
-                receiptDetails.Remove(row as ReceiptDetail);
+                ReceiptDetails.Remove(row as ReceiptDetail);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            receiptDetails = new List<ReceiptDetail>();
-            if (!textEdit1.Text.Contains("KHX"))
+            ReceiptDetails = new List<ReceiptDetail>();
+            if (!txtSearch.Text.Contains("KHN"))
             {
-                string res = Model.RestSharpC.execCommand5("poitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
+                string res = Model.RestSharpC.execCommand2("quotationitems", RestSharp.Method.GET, int.Parse(txtSearch.Text));
                 JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
                 quoationItems.Data.ToList().ForEach(i =>
                 {
-                    receiptDetails.Add(new Model.ReceiptDetail()
+                    ReceiptDetails.Add(new Model.ReceiptDetail()
                     {
                         partNumber = i.PartNumber,
                         partName = i.PartName,
@@ -96,15 +89,15 @@ namespace StockManagement.Views
                         unit = i.Unit
                     });
                 });
-                gridControl1.DataSource = receiptDetails;
+                gridControl1.DataSource = ReceiptDetails;
                 gridControl1.Update();
             }
             else
             {
-                List<ReceiptDetail> Items = ReceiptDetail.getReceiptList("stockoutplandetails", textEdit1.Text);
+                List<ReceiptDetail> Items = ReceiptDetail.getReceiptList("stockinplandetails", txtSearch.Text);
                 Items.ForEach(i =>
                 {
-                    receiptDetails.Add(new Model.ReceiptDetail()
+                    ReceiptDetails.Add(new Model.ReceiptDetail()
                     {
                         partNumber = i.partNumber,
                         partName = i.partName,
@@ -115,14 +108,19 @@ namespace StockManagement.Views
                         unit = i.unit
                     });
                 });
-                gridControl1.DataSource = receiptDetails;
+                gridControl1.DataSource = ReceiptDetails;
                 gridControl1.Update();
-            }
+            }    
+            
             gridView1.Columns.Remove(gridView1.Columns["id"]);
             gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
         }
 
+        public FormDoStockin()
+        {
+            InitializeComponent();
+        }
     }
 }

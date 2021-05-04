@@ -27,15 +27,15 @@ namespace StockManagement.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.PlanDetail.insertStockoutPlanDetail(gridView1, "stockoutplandetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            Model.PlanDetail.insertStockoutPlanDetail(gridView1, "stockoutplandetails", txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            if (comboBoxEdit2.Text != "")
+            if (cbbProduct.Text != "")
             {
-                string partNumber = comboBoxEdit2.Text.Split('-')[0];
+                string partNumber = cbbProduct.Text.Split('-')[0];
                 Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
                 List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
                 planDetailss.AddRange(planDetails.ToArray());
@@ -74,7 +74,7 @@ namespace StockManagement.Views
         private void button1_Click(object sender, EventArgs e)
         {
             planDetails = new List<PlanDetail>();
-            string res = Model.RestSharpC.execCommand5("poitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
+            string res = Model.RestSharpC.execCommand5("poitems", RestSharp.Method.GET, int.Parse(txtSearch.Text));
             JsonHeadPOItem poItems = JsonConvert.DeserializeObject<JsonHeadPOItem>(res);
             poItems.Data.ToList().ForEach(i =>
             {
@@ -103,10 +103,10 @@ namespace StockManagement.Views
                 gridControl1.DataSource = Model.PlanDetail.getPlanList("stockoutplandetails", planID);
                 groupControl1.Text = "thông tin chi tiết " + planID;
                 this.Text = "thông tin chi tiết " + planID;
-                button1.Enabled = false;
-                simpleButton1.Enabled = false;
-                textBox1.Text = note;
-                textEdit1.Text = poNumber;
+                btnSearch.Enabled = false;
+                btnSave.Enabled = false;
+                txtNote.Text = note;
+                txtSearch.Text = poNumber;
             }
             else
             {
@@ -116,7 +116,7 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["planID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
+            ComboBoxItemCollection collection = cbbProduct.Properties.Items;
             inventories = Model.Inventory.getInventories();
             collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
         }

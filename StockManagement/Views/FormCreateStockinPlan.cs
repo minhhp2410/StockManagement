@@ -29,7 +29,7 @@ namespace StockManagement.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.PlanDetail.insertStockinPlanDetail(gridView1, "stockinplandetails", textBox1.Text, textEdit1.Text, comboBoxEdit1.Text);
+            Model.PlanDetail.insertStockinPlanDetail(gridView1, "stockinplandetails", txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
@@ -40,9 +40,9 @@ namespace StockManagement.Views
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            if(comboBoxEdit2.Text!= "")
+            if(cbbProduct.Text!= "")
             {
-                string partNumber = comboBoxEdit2.Text.Split('-')[0];
+                string partNumber = cbbProduct.Text.Split('-')[0];
                 Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
                 List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
                 planDetailss.AddRange(planDetails.ToArray());
@@ -82,7 +82,7 @@ namespace StockManagement.Views
         private void button1_Click(object sender, EventArgs e)
         {
             planDetails = new List<Model.PlanDetail>();
-            string res = Model.RestSharpC.execCommand2("quotationitems", RestSharp.Method.GET, int.Parse(textEdit1.Text));
+            string res = Model.RestSharpC.execCommand2("quotationitems", RestSharp.Method.GET, int.Parse(txtSearch.Text));
             JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
             
             quoationItems.Data.ToList().ForEach(i =>
@@ -114,10 +114,10 @@ namespace StockManagement.Views
                 gridControl1.DataSource = Model.PlanDetail.getPlanList("stockinplandetails", planID);
                 groupControl1.Text = "thông tin chi tiết " + planID;
                 this.Text= "thông tin chi tiết " + planID;
-                button1.Enabled = false;
-                simpleButton1.Enabled = false;
-                textBox1.Text = note;
-                textEdit1.Text = quotationNumber;
+                btnSearch.Enabled = false;
+                btnSave.Enabled = false;
+                txtNote.Text = note;
+                txtSearch.Text = quotationNumber;
             }
             else
             {
@@ -127,7 +127,7 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["planID"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            ComboBoxItemCollection collection = comboBoxEdit2.Properties.Items;
+            ComboBoxItemCollection collection = cbbProduct.Properties.Items;
             inventories = Model.Inventory.getInventories();
             collection.AddRange(inventories.Select(s=> s.partNumber+"-"+s.partName as object).ToArray());
         }

@@ -30,8 +30,8 @@ namespace StockManagement
             RestRequest request = new RestRequest(Method.POST);
             Model.User Account = new Model.User
             {
-                email = textBox1.Text,
-                password = textBox2.Text
+                email = txtID.Text,
+                password = txtPassword.Text
             };
             var userAccount = JsonConvert.SerializeObject(Account);
             request.AddParameter("application/json;charset=utf-8", userAccount, ParameterType.RequestBody);
@@ -56,10 +56,10 @@ namespace StockManagement
                 Form1 form1 = new Form1();
                 form1.Show();
                 this.Hide();
-                textBox2.Clear();
+                txtPassword.Clear();
                 return;
             }
-            textBox2.Clear();
+            txtPassword.Clear();
             MessageBox.Show("email hoặc password không đúng");
 
         }

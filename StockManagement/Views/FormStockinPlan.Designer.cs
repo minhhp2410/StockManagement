@@ -30,7 +30,7 @@ namespace StockManagement.Views
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -42,7 +42,7 @@ namespace StockManagement.Views
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.simpleButton2);
+            this.groupControl1.Controls.Add(this.btnDelete);
             this.groupControl1.Controls.Add(this.btnAdd);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
@@ -51,14 +51,14 @@ namespace StockManagement.Views
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Kế hoạch nhập";
             // 
-            // simpleButton2
+            // btnDelete
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(107, 23);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 38);
-            this.simpleButton2.TabIndex = 1;
-            this.simpleButton2.Text = "Xóa";
-            this.simpleButton2.Visible = false;
+            this.btnDelete.Location = new System.Drawing.Point(107, 23);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 38);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.Visible = false;
             // 
             // btnAdd
             // 
@@ -67,7 +67,7 @@ namespace StockManagement.Views
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(92, 38);
-            this.btnAdd.TabIndex = 0;
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Tạo kế hoạch";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             this.btnAdd.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.btnAdd_ControlAdded);
@@ -89,14 +89,14 @@ namespace StockManagement.Views
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
-            // stockinplan
+            // FormStockinPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 446);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupControl1);
-            this.Name = "stockinplan";
+            this.Name = "FormStockinPlan";
             this.Text = "Kế hoạch nhập";
             this.Load += new System.EventHandler(this.stockinplan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -110,7 +110,7 @@ namespace StockManagement.Views
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;

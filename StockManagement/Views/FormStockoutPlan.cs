@@ -40,7 +40,7 @@ namespace StockManagement.Views
         }
         private void stockoutplan_Load(object sender, EventArgs e)
         {
-            timer1.Start();
+            reLoad();
         }
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -52,11 +52,6 @@ namespace StockManagement.Views
             createStockoutPlan.poNumber = data.poNumber;
             createStockoutPlan.StartPosition = FormStartPosition.CenterScreen;
             createStockoutPlan.Show();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            reLoad();
         }
     }
 }

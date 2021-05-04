@@ -31,24 +31,24 @@ namespace StockManagement.Views
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAddProduct = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbbProduct = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.cbbStore = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new DevExpress.XtraEditors.TextEdit();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbProduct.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbStore.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -56,16 +56,16 @@ namespace StockManagement.Views
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.label1);
-            this.groupControl1.Controls.Add(this.simpleButton2);
+            this.groupControl1.Controls.Add(this.btnAddProduct);
             this.groupControl1.Controls.Add(this.labelControl4);
-            this.groupControl1.Controls.Add(this.comboBoxEdit2);
+            this.groupControl1.Controls.Add(this.cbbProduct);
             this.groupControl1.Controls.Add(this.labelControl3);
-            this.groupControl1.Controls.Add(this.comboBoxEdit1);
-            this.groupControl1.Controls.Add(this.button1);
-            this.groupControl1.Controls.Add(this.textEdit1);
-            this.groupControl1.Controls.Add(this.simpleButton1);
+            this.groupControl1.Controls.Add(this.cbbStore);
+            this.groupControl1.Controls.Add(this.btnSearch);
+            this.groupControl1.Controls.Add(this.txtSearch);
+            this.groupControl1.Controls.Add(this.btnSave);
             this.groupControl1.Controls.Add(this.labelControl2);
-            this.groupControl1.Controls.Add(this.textBox1);
+            this.groupControl1.Controls.Add(this.txtNote);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
@@ -83,16 +83,16 @@ namespace StockManagement.Views
             this.label1.TabIndex = 16;
             this.label1.Text = "Lấy list sản phẩm theo mã Quotation";
             // 
-            // simpleButton2
+            // btnAddProduct
             // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(252, 82);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(29, 22);
-            this.simpleButton2.TabIndex = 10;
-            this.simpleButton2.Text = "+";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.btnAddProduct.Appearance.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddProduct.Appearance.Options.UseFont = true;
+            this.btnAddProduct.Location = new System.Drawing.Point(252, 82);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(29, 22);
+            this.btnAddProduct.TabIndex = 5;
+            this.btnAddProduct.Text = "+";
+            this.btnAddProduct.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // labelControl4
             // 
@@ -104,15 +104,15 @@ namespace StockManagement.Views
             this.labelControl4.TabIndex = 9;
             this.labelControl4.Text = "Sản phẩm:";
             // 
-            // comboBoxEdit2
+            // cbbProduct
             // 
-            this.comboBoxEdit2.EditValue = "";
-            this.comboBoxEdit2.Location = new System.Drawing.Point(84, 82);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbbProduct.EditValue = "";
+            this.cbbProduct.Location = new System.Drawing.Point(84, 82);
+            this.cbbProduct.Name = "cbbProduct";
+            this.cbbProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(162, 22);
-            this.comboBoxEdit2.TabIndex = 8;
+            this.cbbProduct.Size = new System.Drawing.Size(162, 22);
+            this.cbbProduct.TabIndex = 4;
             // 
             // labelControl3
             // 
@@ -124,45 +124,45 @@ namespace StockManagement.Views
             this.labelControl3.TabIndex = 7;
             this.labelControl3.Text = "Store:";
             // 
-            // comboBoxEdit1
+            // cbbStore
             // 
-            this.comboBoxEdit1.EditValue = "HP";
-            this.comboBoxEdit1.Location = new System.Drawing.Point(84, 54);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbbStore.EditValue = "HP";
+            this.cbbStore.Location = new System.Drawing.Point(84, 54);
+            this.cbbStore.Name = "cbbStore";
+            this.cbbStore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
+            this.cbbStore.Properties.Items.AddRange(new object[] {
             "HP",
             "HN"});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 22);
-            this.comboBoxEdit1.TabIndex = 6;
+            this.cbbStore.Size = new System.Drawing.Size(100, 22);
+            this.cbbStore.TabIndex = 3;
             // 
-            // button1
+            // btnSearch
             // 
-            this.button1.Location = new System.Drawing.Point(327, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Tìm kiếm";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSearch.Location = new System.Drawing.Point(327, 26);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 22);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textEdit1
+            // txtSearch
             // 
-            this.textEdit1.Location = new System.Drawing.Point(84, 26);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(237, 22);
-            this.textEdit1.TabIndex = 4;
+            this.txtSearch.Location = new System.Drawing.Point(84, 26);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(237, 22);
+            this.txtSearch.TabIndex = 1;
             // 
-            // simpleButton1
+            // btnSave
             // 
-            this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButton1.Location = new System.Drawing.Point(798, 107);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(100, 43);
-            this.simpleButton1.TabIndex = 2;
-            this.simpleButton1.Text = "Lưu";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSave.Location = new System.Drawing.Point(798, 107);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(100, 43);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // labelControl2
             // 
@@ -174,15 +174,15 @@ namespace StockManagement.Views
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Tìm kiếm:";
             // 
-            // textBox1
+            // txtNote
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(84, 110);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(708, 40);
-            this.textBox1.TabIndex = 2;
+            this.txtNote.Location = new System.Drawing.Point(84, 110);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(708, 40);
+            this.txtNote.TabIndex = 6;
             // 
             // labelControl1
             // 
@@ -212,7 +212,7 @@ namespace StockManagement.Views
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
-            // CreateStockinPlan
+            // FormCreateStockinPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -220,15 +220,15 @@ namespace StockManagement.Views
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupControl1);
             this.MinimumSize = new System.Drawing.Size(550, 32);
-            this.Name = "CreateStockinPlan";
+            this.Name = "FormCreateStockinPlan";
             this.Text = "Tạo kế hoạch";
             this.Load += new System.EventHandler(this.CreateStockinPlan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbProduct.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbStore.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
@@ -240,17 +240,17 @@ namespace StockManagement.Views
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNote;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.Button button1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private System.Windows.Forms.Button btnSearch;
+        private DevExpress.XtraEditors.TextEdit txtSearch;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit cbbStore;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.ComboBoxEdit cbbProduct;
+        private DevExpress.XtraEditors.SimpleButton btnAddProduct;
         private System.Windows.Forms.Label label1;
     }
 }
