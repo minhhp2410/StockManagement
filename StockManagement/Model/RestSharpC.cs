@@ -14,7 +14,7 @@
         //        /// <summary>
         //        /// Defines the URL.
         //        /// </summary>
-        internal static String URL = Properties.Resources.apiEndPoint;
+        internal static String URL = Properties.Settings.Default.apiEndPoint;
 
     //        /*private*/ /*public*/
     //        /// <summary>

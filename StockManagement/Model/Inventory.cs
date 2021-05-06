@@ -47,8 +47,8 @@ namespace StockManagement.Model
         {
             try
             {
-                RestClient client = new RestClient(Properties.Resources.apiEndPoint);
-                RestRequest request = new RestRequest("inventorys", Method.GET);
+                RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
+                RestRequest request = new RestRequest(Properties.Settings.Default.inventorysPath, Method.GET);
                 IRestResponse response = client.Execute(request);
                 request.RequestFormat = DataFormat.Json;// Execute the Request
                 Inventory inventory = JsonConvert.DeserializeObject<Inventory>(response.Content);

@@ -16,13 +16,14 @@ using StockManagement.Views;
 using DevExpress.XtraTab;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
+using StockManagement.Properties;
 
 namespace StockManagement
 {
     public partial class FormHome : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         //private String URL = "http://localhost:8000/api/v1/";
-        public string roles = "";
+        
 
        Form currentForm = new Form(); 
 
@@ -61,8 +62,8 @@ namespace StockManagement
         #endregion
         void rolesToUI()
         {
-            bool planUI = roles.Contains("KD");
-            bool stockUI= roles.Contains("SK");
+            bool planUI = Settings.Default.roles.Contains(Settings.Default.stock);
+            bool stockUI= Settings.Default.roles.Contains(Settings.Default.sale);
             ribbonPageGroup1.Visible = planUI;
             btnStockin.Visibility = btnStockout.Visibility = stockUI==true? BarItemVisibility.Always:BarItemVisibility.Never ;
         }
@@ -98,11 +99,15 @@ namespace StockManagement
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-            foreach (Form f in Application.OpenForms)
+            if (MessageBox.Show("Xác nhận đăng xuất", "Nhắc", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                if (f.GetType() == typeof(UserLogin))
-                    f.Show();
+                Settings.Default.token = "";
+                Settings.Default.Save();
+                foreach (Form f in Application.OpenForms)
+                {
+                    if (f.GetType() == typeof(UserLogin))
+                        f.Show();
+                }
             }
         }
     }

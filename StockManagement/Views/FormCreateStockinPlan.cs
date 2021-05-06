@@ -29,7 +29,7 @@ namespace StockManagement.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.PlanDetail.insertStockinPlanDetail(gridView1, "stockinplandetails", txtNote.Text, txtSearch.Text, cbbStore.Text);
+            Model.PlanDetail.insertStockinPlanDetail(gridView1, Properties.Settings.Default.stockinPlanDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
@@ -82,7 +82,7 @@ namespace StockManagement.Views
         private void button1_Click(object sender, EventArgs e)
         {
             planDetails = new List<Model.PlanDetail>();
-            string res = Model.RestSharpC.execCommand2("quotationitems", RestSharp.Method.GET, int.Parse(txtSearch.Text));
+            string res = Model.RestSharpC.execCommand2(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
             JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
             
             quoationItems.Data.ToList().ForEach(i =>

@@ -37,8 +37,8 @@ namespace StockManagement.Model
         {
             try
             {
-                RestClient client = new RestClient(Properties.Resources.apiEndPoint);
-                RestRequest request = new RestRequest("stockinplans", Method.GET);
+                RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
+                RestRequest request = new RestRequest(Properties.Settings.Default.stockinPlansPath, Method.GET);
                 IRestResponse response = client.Execute(request);
                 request.RequestFormat = DataFormat.Json;// Execute the Request
                 StockinPlans plan = JsonConvert.DeserializeObject<StockinPlans>(response.Content);
@@ -62,8 +62,8 @@ namespace StockManagement.Model
         {
             try
             {
-                var client = new RestClient(Properties.Resources.apiEndPoint);
-                var request = new RestRequest("stockinplans", Method.POST);
+                var client = new RestClient(Properties.Settings.Default.apiEndPoint);
+                var request = new RestRequest(Properties.Settings.Default.stockinPlansPath, Method.POST);
                 var json = JsonConvert.SerializeObject(item);
                 request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);  // Execute the Request
@@ -75,8 +75,8 @@ namespace StockManagement.Model
         {
             try
             {
-                RestClient client = new RestClient(Properties.Resources.apiEndPoint);
-                RestRequest request = new RestRequest("stockinplans/" + planID, Method.GET);
+                RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
+                RestRequest request = new RestRequest(Properties.Settings.Default.stockinPlansPath +"/" + planID, Method.GET);
                 IRestResponse response = client.Execute(request);
                 request.RequestFormat = DataFormat.Json;// Execute the Request
                 StockinPlan plan = JsonConvert.DeserializeObject<StockinPlan>(response.Content);

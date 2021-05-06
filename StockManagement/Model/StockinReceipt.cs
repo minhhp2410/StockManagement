@@ -39,8 +39,8 @@ namespace StockManagement.Model
         {
             try
             {
-                RestClient client = new RestClient(Properties.Resources.apiEndPoint);
-                RestRequest request = new RestRequest("stockinreceipts", Method.GET);
+                RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
+                RestRequest request = new RestRequest(Properties.Settings.Default.stockinReceiptsPath, Method.GET);
                 IRestResponse response = client.Execute(request);
                 request.RequestFormat = DataFormat.Json;// Execute the Request
                 StockinReceipts receipt = JsonConvert.DeserializeObject<StockinReceipts>(response.Content);
@@ -63,8 +63,8 @@ namespace StockManagement.Model
         {
             try
             {
-                var client = new RestClient(Properties.Resources.apiEndPoint);
-                var request = new RestRequest("stockinreceipts", Method.POST);
+                var client = new RestClient(Properties.Settings.Default.apiEndPoint);
+                var request = new RestRequest(Properties.Settings.Default.stockinReceiptsPath, Method.POST);
                 var json = JsonConvert.SerializeObject(item);
                 request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);  // Execute the Request
@@ -77,7 +77,7 @@ namespace StockManagement.Model
         {
             try
             {
-                var client = new RestClient(Properties.Resources.apiEndPoint+ "stockinreceipts"+"/"+receiptID);
+                var client = new RestClient(Properties.Settings.Default.apiEndPoint+ Properties.Settings.Default.stockinReceiptsPath+ "/"+receiptID);
                 var request = new RestRequest(Method.DELETE);
                 IRestResponse response = client.Execute(request);  // Execute the Request
                 

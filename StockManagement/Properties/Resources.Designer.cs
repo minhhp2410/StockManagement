@@ -59,14 +59,5 @@ namespace StockManagement.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://localhost:8000/api/v1/.
-        /// </summary>
-        internal static string apiEndPoint {
-            get {
-                return ResourceManager.GetString("apiEndPoint", resourceCulture);
-            }
-        }
     }
 }

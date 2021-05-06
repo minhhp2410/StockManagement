@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using RestSharp;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
+using StockManagement.Properties;
 
 namespace StockManagement
 {
@@ -29,7 +30,7 @@ namespace StockManagement
         }
         bool login()
         {
-            RestClient client = new RestClient(Properties.Resources.apiEndPoint+"auth/");
+            RestClient client = new RestClient(Settings.Default.apiEndPoint+Settings.Default.authorizePath);
             RestRequest request = new RestRequest(Method.POST);
             Model.User Account = new Model.User
             {
@@ -46,6 +47,9 @@ namespace StockManagement
                 var handler = new JwtSecurityTokenHandler();
                 var decodedToken = handler.ReadJwtToken(token);
                 roles= decodedToken.Claims.ElementAt(2).Value;
+                Settings.Default.token = token;
+                Settings.Default.roles = roles;
+                Settings.Default.Save();
             }
             catch
             {
@@ -61,7 +65,6 @@ namespace StockManagement
             {
                 try
                 {
-                    home.roles = roles;
                     home.Show();
                     this.Hide();
                     txtPassword.Clear();
@@ -70,7 +73,6 @@ namespace StockManagement
                 catch (Exception)
                 {
                     home = new FormHome();
-                    home.roles = roles;
                     home.Show();
                     this.Hide();
                     txtPassword.Clear();

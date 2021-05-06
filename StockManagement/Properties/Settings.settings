@@ -1,7 +1,57 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="StockManagement.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="token" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="roles" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="apiEndPoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:8000/api/v1/</Value>
+    </Setting>
+    <Setting Name="stock" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SK</Value>
+    </Setting>
+    <Setting Name="sale" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">KD</Value>
+    </Setting>
+    <Setting Name="authorizePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">auth/</Value>
+    </Setting>
+    <Setting Name="quotationItemsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">quotationitems</Value>
+    </Setting>
+    <Setting Name="inventorysPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">inventorys</Value>
+    </Setting>
+    <Setting Name="stockinPlanDetailsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockinplandetails</Value>
+    </Setting>
+    <Setting Name="stockoutPlanDetailsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockoutplandetails</Value>
+    </Setting>
+    <Setting Name="poItemsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">poitems</Value>
+    </Setting>
+    <Setting Name="stockinReceiptDetailsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockinreceiptdetails</Value>
+    </Setting>
+    <Setting Name="stockoutReceiptDetailsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockoutreceiptdetails</Value>
+    </Setting>
+    <Setting Name="stockinPlansPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockinplans</Value>
+    </Setting>
+    <Setting Name="stockoutPlansPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockoutplans</Value>
+    </Setting>
+    <Setting Name="stockinReceiptsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockinreceipts</Value>
+    </Setting>
+    <Setting Name="stockoutReceiptsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockoutreceipts</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

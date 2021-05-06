@@ -112,7 +112,7 @@ namespace StockManagement.Model
         }
         public static void addPlanDetail(List<PlanDetail> items, string table)
         {
-            var client = new RestClient(Properties.Resources.apiEndPoint);
+            var client = new RestClient(Properties.Settings.Default.apiEndPoint);
             var request = new RestRequest(table, Method.POST);
             var json = JsonConvert.SerializeObject(items);
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
@@ -120,7 +120,7 @@ namespace StockManagement.Model
         }
         public static List<PlanDetail> getPlanList(string table, string ID)
         {
-            var client = new RestClient(Properties.Resources.apiEndPoint + table+"/"+ID);
+            var client = new RestClient(Properties.Settings.Default.apiEndPoint + table+"/"+ID);
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);// Execute the Request
             request.RequestFormat = DataFormat.Json;

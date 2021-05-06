@@ -74,7 +74,7 @@ namespace StockManagement.Views
         private void button1_Click(object sender, EventArgs e)
         {
             planDetails = new List<PlanDetail>();
-            string res = Model.RestSharpC.execCommand5("poitems", RestSharp.Method.GET, int.Parse(txtSearch.Text));
+            string res = Model.RestSharpC.execCommand5(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
             JsonHeadPOItem poItems = JsonConvert.DeserializeObject<JsonHeadPOItem>(res);
             poItems.Data.ToList().ForEach(i =>
             {

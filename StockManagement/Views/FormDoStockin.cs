@@ -24,7 +24,7 @@ namespace StockManagement.Views
         List<Model.ReceiptDetail> ReceiptDetails = new List<Model.ReceiptDetail>();
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.ReceiptDetail.insertStockinReceiptDetail(gridView1, "stockinreceiptdetails", txtNote.Text, txtSearch.Text, cbbStore.Text);
+            Model.ReceiptDetail.insertStockinReceiptDetail(gridView1, Properties.Settings.Default.stockinReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
@@ -32,7 +32,7 @@ namespace StockManagement.Views
         {
             if (receiptID != "")
             {
-                gridControl1.DataSource = Model.PlanDetail.getPlanList("stockinreceiptdetails", receiptID);
+                gridControl1.DataSource = Model.PlanDetail.getPlanList(Properties.Settings.Default.stockinReceiptDetailsPath, receiptID);
                 groupControl1.Text = "thông tin chi tiết " + receiptID;
                 this.Text = "thông tin chi tiết " + receiptID;
                 btnSearch.Enabled = false;
@@ -74,7 +74,7 @@ namespace StockManagement.Views
             ReceiptDetails = new List<ReceiptDetail>();
             if (!txtSearch.Text.Contains("KHN"))
             {
-                string res = Model.RestSharpC.execCommand2("quotationitems", RestSharp.Method.GET, int.Parse(txtSearch.Text));
+                string res = Model.RestSharpC.execCommand2(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
                 JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
                 quoationItems.Data.ToList().ForEach(i =>
                 {
@@ -94,7 +94,7 @@ namespace StockManagement.Views
             }
             else
             {
-                List<ReceiptDetail> Items = ReceiptDetail.getReceiptList("stockinplandetails", txtSearch.Text);
+                List<ReceiptDetail> Items = ReceiptDetail.getReceiptList(Properties.Settings.Default.stockinPlanDetailsPath, txtSearch.Text);
                 Items.ForEach(i =>
                 {
                     ReceiptDetails.Add(new Model.ReceiptDetail()
