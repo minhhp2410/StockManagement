@@ -18,7 +18,7 @@ namespace StockManagement.Views
     {
         public string receiptID = "", poNumber = "", note = "";
         public FormStockout f = new FormStockout();
-        List<Model.DataInventory> inventories = new List<Model.DataInventory>();
+        //List<Model.DataInventory> inventories = new List<Model.DataInventory>();
         List<Model.ReceiptDetail> receiptDetails = new List<Model.ReceiptDetail>();
         public FormDoStockout()
         {
@@ -26,7 +26,7 @@ namespace StockManagement.Views
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.ReceiptDetail.insertStockoutReceiptDetail(gridView1, Properties.Settings.Default.stockoutReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
+            Model.UserAction.doStockout(gridView1, Properties.Settings.Default.stockoutReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
@@ -41,7 +41,7 @@ namespace StockManagement.Views
         {
             if (receiptID != "")
             {
-                gridControl1.DataSource = Model.ReceiptDetail.getReceiptList(Properties.Settings.Default.stockoutReceiptDetailsPath, receiptID);
+                gridControl1.DataSource = Model.UserAction.getReceiptList(Properties.Settings.Default.stockoutReceiptDetailsPath, receiptID);
                 groupControl1.Text = "thông tin chi tiết " + receiptID;
                 this.Text = "thông tin chi tiết " + receiptID;
                 btnSearch.Enabled = false;
@@ -81,7 +81,7 @@ namespace StockManagement.Views
             receiptDetails = new List<ReceiptDetail>();
             if (!txtSearch.Text.Contains("KHX"))
             {
-                string res = Model.RestSharpC.execCommand5(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
+                string res = Model.UserAction.getPoItems(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
                 JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
                 quoationItems.Data.ToList().ForEach(i =>
                 {
@@ -101,7 +101,7 @@ namespace StockManagement.Views
             }
             else
             {
-                List<ReceiptDetail> Items = ReceiptDetail.getReceiptList(Properties.Settings.Default.stockoutPlanDetailsPath, txtSearch.Text);
+                List<ReceiptDetail> Items = Model.UserAction.getReceiptList(Properties.Settings.Default.stockoutPlanDetailsPath, txtSearch.Text);
                 Items.ForEach(i =>
                 {
                     receiptDetails.Add(new Model.ReceiptDetail()

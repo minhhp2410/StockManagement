@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockManagement.Model
 {
-    class StockoutReceiptData
+   public class StockoutReceiptData
     {
         [JsonProperty("id")]
         public int? id { get; set; }
@@ -27,7 +27,7 @@ namespace StockManagement.Model
         [JsonProperty("updatedAt")]
         public DateTime? updatedAt { get; set; }
     }
-    class StockoutReceipts
+   public class StockoutReceipts
     {
         [JsonProperty("status")]
         public string status { get; set; }
@@ -35,23 +35,8 @@ namespace StockManagement.Model
         public string message { get; set; }
         [JsonProperty("data")]
         public List<StockoutReceiptData> datum { get; set; }
-        public static List<StockoutReceiptData> getReceipts()
-        {
-            try
-            {
-                RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
-                RestRequest request = new RestRequest(Properties.Settings.Default.stockoutReceiptsPath, Method.GET);
-                IRestResponse response = client.Execute(request);
-                request.RequestFormat = DataFormat.Json;// Execute the Request
-                StockoutReceipts receipt = JsonConvert.DeserializeObject<StockoutReceipts>(response.Content);
-                if (receipt != null)
-                    return receipt.datum;
-                return new List<StockoutReceiptData>();
-            }
-            catch { return new List<StockoutReceiptData>(); }
-        }
     }
-    class StockoutReceipt
+   public class StockoutReceipt
     {
         [JsonProperty("status")]
         public string status { get; set; }
@@ -59,34 +44,8 @@ namespace StockManagement.Model
         public string message { get; set; }
         [JsonProperty("data")]
         public StockoutReceiptData data { get; set; }
-        public static StockoutReceipt addStockoutReceipt(StockoutReceiptData item)
-        {
-            try
-            {
-                var client = new RestClient(Properties.Settings.Default.apiEndPoint);
-                var request = new RestRequest(Properties.Settings.Default.stockoutReceiptsPath, Method.POST);
-                var json = JsonConvert.SerializeObject(item);
-                request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-                IRestResponse response = client.Execute(request);  // Execute the Request
-                return JsonConvert.DeserializeObject<StockoutReceipt>(response.Content);
-            }
-            catch { return new StockoutReceipt(); }
-        }
-        public static bool deleteStockoutReceipt(string receiptID)
-        {
-            try
-            {
-                var client = new RestClient(Properties.Settings.Default.apiEndPoint + Properties.Settings.Default.stockoutReceiptsPath + "/" + receiptID);
-                var request = new RestRequest(Method.DELETE);
-                IRestResponse response = client.Execute(request);  // Execute the Request
 
-                return response.StatusCode == System.Net.HttpStatusCode.OK ? true : false;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+
     }
 
 }

@@ -27,7 +27,7 @@ namespace StockManagement.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.PlanDetail.insertStockoutPlanDetail(gridView1, "stockoutplandetails", txtNote.Text, txtSearch.Text, cbbStore.Text);
+            Model.UserAction.insertStockoutPlanDetail(gridView1, Properties.Settings.Default.stockoutPlanDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
@@ -74,7 +74,7 @@ namespace StockManagement.Views
         private void button1_Click(object sender, EventArgs e)
         {
             planDetails = new List<PlanDetail>();
-            string res = Model.RestSharpC.execCommand5(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
+            string res = Model.UserAction.getPoItems(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
             JsonHeadPOItem poItems = JsonConvert.DeserializeObject<JsonHeadPOItem>(res);
             poItems.Data.ToList().ForEach(i =>
             {
@@ -100,7 +100,7 @@ namespace StockManagement.Views
         {
             if (planID != "")
             {
-                gridControl1.DataSource = Model.PlanDetail.getPlanList("stockoutplandetails", planID);
+                gridControl1.DataSource = Model.UserAction.getPlanList(Properties.Settings.Default.stockoutPlanDetailsPath, planID);
                 groupControl1.Text = "thông tin chi tiết " + planID;
                 this.Text = "thông tin chi tiết " + planID;
                 btnSearch.Enabled = false;
@@ -117,7 +117,7 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
             ComboBoxItemCollection collection = cbbProduct.Properties.Items;
-            inventories = Model.Inventory.getInventories();
+            inventories = Model.UserAction.getInventories();
             collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
         }
     }

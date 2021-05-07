@@ -28,7 +28,7 @@ namespace StockManagement.Views
         }
         public void reLoad()
         {
-           gridControl1.DataSource= Model.StockinReceipts.getReceipts();
+           gridControl1.DataSource= Model.UserAction.getStockinReceipts();
             gridView1.Columns.Remove(gridView1.Columns["id"]);
             gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["isDeleted"]);
@@ -52,7 +52,7 @@ namespace StockManagement.Views
         {
             StockinReceiptData data = gridView1.GetFocusedRow() as StockinReceiptData;
             if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.receiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                if (StockinReceipt.deleteStockinReceipt(data.receiptID))
+                if (Model.UserAction.deleteStockinReceipt(data.receiptID))
                 {
 
                 }

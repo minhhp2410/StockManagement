@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace StockManagement.Model
 {
-    class ReceiptDetail
+   public class ReceiptDetail
     {
         [JsonProperty("id")]
         public int? id { get; set; }
@@ -35,117 +35,9 @@ namespace StockManagement.Model
         public DateTime? createdAt { get; set; }
         [JsonProperty("updatedAt")]
         public DateTime? updatedAt { get; set; }
-        public static void insertStockinReceiptDetail(GridView grid, string table, string note, string quotationNumber, string store)
-        {
-            try
-            {
-                if(quotationNumber.Contains("KHN"))
-                {
-                    StockinPlanData data = StockinPlan.getPlan(quotationNumber);
-                    quotationNumber = data.quotationNumber;
-                }    
-                Model.StockinReceipt stockinPlan = Model.StockinReceipt.addStockinReceipt(new Model.StockinReceiptData
-                {
-                    note = note,
-                    quotationNumber = quotationNumber
-                    ,
-                    store = store,
-                    isDeleted= false
-                });
-                
-                List<Model.ReceiptDetail> item = new List<Model.ReceiptDetail>();
-                for (int i = 0; i < grid.RowCount; i++)
-                {
-                    Model.ReceiptDetail plan = grid.GetRow(i) as Model.ReceiptDetail;
-                    item.Add(new Model.ReceiptDetail
-                    {
-                        id = null,
-                        currency = plan.currency,
-                        partName = plan.partName,
-                        partNumber = plan.partName,
-                        receiptID = stockinPlan.data.receiptID,
-                        position = plan.position,
-                        price = plan.price,
-                        quantity = plan.quantity,
-                        unit = plan.unit,
-                        createdAt = null,
-                        updatedAt = null,
-                    });
-
-                }
-                addReceiptDetail(item, table);
-                MessageBox.Show("Thêm thành công");
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        public static void insertStockoutReceiptDetail(GridView grid, string table, string note, string poNumber, string store)
-        {
-            try
-            {
-                if (poNumber.Contains("KHX"))
-                {
-                    StockoutPlanData data = StockoutPlan.getPlan(poNumber);
-                    poNumber = data.poNumber;
-                }
-                Model.StockoutReceipt stockoutReceipt = Model.StockoutReceipt.addStockoutReceipt(new Model.StockoutReceiptData
-                {
-                    note = note,
-                    poNumber = poNumber,
-                    store = store,
-                    isDeleted = false
-                });
-                List<Model.ReceiptDetail> item = new List<Model.ReceiptDetail>();
-                for (int i = 0; i < grid.RowCount; i++)
-                {
-                    Model.ReceiptDetail plan = grid.GetRow(i) as Model.ReceiptDetail;
-                    item.Add(new Model.ReceiptDetail
-                    {
-                        id = null,
-                        currency = plan.currency,
-                        partName = plan.partName,
-                        partNumber = plan.partName,
-                        receiptID = stockoutReceipt.data.receiptID,
-                        position = plan.position,
-                        price = plan.price,
-                        quantity = plan.quantity,
-                        unit = plan.unit,
-                        createdAt = null,
-                        updatedAt = null,
-                    });
-
-                }
-                addReceiptDetail(item, table);
-                MessageBox.Show("Thêm thành công");
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        public static void addReceiptDetail(List<ReceiptDetail> items, string table)
-        {
-            var client = new RestClient(Properties.Settings.Default.apiEndPoint);
-            var request = new RestRequest(table, Method.POST);
-            var json = JsonConvert.SerializeObject(items);
-            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);  // Execute the Request
-        }
-        public static List<ReceiptDetail> getReceiptList(string table, string ID)
-        {
-            var client = new RestClient(Properties.Settings.Default.apiEndPoint + table + "/" + ID);
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);// Execute the Request
-            request.RequestFormat = DataFormat.Json;
-            return JsonConvert.DeserializeObject<getJson1>(response.Content).datum;
-        }
     }
 
-    class getJson1
+   public class getJson1
     {
         [JsonProperty("status")]
         public string status { get; set; }

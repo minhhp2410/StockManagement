@@ -34,7 +34,7 @@ namespace StockManagement.Views
 
         public void reLoad()
         {
-            gridControl1.DataSource = Model.StockoutPlans.getPlans();
+            gridControl1.DataSource = Model.UserAction.getPlans();
             gridView1.Columns.Remove(gridView1.Columns["id"]);
             gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
         }

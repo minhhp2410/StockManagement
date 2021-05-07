@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace StockManagement.Model
 {
-    class PlanDetail
+    public class PlanDetail
     {
         [JsonProperty("id")]
         public int? id { get; set; }
@@ -35,99 +35,8 @@ namespace StockManagement.Model
         public DateTime? createdAt { get; set; }
         [JsonProperty("updatedAt")]
         public DateTime? updatedAt { get; set; }
-
-        public static void insertStockinPlanDetail(GridView grid, string table, string note, string quotationNumber, string store)
-        {
-            try
-            {
-                Model.StockinPlan stockinPlan = Model.StockinPlan.addStockinPlan(new Model.StockinPlanData { note = note, quotationNumber = quotationNumber
-                    , store = store });
-                List<Model.PlanDetail> item = new List<Model.PlanDetail>();
-                for (int i = 0; i < grid.RowCount; i++)
-                {
-                    Model.PlanDetail plan = grid.GetRow(i) as Model.PlanDetail;
-                    item.Add(new Model.PlanDetail
-                    {
-                        id = null,
-                        currency = plan.currency,
-                        partName = plan.partName,
-                        partNumber = plan.partName,
-                        planID = stockinPlan.data.planID,
-                        position = plan.position,
-                        price = plan.price,
-                        quantity = plan.quantity,
-                        unit = plan.unit,
-                        createdAt = null,
-                        updatedAt = null,
-                    });
-
-                }
-                addPlanDetail(item, table);
-                MessageBox.Show("Thêm thành công");
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        public static void insertStockoutPlanDetail(GridView grid, string table, string note, string poNumber, string store)
-        {
-            try
-            {
-                Model.StockoutPlan stockoutPlan = Model.StockoutPlan.addStockoutPlan(new Model.StockoutPlanData
-                {
-                    note = note,
-                    poNumber = poNumber,
-                    store = store
-                });
-                List<Model.PlanDetail> item = new List<Model.PlanDetail>();
-                for (int i = 0; i < grid.RowCount; i++)
-                {
-                    Model.PlanDetail plan = grid.GetRow(i) as Model.PlanDetail;
-                    item.Add(new Model.PlanDetail
-                    {
-                        id = null,
-                        currency = plan.currency,
-                        partName = plan.partName,
-                        partNumber = plan.partName,
-                        planID = stockoutPlan.data.planID,
-                        position = plan.position,
-                        price = plan.price,
-                        quantity = plan.quantity,
-                        unit = plan.unit,
-                        createdAt = null,
-                        updatedAt = null,
-                    });
-
-                }
-                addPlanDetail(item, table);
-                MessageBox.Show("Thêm thành công");
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        public static void addPlanDetail(List<PlanDetail> items, string table)
-        {
-            var client = new RestClient(Properties.Settings.Default.apiEndPoint);
-            var request = new RestRequest(table, Method.POST);
-            var json = JsonConvert.SerializeObject(items);
-            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);  // Execute the Request
-        }
-        public static List<PlanDetail> getPlanList(string table, string ID)
-        {
-            var client = new RestClient(Properties.Settings.Default.apiEndPoint + table+"/"+ID);
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);// Execute the Request
-            request.RequestFormat = DataFormat.Json;
-            return JsonConvert.DeserializeObject<getJson>(response.Content).datum;
-        }
     }
-    class getJson
+    public class getJson
     {
         [JsonProperty("status")]
         public string status { get; set; }

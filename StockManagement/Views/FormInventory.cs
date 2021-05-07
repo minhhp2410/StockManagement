@@ -20,7 +20,7 @@ namespace StockManagement.Views
         }
         void loadInventory()
         {
-            gridControl1.DataSource = Inventory.getInventories();
+            gridControl1.DataSource = Model.UserAction.getInventories();
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["createdAt"].Visible = false;
         }

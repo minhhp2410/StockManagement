@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockManagement.Model
 {
-    class StockoutPlanData
+   public class StockoutPlanData
     {
         [JsonProperty("id")]
         public int? id { get; set; }
@@ -25,7 +25,7 @@ namespace StockManagement.Model
         [JsonProperty("updatedAt")]
         public DateTime? updatedAt { get; set; }
     }
-    class StockoutPlan
+   public class StockoutPlan
     {
         [JsonProperty("status")]
         public string status { get; set; }
@@ -33,32 +33,9 @@ namespace StockManagement.Model
         public string message { get; set; }
         [JsonProperty("data")]
         public StockoutPlanData data { get; set; }
-        public static StockoutPlan addStockoutPlan(StockoutPlanData item)
-        {
-            var client = new RestClient(Properties.Settings.Default.apiEndPoint);
-            var request = new RestRequest(Properties.Settings.Default.stockoutPlansPath, Method.POST);
-            var json = JsonConvert.SerializeObject(item);
-            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);  // Execute the Request
-            return JsonConvert.DeserializeObject<StockoutPlan>(response.Content);
-        }
-        public static StockoutPlanData getPlan(string planID)
-        {
-            try
-            {
-                RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
-                RestRequest request = new RestRequest(Properties.Settings.Default.stockoutPlansPath+"/" + planID, Method.GET);
-                IRestResponse response = client.Execute(request);
-                request.RequestFormat = DataFormat.Json;// Execute the Request
-                StockoutPlan plan = JsonConvert.DeserializeObject<StockoutPlan>(response.Content);
-                if (plan != null)
-                    return plan.data;
-                return new StockoutPlanData();
-            }
-            catch { return new StockoutPlanData(); }
-        }
+
     }
-    class StockoutPlans
+   public class StockoutPlans
     {
         [JsonProperty("status")]
         public string status { get; set; }
@@ -66,16 +43,6 @@ namespace StockManagement.Model
         public string message { get; set; }
         [JsonProperty("data")]
         public List<StockoutPlanData> datum { get; set; }
-        public static List<StockoutPlanData> getPlans()
-        {
-            RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
-            RestRequest request = new RestRequest(Properties.Settings.Default.stockoutPlansPath, Method.GET);
-            IRestResponse response = client.Execute(request);
-            request.RequestFormat = DataFormat.Json;// Execute the Request
-            StockoutPlans plan = JsonConvert.DeserializeObject<StockoutPlans>(response.Content);
-            if (plan != null)
-            return plan.datum;
-            return new List<StockoutPlanData>();
-        }
+
     }
 }

@@ -8,7 +8,7 @@ using RestSharp;
 
 namespace StockManagement.Model
 {
-    class DataInventory
+   public class DataInventory
     {
         [JsonProperty("id")]
         public int? id { get; set; }
@@ -35,7 +35,7 @@ namespace StockManagement.Model
 
 
     }
-    class Inventory 
+   public class Inventory 
     {
         [JsonProperty("status")]
         public string status { get; set; }
@@ -43,25 +43,5 @@ namespace StockManagement.Model
         public string message { get; set; }
         [JsonProperty("data")]
         public List<DataInventory> datum { get; set; }
-        public static List<DataInventory> getInventories()
-        {
-            try
-            {
-                RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
-                RestRequest request = new RestRequest(Properties.Settings.Default.inventorysPath, Method.GET);
-                IRestResponse response = client.Execute(request);
-                request.RequestFormat = DataFormat.Json;// Execute the Request
-                Inventory inventory = JsonConvert.DeserializeObject<Inventory>(response.Content);
-                if (inventory != null)
-                {
-                    return inventory.datum;
-                }
-                return new List<DataInventory>();
-            }
-            catch (Exception)
-            {
-                return new List<DataInventory>();
-            }
-        }
     }
 }
