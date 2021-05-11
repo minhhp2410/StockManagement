@@ -99,8 +99,12 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="Zen.Barcode.Core">
+      <HintPath>..\packages\zen.barcode.core\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\BarcodeGeneration.cs" />
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="Model\ReceiptDetail.cs" />
     <Compile Include="Model\PlanDetail.cs" />
@@ -127,6 +131,12 @@
     </Compile>
     <Compile Include="Report\rpStockOut.Designer.cs">
       <DependentUpon>rpStockOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FormInventory.cs">
       <SubType>Form</SubType>
@@ -210,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\rpStockOut.resx">
       <DependentUpon>rpStockOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormHome.resx">
       <DependentUpon>FormHome.cs</DependentUpon>
