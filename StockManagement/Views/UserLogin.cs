@@ -29,33 +29,39 @@ namespace StockManagement
         
         private void button1_Click(object sender, EventArgs e)
         {
-            if(Model.UserAction.login(txtID.Text,txtPassword.Text))
-            {
-                try
-                {
-                    home.Show();
-                    this.Hide();
-                    txtPassword.Clear();
-                    return;
-                }
-                catch (Exception)
-                {
-                    home = new FormHome();
-                    home.Show();
-                    this.Hide();
-                    txtPassword.Clear();
-                    return;
-                }
+            //if(Model.UserAction.login(txtID.Text,txtPassword.Text))
+            //{
+            //    try
+            //    {
+            //        home.Show();
+            //        this.Hide();
+            //        txtPassword.Clear();
+            //        return;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        home = new FormHome();
+            //        home.Show();
+            //        this.Hide();
+            //        txtPassword.Clear();
+            //        return;
+            //    }
                 
-            }
-            txtPassword.Clear();
-            MessageBox.Show("email hoặc password không đúng");
+            //}
+            //txtPassword.Clear();
+            //MessageBox.Show("email hoặc password không đúng");
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void UserLogin_Load(object sender, EventArgs e)
+        {
+            Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
+            var res = quotationItemsServices.getQuotationItems("QUO000001");
         }
     }
 }

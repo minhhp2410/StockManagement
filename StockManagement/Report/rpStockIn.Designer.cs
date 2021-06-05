@@ -977,8 +977,8 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(StockManagement.QuoationItems);
-            this.objectDataSource1.Name = "objectDataSource1";
+            //this.objectDataSource1.DataSource = typeof(StockManagement.QuoationItems);
+            //this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrLabel56
             // 

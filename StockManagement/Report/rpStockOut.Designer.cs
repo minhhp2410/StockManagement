@@ -1044,8 +1044,8 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(StockManagement.POItems);
-            this.objectDataSource1.Name = "objectDataSource1";
+            //this.objectDataSource1.DataSource = typeof(StockManagement.POItems);
+            //this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrLabel57
             // 

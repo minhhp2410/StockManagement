@@ -73,27 +73,27 @@ namespace StockManagement.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            planDetails = new List<PlanDetail>();
-            string res = Model.UserAction.getPoItems(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
-            JsonHeadPOItem poItems = JsonConvert.DeserializeObject<JsonHeadPOItem>(res);
-            poItems.Data.ToList().ForEach(i =>
-            {
-                planDetails.Add(new Model.PlanDetail()
-                {
-                    partNumber = i.PartNumber,
-                    partName = i.PartName,
-                    position = i.Position,
-                    price = i.UnitPrice,
-                    currency = i.Currency,
-                    quantity = i.Quantity,
-                    unit = i.Unit
-                });
-            });
-            gridControl1.DataSource = planDetails;
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["planID"]);
-            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            //planDetails = new List<PlanDetail>();
+            //string res = Model.UserAction.getPoItems(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
+            //JsonHeadPOItem poItems = JsonConvert.DeserializeObject<JsonHeadPOItem>(res);
+            //poItems.Data.ToList().ForEach(i =>
+            //{
+            //    planDetails.Add(new Model.PlanDetail()
+            //    {
+            //        partNumber = i.PartNumber,
+            //        partName = i.PartName,
+            //        position = i.Position,
+            //        price = i.UnitPrice,
+            //        currency = i.Currency,
+            //        quantity = i.Quantity,
+            //        unit = i.Unit
+            //    });
+            //});
+            //gridControl1.DataSource = planDetails;
+            //gridView1.Columns.Remove(gridView1.Columns["id"]);
+            //gridView1.Columns.Remove(gridView1.Columns["planID"]);
+            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
+            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
         }
 
         private void CreateStockoutPlan_Load(object sender, EventArgs e)

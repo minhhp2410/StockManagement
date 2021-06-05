@@ -81,28 +81,28 @@ namespace StockManagement.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            planDetails = new List<Model.PlanDetail>();
-            string res = Model.UserAction.getQuotationItems(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
-            JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
+            //planDetails = new List<Model.PlanDetail>();
+            ////string res = Model.UserAction.getQuotationItems(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
+            //JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
             
-            quoationItems.Data.ToList().ForEach(i =>
-            {
-                planDetails.Add(new Model.PlanDetail() { 
-                    partNumber=i.PartNumber,
-                    partName=i.PartName,
-                    position=i.Position,
-                    price= i.UnitPrice,
-                    currency=i.Currency,
-                    quantity= i.Quantity,
-                    unit=i.Unit
-                });
-            });
+            //quoationItems.Data.ToList().ForEach(i =>
+            //{
+            //    planDetails.Add(new Model.PlanDetail() { 
+            //        partNumber=i.PartNumber,
+            //        partName=i.PartName,
+            //        position=i.Position,
+            //        price= i.UnitPrice,
+            //        currency=i.Currency,
+            //        quantity= i.Quantity,
+            //        unit=i.Unit
+            //    });
+            //});
             
-            gridControl1.DataSource = planDetails;
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["planID"]);
-            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]); 
-            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            //gridControl1.DataSource = planDetails;
+            //gridView1.Columns.Remove(gridView1.Columns["id"]);
+            //gridView1.Columns.Remove(gridView1.Columns["planID"]);
+            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]); 
+            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
 
 
         }

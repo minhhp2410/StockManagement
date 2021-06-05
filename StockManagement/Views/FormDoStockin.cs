@@ -83,51 +83,51 @@ namespace StockManagement.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ReceiptDetails = new List<ReceiptDetail>();
-            if (!txtSearch.Text.Contains("KHN"))
-            {
-                string res = Model.UserAction.getQuotationItems(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
-                JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
-                quoationItems.Data.ToList().ForEach(i =>
-                {
-                    ReceiptDetails.Add(new Model.ReceiptDetail()
-                    {
-                        partNumber = i.PartNumber,
-                        partName = i.PartName,
-                        position = i.Position,
-                        price = i.UnitPrice,
-                        currency = i.Currency,
-                        quantity = i.Quantity,
-                        unit = i.Unit
-                    });
-                });
-                gridControl1.DataSource = ReceiptDetails;
-                gridControl1.Update();
-            }
-            else
-            {
-                List<ReceiptDetail> Items = Model.UserAction.getReceiptList(Properties.Settings.Default.stockinPlanDetailsPath, txtSearch.Text);
-                Items.ForEach(i =>
-                {
-                    ReceiptDetails.Add(new Model.ReceiptDetail()
-                    {
-                        partNumber = i.partNumber,
-                        partName = i.partName,
-                        position = i.position,
-                        price = i.price,
-                        currency = i.currency,
-                        quantity = i.quantity,
-                        unit = i.unit
-                    });
-                });
-                gridControl1.DataSource = ReceiptDetails;
-                gridControl1.Update();
-            }    
+            //ReceiptDetails = new List<ReceiptDetail>();
+            //if (!txtSearch.Text.Contains("KHN"))
+            //{
+            //    string res = Model.UserAction.getQuotationItems(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
+            //    JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
+            //    quoationItems.Data.ToList().ForEach(i =>
+            //    {
+            //        ReceiptDetails.Add(new Model.ReceiptDetail()
+            //        {
+            //            partNumber = i.PartNumber,
+            //            partName = i.PartName,
+            //            position = i.Position,
+            //            price = i.UnitPrice,
+            //            currency = i.Currency,
+            //            quantity = i.Quantity,
+            //            unit = i.Unit
+            //        });
+            //    });
+            //    gridControl1.DataSource = ReceiptDetails;
+            //    gridControl1.Update();
+            //}
+            //else
+            //{
+            //    List<ReceiptDetail> Items = Model.UserAction.getReceiptList(Properties.Settings.Default.stockinPlanDetailsPath, txtSearch.Text);
+            //    Items.ForEach(i =>
+            //    {
+            //        ReceiptDetails.Add(new Model.ReceiptDetail()
+            //        {
+            //            partNumber = i.partNumber,
+            //            partName = i.partName,
+            //            position = i.position,
+            //            price = i.price,
+            //            currency = i.currency,
+            //            quantity = i.quantity,
+            //            unit = i.unit
+            //        });
+            //    });
+            //    gridControl1.DataSource = ReceiptDetails;
+            //    gridControl1.Update();
+            //}    
             
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
-            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            //gridView1.Columns.Remove(gridView1.Columns["id"]);
+            //gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
+            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
+            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
         }
 
         public FormDoStockin()

@@ -29,20 +29,20 @@
         /// <param name="rp">The rp<see cref="string"/>.</param>
         /// <param name="name">The name<see cref="string"/>.</param>
         /// <param name="number">The number<see cref="string"/>.</param>
-        public rpStockIn(/*QuoationItems LS*/List<QuoationItem>qt, string sup,string rp,string name,string number)
-        {
-            InitializeComponent();
-            objectDataSource1.DataSource = qt /*LS*/;
-            xrLabel16.Text = sup;
-            xrLabel50.Text = rp;
-            xrLabel52.Text = name;
-            xrLabel54.Text = number;        
-            foreach (QuoationItem i in qt)
-            {
-                total += i.ActualNumber * i.UnitPrice;
-            }
-            xrLabel55.Text = ConvertNumbers.ChuyenSoSangChuoi(double.Parse(total.ToString()));
-        }
+        //public rpStockIn(/*QuoationItems LS*/List<QuoationItem>qt, string sup,string rp,string name,string number)
+        //{
+        //    InitializeComponent();
+        //    objectDataSource1.DataSource = qt /*LS*/;
+        //    xrLabel16.Text = sup;
+        //    xrLabel50.Text = rp;
+        //    xrLabel52.Text = name;
+        //    xrLabel54.Text = number;        
+        //    foreach (QuoationItem i in qt)
+        //    {
+        //        total += i.ActualNumber * i.UnitPrice;
+        //    }
+        //    xrLabel55.Text = ConvertNumbers.ChuyenSoSangChuoi(double.Parse(total.ToString()));
+        //}
 
         /// <summary>
         /// The xrLabel2_BeforePrint.
