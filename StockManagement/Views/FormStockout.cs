@@ -41,19 +41,19 @@ namespace StockManagement.Views
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            StockoutReceiptData data = gridView1.GetFocusedRow() as StockoutReceiptData;
+            //StockoutReceiptData data = gridView1.GetFocusedRow() as StockoutReceiptData;
             FormDoStockout createStockoutReceipt = new FormDoStockout();
-            createStockoutReceipt.receiptID = data.receiptID;
-            createStockoutReceipt.note = data.note;
-            createStockoutReceipt.poNumber = data.poNumber;
-            createStockoutReceipt.StartPosition = FormStartPosition.CenterScreen;
-            createStockoutReceipt.Show();
+            //createStockoutReceipt.receiptID = data.receiptID;
+            //createStockoutReceipt.note = data.note;
+            //createStockoutReceipt.poNumber = data.poNumber;
+            //createStockoutReceipt.StartPosition = FormStartPosition.CenterScreen;
+            //createStockoutReceipt.Show();
         }
 
         void deleteReceipt()
         {
-            StockoutReceiptData data = gridView1.GetFocusedRow() as StockoutReceiptData;
-            if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.receiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            //StockoutReceiptData data = gridView1.GetFocusedRow() as StockoutReceiptData;
+            //if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.receiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             //if (Model.UserAction.deleteStockoutReceipt(data.receiptID))
             {
 

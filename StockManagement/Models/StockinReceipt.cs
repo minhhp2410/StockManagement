@@ -54,6 +54,8 @@ namespace StockManagement.Model
 
         [JsonProperty("note")]
         public string Note { get; set; }
+        [JsonProperty("isDeleted")]
+        public bool isDeleted { get; set; }
 
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
@@ -64,8 +66,8 @@ namespace StockManagement.Model
         [JsonProperty("updatedAt")]
         public string UpdatedAt { get; set; }
 
-        [JsonProperty("StockinReceiptDetail")]
-        public List<StockinReceiptDetail> StockinReceiptDetail { get; set; }
+        [JsonProperty("StockinReceiptDetails")]
+        public List<StockinReceiptDetail> StockinReceiptDetails { get; set; }
     }
 
     public class StockinReceipts

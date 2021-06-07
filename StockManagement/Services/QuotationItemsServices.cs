@@ -10,7 +10,7 @@ namespace StockManagement.Services
     {
         public List<Model.QuotationItem> getQuotationItems(string QuotationNo)
         {
-            var Quos= (Model.Quotations)Get("quotations", typeof(Model.Quotations));
+            var Quos= (Model.Quotations)Get(env.quotationPath, typeof(Model.Quotations));
             return Quos.Data.Where(w => w.QuotationNo == QuotationNo).FirstOrDefault().QuotationItems;
         }
     }

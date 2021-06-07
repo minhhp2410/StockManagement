@@ -39,7 +39,7 @@ namespace StockManagement.Model
         public int Quantity { get; set; }
     }
 
-    public class Datum
+    public class StockoutReceiptDatum
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -55,6 +55,8 @@ namespace StockManagement.Model
 
         [JsonProperty("note")]
         public string Note { get; set; }
+        [JsonProperty("isDeleted")]
+        public bool isDeleted { get; set; }
 
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
@@ -65,8 +67,8 @@ namespace StockManagement.Model
         [JsonProperty("updatedAt")]
         public string UpdatedAt { get; set; }
 
-        [JsonProperty("StockoutReceiptDetail")]
-        public List<StockoutReceiptDetail> StockoutReceiptDetail { get; set; }
+        [JsonProperty("StockoutReceiptDetails")]
+        public List<StockoutReceiptDetail> StockoutReceiptDetails { get; set; }
 
     }
 
@@ -79,7 +81,7 @@ namespace StockManagement.Model
         public string Message { get; set; }
 
         [JsonProperty("data")]
-        public List<Datum> Data { get; set; }
+        public List<StockoutReceiptDatum> Data { get; set; }
     }
 
 }

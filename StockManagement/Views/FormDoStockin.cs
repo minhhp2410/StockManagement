@@ -18,44 +18,44 @@ namespace StockManagement.Views
 {
     public partial class FormDoStockin : DevExpress.XtraEditors.XtraForm
     {
-        public string receiptID = "", quotationNumber = "", note = "";
-        public FormStockin f = new FormStockin();
-        //List<Model.DataInventory> inventories = new List<Model.DataInventory>();
-        List<Model.ReceiptDetail> ReceiptDetails = new List<Model.ReceiptDetail>();
+        //public string receiptID = "", quotationNumber = "", note = "";
+        //public FormStockin f = new FormStockin();
+        ////List<Model.DataInventory> inventories = new List<Model.DataInventory>();
+        //List<Model.ReceiptDetail> ReceiptDetails = new List<Model.ReceiptDetail>();
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.UserAction.doStockin(gridView1, Properties.Settings.Default.stockinReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
+            //Model.UserAction.doStockin(gridView1, Properties.Settings.Default.stockinReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
             
-            f.reLoad();
+            //f.reLoad();
         }
 
         private void CreateStockinReceipt_Load(object sender, EventArgs e)
         {
-            if (receiptID != "")
-            {
-                gridControl1.DataSource = Model.UserAction.getPlanList(Properties.Settings.Default.stockinReceiptDetailsPath, receiptID);
-                groupControl1.Text = "thông tin chi tiết " + receiptID;
-                this.Text = "thông tin chi tiết " + receiptID;
-                btnSearch.Enabled = false;
-                btnSave.Enabled = false;
-                txtNote.Text = note;
-                txtSearch.Text = quotationNumber;
-            }
-            else
-            {
-                gridControl1.DataSource = new List<Model.ReceiptDetail>();
-            }
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
-            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            for(int i=0;i<gridView1.Columns.Count;i++)
-            {
-                if(gridView1.Columns[i].FieldName!="actualQty")
-                {
-                    gridView1.Columns[i].OptionsColumn.AllowEdit = false;
-                }    
-            }
+            //if (receiptID != "")
+            //{
+            //    gridControl1.DataSource = Model.UserAction.getPlanList(Properties.Settings.Default.stockinReceiptDetailsPath, receiptID);
+            //    groupControl1.Text = "thông tin chi tiết " + receiptID;
+            //    this.Text = "thông tin chi tiết " + receiptID;
+            //    btnSearch.Enabled = false;
+            //    btnSave.Enabled = false;
+            //    txtNote.Text = note;
+            //    txtSearch.Text = quotationNumber;
+            //}
+            //else
+            //{
+            //    gridControl1.DataSource = new List<Model.ReceiptDetail>();
+            //}
+            //gridView1.Columns.Remove(gridView1.Columns["id"]);
+            //gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
+            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
+            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            //for(int i=0;i<gridView1.Columns.Count;i++)
+            //{
+            //    if(gridView1.Columns[i].FieldName!="actualQty")
+            //    {
+            //        gridView1.Columns[i].OptionsColumn.AllowEdit = false;
+            //    }    
+            //}
         }
 
 
@@ -64,20 +64,20 @@ namespace StockManagement.Views
         {
             if (e.KeyCode == Keys.Delete)
             {
-                object row = gridView1.GetFocusedRow();
-                gridView1.DeleteRow(gridView1.FindRow(row));
-                ReceiptDetails.Remove(row as ReceiptDetail);
+                //object row = gridView1.GetFocusedRow();
+                //gridView1.DeleteRow(gridView1.FindRow(row));
+                //ReceiptDetails.Remove(row as ReceiptDetail);
             }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            string res = Model.UserAction.getBarcodeItems("13/05/2021");
-            Barcode BarcodeItems = JsonConvert.DeserializeObject<Barcode>(res);
-            BarcodeItems.data.ForEach(i =>
-            {
-                Model.UserAction.updateBarcodeStatus(i);
-            });
+            //string res = Model.UserAction.getBarcodeItems("13/05/2021");
+            //Barcode BarcodeItems = JsonConvert.DeserializeObject<Barcode>(res);
+            //BarcodeItems.data.ForEach(i =>
+            //{
+            //    Model.UserAction.updateBarcodeStatus(i);
+            //});
            
         }
 

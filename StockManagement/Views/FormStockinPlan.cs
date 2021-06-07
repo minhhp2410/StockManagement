@@ -35,9 +35,9 @@ namespace StockManagement.Views
 
         public void reLoad()
         {
-            gridControl1.DataSource = Model.UserAction.getStockinPlans();
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            //    gridControl1.DataSource = Model.UserAction.getStockinPlans();
+            //    gridView1.Columns.Remove(gridView1.Columns["id"]);
+            //    gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
         }
         private void stockinplan_Load(object sender, EventArgs e)
         {
@@ -46,13 +46,13 @@ namespace StockManagement.Views
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            StockinPlanData data = gridView1.GetFocusedRow() as StockinPlanData;
-            FormCreateStockinPlan createStockinPlan = new FormCreateStockinPlan();
-            createStockinPlan.planID = data.planID;
-            createStockinPlan.note = data.note;
-            createStockinPlan.quotationNumber = data.quotationNumber;
-            createStockinPlan.StartPosition = FormStartPosition.CenterScreen;
-            createStockinPlan.Show();
+            //StockinPlanData data = gridView1.GetFocusedRow() as StockinPlanData;
+            //FormCreateStockinPlan createStockinPlan = new FormCreateStockinPlan();
+            //createStockinPlan.planID = data.planID;
+            //createStockinPlan.note = data.note;
+            //createStockinPlan.quotationNumber = data.quotationNumber;
+            //createStockinPlan.StartPosition = FormStartPosition.CenterScreen;
+            //createStockinPlan.Show();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace StockManagement.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -74,159 +74,120 @@ namespace StockManagement.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("auth/")]
         public string authorizePath {
             get {
                 return ((string)(this["authorizePath"]));
             }
-            set {
-                this["authorizePath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("quotationitems")]
-        public string quotationItemsPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("quotations")]
+        public string quotationPath {
             get {
-                return ((string)(this["quotationItemsPath"]));
-            }
-            set {
-                this["quotationItemsPath"] = value;
+                return ((string)(this["quotationPath"]));
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("inventorys")]
         public string inventorysPath {
             get {
                 return ((string)(this["inventorysPath"]));
             }
-            set {
-                this["inventorysPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockinplandetails")]
         public string stockinPlanDetailsPath {
             get {
                 return ((string)(this["stockinPlanDetailsPath"]));
             }
-            set {
-                this["stockinPlanDetailsPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockoutplandetails")]
         public string stockoutPlanDetailsPath {
             get {
                 return ((string)(this["stockoutPlanDetailsPath"]));
             }
-            set {
-                this["stockoutPlanDetailsPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("poitems")]
-        public string poItemsPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("pos")]
+        public string poPath {
             get {
-                return ((string)(this["poItemsPath"]));
-            }
-            set {
-                this["poItemsPath"] = value;
+                return ((string)(this["poPath"]));
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockinreceiptdetails")]
         public string stockinReceiptDetailsPath {
             get {
                 return ((string)(this["stockinReceiptDetailsPath"]));
             }
-            set {
-                this["stockinReceiptDetailsPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockoutreceiptdetails")]
         public string stockoutReceiptDetailsPath {
             get {
                 return ((string)(this["stockoutReceiptDetailsPath"]));
             }
-            set {
-                this["stockoutReceiptDetailsPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockinplans")]
         public string stockinPlansPath {
             get {
                 return ((string)(this["stockinPlansPath"]));
             }
-            set {
-                this["stockinPlansPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockoutplans")]
         public string stockoutPlansPath {
             get {
                 return ((string)(this["stockoutPlansPath"]));
             }
-            set {
-                this["stockoutPlansPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockinreceipts")]
         public string stockinReceiptsPath {
             get {
                 return ((string)(this["stockinReceiptsPath"]));
             }
-            set {
-                this["stockinReceiptsPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("stockoutreceipts")]
         public string stockoutReceiptsPath {
             get {
                 return ((string)(this["stockoutReceiptsPath"]));
             }
-            set {
-                this["stockoutReceiptsPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Barcodes")]
         public string barcodePath {
             get {
                 return ((string)(this["barcodePath"]));
-            }
-            set {
-                this["barcodePath"] = value;
             }
         }
     }

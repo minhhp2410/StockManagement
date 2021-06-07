@@ -23,7 +23,7 @@ namespace StockManagement.Views
         {
             FormDoStockin createStockinReceipt = new FormDoStockin();
             createStockinReceipt.StartPosition = FormStartPosition.CenterScreen;
-            createStockinReceipt.f = this;
+            //createStockinReceipt.f = this;
             createStockinReceipt.ShowDialog();
         }
         public void reLoad()
@@ -40,22 +40,22 @@ namespace StockManagement.Views
 
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            StockinReceiptData data = gridView1.GetFocusedRow() as StockinReceiptData;
+            //StockinReceiptData data = gridView1.GetFocusedRow() as StockinReceiptData;
             FormDoStockin createStockinReceipt= new FormDoStockin();
-            createStockinReceipt.receiptID = data.receiptID;
-            createStockinReceipt.note = data.note;
-            createStockinReceipt.quotationNumber = data.quotationNumber;
-            createStockinReceipt.StartPosition = FormStartPosition.CenterScreen;
-            createStockinReceipt.Show();
+            //createStockinReceipt.receiptID = data.receiptID;
+            //createStockinReceipt.note = data.note;
+            //createStockinReceipt.quotationNumber = data.quotationNumber;
+            //createStockinReceipt.StartPosition = FormStartPosition.CenterScreen;
+            //createStockinReceipt.Show();
         }
         void deleteReceipt()
         {
-            StockinReceiptData data = gridView1.GetFocusedRow() as StockinReceiptData;
-            if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.receiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                //if (Model.UserAction.deleteStockinReceipt(data.receiptID))
-                {
+            //StockinReceiptData data = gridView1.GetFocusedRow() as StockinReceiptData;
+            //if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.receiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            //    //if (Model.UserAction.deleteStockinReceipt(data.receiptID))
+            //    {
 
-                }
+            //    }
         }
         private void simpleButton2_Click(object sender, EventArgs e)
         {

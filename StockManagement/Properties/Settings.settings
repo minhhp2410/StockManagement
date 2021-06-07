@@ -17,43 +17,43 @@
     <Setting Name="sale" Type="System.String" Scope="Application">
       <Value Profile="(Default)">KD</Value>
     </Setting>
-    <Setting Name="authorizePath" Type="System.String" Scope="User">
+    <Setting Name="authorizePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">auth/</Value>
     </Setting>
-    <Setting Name="quotationItemsPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">quotationitems</Value>
+    <Setting Name="quotationPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">quotations</Value>
     </Setting>
-    <Setting Name="inventorysPath" Type="System.String" Scope="User">
+    <Setting Name="inventorysPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">inventorys</Value>
     </Setting>
-    <Setting Name="stockinPlanDetailsPath" Type="System.String" Scope="User">
+    <Setting Name="stockinPlanDetailsPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockinplandetails</Value>
     </Setting>
-    <Setting Name="stockoutPlanDetailsPath" Type="System.String" Scope="User">
+    <Setting Name="stockoutPlanDetailsPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockoutplandetails</Value>
     </Setting>
-    <Setting Name="poItemsPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">poitems</Value>
+    <Setting Name="poPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pos</Value>
     </Setting>
-    <Setting Name="stockinReceiptDetailsPath" Type="System.String" Scope="User">
+    <Setting Name="stockinReceiptDetailsPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockinreceiptdetails</Value>
     </Setting>
-    <Setting Name="stockoutReceiptDetailsPath" Type="System.String" Scope="User">
+    <Setting Name="stockoutReceiptDetailsPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockoutreceiptdetails</Value>
     </Setting>
-    <Setting Name="stockinPlansPath" Type="System.String" Scope="User">
+    <Setting Name="stockinPlansPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockinplans</Value>
     </Setting>
-    <Setting Name="stockoutPlansPath" Type="System.String" Scope="User">
+    <Setting Name="stockoutPlansPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockoutplans</Value>
     </Setting>
-    <Setting Name="stockinReceiptsPath" Type="System.String" Scope="User">
+    <Setting Name="stockinReceiptsPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockinreceipts</Value>
     </Setting>
-    <Setting Name="stockoutReceiptsPath" Type="System.String" Scope="User">
+    <Setting Name="stockoutReceiptsPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">stockoutreceipts</Value>
     </Setting>
-    <Setting Name="barcodePath" Type="System.String" Scope="User">
+    <Setting Name="barcodePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Barcodes</Value>
     </Setting>
   </Settings>

@@ -104,7 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Barcode.cs" />
-    <Compile Include="Models\BarcodeGeneration.cs" />
+    <Compile Include="Services\BarcodeGeneration.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\StockoutReceipt.cs" />
     <Compile Include="Models\StockinReceipt.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="Views\BaoCaoThongKe.Designer.cs">
       <DependentUpon>BaoCaoThongKe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ConvertNumbers.cs" />
+    <Compile Include="Services\ConvertNumbers.cs" />
     <Compile Include="Report\rpStockIn.cs">
       <SubType>Component</SubType>
     </Compile>

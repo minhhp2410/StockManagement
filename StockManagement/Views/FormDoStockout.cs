@@ -19,14 +19,14 @@ namespace StockManagement.Views
         public string receiptID = "", poNumber = "", note = "";
         public FormStockout f = new FormStockout();
         //List<Model.DataInventory> inventories = new List<Model.DataInventory>();
-        List<Model.ReceiptDetail> receiptDetails = new List<Model.ReceiptDetail>();
+        //List<Model.ReceiptDetail> receiptDetails = new List<Model.ReceiptDetail>();
         public FormDoStockout()
         {
             InitializeComponent();
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Model.UserAction.doStockout(gridView1, Properties.Settings.Default.stockoutReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
+            //Model.UserAction.doStockout(gridView1, Properties.Settings.Default.stockoutReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
             f.reLoad();
         }
 
@@ -41,17 +41,17 @@ namespace StockManagement.Views
         {
             if (receiptID != "")
             {
-                gridControl1.DataSource = Model.UserAction.getReceiptList(Properties.Settings.Default.stockoutReceiptDetailsPath, receiptID);
-                groupControl1.Text = "thông tin chi tiết " + receiptID;
-                this.Text = "thông tin chi tiết " + receiptID;
-                btnSearch.Enabled = false;
-                btnSave.Enabled = false;
-                txtNote.Text = note;
-                txtSearch.Text = poNumber;
+                //gridControl1.DataSource = Model.UserAction.getReceiptList(Properties.Settings.Default.stockoutReceiptDetailsPath, receiptID);
+                //groupControl1.Text = "thông tin chi tiết " + receiptID;
+                //this.Text = "thông tin chi tiết " + receiptID;
+                //btnSearch.Enabled = false;
+                //btnSave.Enabled = false;
+                //txtNote.Text = note;
+                //txtSearch.Text = poNumber;
             }
             else
             {
-                gridControl1.DataSource = new List<Model.ReceiptDetail>();
+                //gridControl1.DataSource = new List<Model.ReceiptDetail>();
             }
             gridView1.Columns.Remove(gridView1.Columns["id"]);
             gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
@@ -72,7 +72,7 @@ namespace StockManagement.Views
             {
                 object row = gridView1.GetFocusedRow();
                 gridView1.DeleteRow(gridView1.FindRow(row));
-                receiptDetails.Remove(row as ReceiptDetail);
+                //receiptDetails.Remove(row as ReceiptDetail);
             }
         }
 

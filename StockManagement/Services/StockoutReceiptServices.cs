@@ -6,50 +6,20 @@ using System.Threading.Tasks;
 
 namespace StockManagement.Services
 {
-    class StockoutReceiptServices
+    class StockoutReceiptServices:Http
     {
-        //public static List<StockoutReceiptData> getStockoutReceipts()
-        //{
-        //    try
-        //    {
-        //        RestClient client = new RestClient(Properties.Settings.Default.apiEndPoint);
-        //        RestRequest request = new RestRequest(Properties.Settings.Default.stockoutReceiptsPath, Method.GET);
-        //        IRestResponse response = client.Execute(request);
-        //        request.RequestFormat = DataFormat.Json;// Execute the Request
-        //        StockoutReceipts receipt = JsonConvert.DeserializeObject<StockoutReceipts>(response.Content);
-        //        if (receipt != null)
-        //            return receipt.datum;
-        //        return new List<StockoutReceiptData>();
-        //    }
-        //    catch { return new List<StockoutReceiptData>(); }
-        //}
-        //public static StockoutReceipt addStockoutReceipt(StockoutReceiptData item)
-        //{
-        //    try
-        //    {
-        //        var client = new RestClient(Properties.Settings.Default.apiEndPoint);
-        //        var request = new RestRequest(Properties.Settings.Default.stockoutReceiptsPath, Method.POST);
-        //        var json = JsonConvert.SerializeObject(item);
-        //        request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-        //        IRestResponse response = client.Execute(request);  // Execute the Request
-        //        return JsonConvert.DeserializeObject<StockoutReceipt>(response.Content);
-        //    }
-        //    catch { return new StockoutReceipt(); }
-        //}
-        //public static bool deleteStockoutReceipt(string receiptID)
-        //{
-        //    try
-        //    {
-        //        var client = new RestClient(Properties.Settings.Default.apiEndPoint + Properties.Settings.Default.stockoutReceiptsPath + "/" + receiptID);
-        //        var request = new RestRequest(Method.DELETE);
-        //        IRestResponse response = client.Execute(request);  // Execute the Request
+        public List<Model.StockoutReceiptDatum> _getStockoutReceipts()
+        {
+            return ((Model.StockoutReceipts)Get(env.stockoutReceiptsPath, typeof(Model.StockoutReceipts))).Data;
+        }
+        public Model.StockoutReceiptDatum _addStockoutReceipt(Model.StockoutReceiptDatum stockoutReceipt)
+        {
+            return ((Model.StockoutReceiptDatum)Post(env.stockoutReceiptsPath, stockoutReceipt, typeof(Model.StockoutReceiptDatum)));
+        }
 
-        //        return response.StatusCode == System.Net.HttpStatusCode.OK ? true : false;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-        //}
+        public bool _deleteStockoutReceipt(string id)
+        {
+            return Delete(env.stockoutReceiptsPath, id);
+        }
     }
 }

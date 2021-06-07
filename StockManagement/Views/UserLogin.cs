@@ -60,8 +60,7 @@ namespace StockManagement
 
         private void UserLogin_Load(object sender, EventArgs e)
         {
-            Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
-            var res = quotationItemsServices.getQuotationItems("QUO000001");
+            
         }
     }
 }

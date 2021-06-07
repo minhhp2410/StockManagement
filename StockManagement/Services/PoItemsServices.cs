@@ -10,9 +10,10 @@ namespace StockManagement.Services
     {
         //Http http = new Http();
 
+
         List<Model.PoDatum> getPOs()
         {
-           Model.POs pos= (Model.POs)Get("pos", typeof(Model.POs));
+           Model.POs pos= (Model.POs)Get(env.poPath, typeof(Model.POs));
             return pos.Data;
         }
 
