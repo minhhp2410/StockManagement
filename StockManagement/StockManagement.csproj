@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Barcode.cs" />
+    <Compile Include="Services\AuthServices.cs" />
     <Compile Include="Services\BarcodeGeneration.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\StockoutReceipt.cs" />
