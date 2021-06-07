@@ -14,7 +14,7 @@ namespace StockManagement.Services
     class Http
     {
         string apiEP = Properties.Settings.Default.apiEndPoint;
-        string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsIm5hbWUiOiJBZG1pbmlzdHJhdG9ycyIsImVtYWlsIjoiYWRtaW5AZGF0YS52biIsInJvbGVzIjoiYWRtaW47IEtEIiwicGVybWlzc2lvbnMiOlt7Im9iamVjdCI6InBvIiwicGF0aCI6Ii9QT3MiLCJhY3Rpb24iOiJ1cGRhdGVTdGVwIn0seyJvYmplY3QiOiJxdW90YXRpb24iLCJwYXRoIjoiL1F1b3RhdGlvbnMiLCJhY3Rpb24iOiJ1cGRhdGVTdGVwIn0seyJvYmplY3QiOiJjdXN0b21lciIsInBhdGgiOiIvQ3VzdG9tZXJzIiwiYWN0aW9uIjoidmlldyJ9LHsib2JqZWN0Ijoic3VwcGxpZXIiLCJwYXRoIjoiL1N1cHBsaWVycyIsImFjdGlvbiI6InZpZXcifSx7Im9iamVjdCI6InBvUGVuZGluZ1N0ZXBzIiwicGF0aCI6Ii9wZW5kaW5nU3RlcHMiLCJhY3Rpb24iOiJ1cGRhdGVTdGVwIn0seyJvYmplY3QiOiJkYXNoYm9hcmQiLCJwYXRoIjoiL2Rhc2hib2FyZCIsImFjdGlvbiI6InZpZXcifV0sImlhdCI6MTYyMDM3NzUzMX0.qGFN8ugJBcSvPRvmnaWI88mBM1DH_Pwoqn-tj36u-G8";
+        string token = Settings.Default.token;
         protected Settings env = Settings.Default;
         public object Get(string source, List<Parameter> parameters, Type type)
         {

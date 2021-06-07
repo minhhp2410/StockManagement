@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows.Forms;
+    using StockManagement.Views;
 
     /// <summary>
     /// Defines the <see cref="Program" />.
