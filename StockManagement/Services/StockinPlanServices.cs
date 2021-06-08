@@ -10,13 +10,17 @@ namespace StockManagement.Services
     {
        public List<Model.StockinPlanDatum> _getStockinPlans()
         {
-            return ((Model.StockinPlans)Get(env.stockinPlansPath, typeof(Model.StockinPlans))).Data;
+            try
+            {
+                return ((Model.StockinPlans)Get(env.stockinPlansPath, typeof(Model.StockinPlans))).Data;
+            }
+            catch (Exception)
+            {
+                return new List<Model.StockinPlanDatum>();
+                throw;
+            }
+            
         }
-
-        //public List<Model.StockinPlanDetail>_getStockinPlanDetail(string planNumber)
-        //{
-        //    return _getStockinPlans().Where(w => w.PlanNumber == planNumber).FirstOrDefault().StockinPlanDetails;
-        //}
 
         public Model.StockinPlanDatum _addStockinPlan(Model.StockinPlanDatum stockinPlan)
         {

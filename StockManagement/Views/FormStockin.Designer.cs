@@ -47,7 +47,7 @@ namespace StockManagement.Views
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(882, 379);
-            this.gridControl1.TabIndex = 7;
+            this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             this.gridControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridControl1_KeyDown);
@@ -66,7 +66,7 @@ namespace StockManagement.Views
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(882, 63);
-            this.groupControl1.TabIndex = 6;
+            this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Lịch sử nhập kho";
             // 
             // btnDelete

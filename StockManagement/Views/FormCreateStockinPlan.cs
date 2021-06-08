@@ -20,7 +20,11 @@ namespace StockManagement.Views
         public string planID="",quotationNumber="",note="";
         public FormStockinPlan f = new FormStockinPlan();
         List<Model.DataInventory> inventories = new List<Model.DataInventory>();
-        //List<Model.PlanDetail> planDetails = new List<Model.PlanDetail>();
+        List<Model.StockinPlanDetail> planDetails = new List<Model.StockinPlanDetail>();
+        Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
+        Services.StockinPlanServices stockinPlanServices = new Services.StockinPlanServices();
+        Services.InventoryServices inventoryServices = new Services.InventoryServices();
+        Services.StockinPlanDetailServices stockinPlanDetailServices = new Services.StockinPlanDetailServices();
         public FormCreateStockinPlan()
         {
             InitializeComponent();
@@ -29,7 +33,23 @@ namespace StockManagement.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            //Model.UserAction.insertStockinPlanDetail(gridView1, Properties.Settings.Default.stockinPlanDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
+            planDetails.Clear();
+            Model.StockinPlanDatum stockinPlan = new StockinPlanDatum()
+            {
+                isDeleted = false,
+                Note = txtNote.Text,
+                QuotationNumber=txtSearch.Text,
+                Store=cbbStore.Text
+            };
+            stockinPlan=stockinPlanServices._addStockinPlan(stockinPlan);
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(i) as Model.StockinPlanDetail;
+                row.PlanID = stockinPlan.Id;
+                planDetails.Add(row);
+            }
+            var res= stockinPlanDetailServices._addStockinPlanDetail(planDetails);
+            if(res.Count>0)
             f.reLoad();
         }
 
@@ -72,37 +92,37 @@ namespace StockManagement.Views
         {
             if(e.KeyCode== Keys.Delete)
             {
-                //object row = gridView1.GetFocusedRow();
-                //gridView1.DeleteRow(gridView1.FindRow(row));
-                //planDetails.Remove(row as PlanDetail);
+                object row = gridView1.GetFocusedRow();
+                gridView1.DeleteRow(gridView1.FindRow(row));
+                planDetails.Remove(row as Model.StockinPlanDetail);
             }    
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //planDetails = new List<Model.PlanDetail>();
-            ////string res = Model.UserAction.getQuotationItems(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
-            //JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
-            
-            //quoationItems.Data.ToList().ForEach(i =>
-            //{
-            //    planDetails.Add(new Model.PlanDetail() { 
-            //        partNumber=i.PartNumber,
-            //        partName=i.PartName,
-            //        position=i.Position,
-            //        price= i.UnitPrice,
-            //        currency=i.Currency,
-            //        quantity= i.Quantity,
-            //        unit=i.Unit
-            //    });
-            //});
-            
-            //gridControl1.DataSource = planDetails;
-            //gridView1.Columns.Remove(gridView1.Columns["id"]);
-            //gridView1.Columns.Remove(gridView1.Columns["planID"]);
-            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]); 
-            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            planDetails = new List<Model.StockinPlanDetail>();
+            var items=quotationItemsServices._getQuotationItems(txtSearch.Text);
+
+            items.ForEach(i =>
+            {
+                planDetails.Add(new Model.StockinPlanDetail
+                {
+                    PartNumber = i.PartNumber,
+                    PartName = i.PartName,
+                    Currency = i.Currency,
+                    Price = i.UnitPrice,
+                    Quantity = i.Quantity,
+                    Unit = "",
+                    Position = cbbStore.Text
+                });
+            });
+
+            gridControl1.DataSource = planDetails;
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["PlanID"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
 
 
         }
@@ -111,24 +131,23 @@ namespace StockManagement.Views
         {
             if (planID!="")
             {
-                //gridControl1.DataSource = Model.UserAction.getPlanList(Properties.Settings.Default.stockinPlanDetailsPath, planID);
+                gridControl1.DataSource = stockinPlanDetailServices._getStockinPlanDetail(planID);
                 groupControl1.Text = "thông tin chi tiết " + planID;
                 this.Text= "thông tin chi tiết " + planID;
                 btnSearch.Enabled = false;
                 btnSave.Enabled = false;
-                txtNote.Text = note;
-                txtSearch.Text = quotationNumber;
             }
             else
             {
-                //gridControl1.DataSource = new List<Model.PlanDetail>();
+                gridControl1.DataSource = new List<Model.StockinPlanDetail>();
             }
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["planID"]);
-            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["PlanID"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
             ComboBoxItemCollection collection = cbbProduct.Properties.Items;
-            //inventories = Model.UserAction.getInventories();
+            inventories = inventoryServices._getInventoryItems();
+            if(inventories!=null && inventories.Count>0)
             collection.AddRange(inventories.Select(s=> s.partNumber+"-"+s.partName as object).ToArray());
         }
     }

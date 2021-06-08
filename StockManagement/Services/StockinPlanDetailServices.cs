@@ -10,7 +10,15 @@ namespace StockManagement.Services
     {
         public List<Model.StockinPlanDetail> _getStockinPlanDetail(string planNumber)
         {
-            return _getStockinPlans().Where(w => w.PlanNumber == planNumber).FirstOrDefault().StockinPlanDetails;
+            try
+            {
+                return _getStockinPlans().Where(w => w.PlanNumber == planNumber).FirstOrDefault().StockinPlanDetails;
+            }
+            catch (Exception)
+            {
+                return new List<Model.StockinPlanDetail>();
+                throw;
+            }
         }
         public List<Model.StockinPlanDetail> _addStockinPlanDetail(List<Model.StockinPlanDetail> stockinPlanDetails)
         {

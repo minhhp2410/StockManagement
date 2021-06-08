@@ -11,10 +11,10 @@ namespace StockManagement.Model
     public class StockinPlanDetail
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("planID")]
-        public string PlanID { get; set; }
+        public int PlanID { get; set; }
 
         [JsonProperty("partNumber")]
         public string PartNumber { get; set; }
@@ -60,10 +60,10 @@ namespace StockManagement.Model
         public string CreatedBy { get; set; }
 
         [JsonProperty("createdAt")]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty("updatedAt")]
-        public string UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [JsonProperty("StockinPlanDetails")]
         public List<StockinPlanDetail> StockinPlanDetails { get; set; }

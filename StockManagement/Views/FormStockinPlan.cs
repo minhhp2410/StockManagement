@@ -15,6 +15,7 @@ namespace StockManagement.Views
 {
     public partial class FormStockinPlan : DevExpress.XtraEditors.XtraForm
     {
+        Services.StockinPlanServices stockinPlanServices = new Services.StockinPlanServices();
         public FormStockinPlan()
         {
             InitializeComponent();
@@ -35,9 +36,10 @@ namespace StockManagement.Views
 
         public void reLoad()
         {
-            //    gridControl1.DataSource = Model.UserAction.getStockinPlans();
-            //    gridView1.Columns.Remove(gridView1.Columns["id"]);
-            //    gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            gridControl1.DataSource = stockinPlanServices._getStockinPlans();
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["isDeleted"]);
         }
         private void stockinplan_Load(object sender, EventArgs e)
         {

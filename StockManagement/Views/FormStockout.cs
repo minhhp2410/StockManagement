@@ -14,6 +14,7 @@ namespace StockManagement.Views
 {
     public partial class FormStockout : DevExpress.XtraEditors.XtraForm
     {
+        Services.StockoutReceiptServices stockoutReceiptServices = new Services.StockoutReceiptServices();
         public FormStockout()
         {
             InitializeComponent();
@@ -29,9 +30,9 @@ namespace StockManagement.Views
 
         public void reLoad()
         {
-            //gridControl1.DataSource = Model.UserAction.getStockoutReceipts();
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
+            gridControl1.DataSource = stockoutReceiptServices._getStockoutReceipts();
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["isDeleted"]);
         }
         private void stockoutreceipt_Load(object sender, EventArgs e)
@@ -52,12 +53,13 @@ namespace StockManagement.Views
 
         void deleteReceipt()
         {
-            //StockoutReceiptData data = gridView1.GetFocusedRow() as StockoutReceiptData;
-            //if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.receiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            //if (Model.UserAction.deleteStockoutReceipt(data.receiptID))
-            {
+            Model.StockoutReceiptDetail data = gridView1.GetFocusedRow() as Model.StockoutReceiptDetail;
+            if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.ReceiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (stockoutReceiptServices._deleteStockoutReceipt(data.ReceiptID.ToString()))
+                {
 
-            }
+                }
+            reLoad();
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)

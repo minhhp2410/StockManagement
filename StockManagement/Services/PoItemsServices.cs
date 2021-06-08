@@ -17,9 +17,17 @@ namespace StockManagement.Services
             return pos.Data;
         }
 
-        public List<Model.POItem> GetPOItems(string poNumber)
+        public List<Model.POItem> _getPOItems(string poNumber)
         {
-            return getPOs().Where(w=>w.PoNumber==poNumber).FirstOrDefault().POItems;
+            try
+            {
+                return getPOs().Where(w => w.PoNumber == poNumber).FirstOrDefault().POItems;
+            }
+            catch (Exception)
+            {
+                return new List<Model.POItem>();
+                throw;
+            }
         }
     }
 }

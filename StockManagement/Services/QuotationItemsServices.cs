@@ -8,10 +8,18 @@ namespace StockManagement.Services
 {
     class QuotationItemsServices:Http
     {
-        public List<Model.QuotationItem> getQuotationItems(string QuotationNo)
+        public List<Model.QuotationItem> _getQuotationItems(string QuotationNo)
         {
-            var Quos= (Model.Quotations)Get(env.quotationPath, typeof(Model.Quotations));
-            return Quos.Data.Where(w => w.QuotationNo == QuotationNo).FirstOrDefault().QuotationItems;
+            try
+            {
+                var Quos = (Model.Quotations)Get(env.quotationPath, typeof(Model.Quotations));
+                return Quos.Data.Where(w => w.QuotationNo == QuotationNo).FirstOrDefault().QuotationItems;
+            }
+            catch (Exception)
+            {
+                return new List<Model.QuotationItem>();
+                throw;
+            }
         }
     }
 }

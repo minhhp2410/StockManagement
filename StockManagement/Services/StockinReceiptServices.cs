@@ -10,7 +10,15 @@ namespace StockManagement.Services
     {
         public List<Model.StockinReceiptDatum> _getStockinReceipts()
         {
-            return ((Model.StockinReceipts)Get(env.stockinReceiptsPath, typeof(Model.StockinReceipts))).Data;
+            try
+            {
+                return ((Model.StockinReceipts)Get(env.stockinReceiptsPath, typeof(Model.StockinReceipts))).Data;
+            }
+            catch (Exception)
+            {
+                return new List<Model.StockinReceiptDatum>();
+                throw;
+            }
         }
         public Model.StockinReceiptDatum _addStockinReceipt(Model.StockinReceiptDatum stockinReceipt)
         {

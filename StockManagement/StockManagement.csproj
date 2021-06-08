@@ -113,6 +113,7 @@
     <Compile Include="Models\StockinPlan.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\Http.cs" />
+    <Compile Include="Services\InventoryServices.cs" />
     <Compile Include="Services\PoItemsServices.cs" />
     <Compile Include="Services\QuotationItemsServices.cs" />
     <Compile Include="Services\StockinPlanDetailServices.cs" />

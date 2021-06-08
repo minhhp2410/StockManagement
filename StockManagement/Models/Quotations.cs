@@ -41,10 +41,10 @@ namespace StockManagement.Model
         public string Currency { get; set; }
 
         [JsonProperty("createdAt")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty("updatedAt")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 
     public class QuotationDatum
