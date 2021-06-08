@@ -17,7 +17,8 @@ namespace StockManagement.Services
             var roles = "";
             try
             {
-                token = ((Model.GetToken)Post(env.authorizePath, user, typeof(UserLogin))).message;
+                var res = (Model.GetToken)Post(env.authorizePath, user, typeof(Model.GetToken));
+                token = res.message;
                 var handler = new JwtSecurityTokenHandler();
                 var decodedToken = handler.ReadJwtToken(token);
                 roles = decodedToken.Claims.ElementAt(2).Value;
