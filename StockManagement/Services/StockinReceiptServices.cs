@@ -27,7 +27,15 @@ namespace StockManagement.Services
 
         public bool _deleteStockinReceipt(string id)
         {
-            return Delete(env.stockinReceiptsPath, id);
+            try
+            {
+                return Delete(env.stockinReceiptsPath, id);
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
         }
     }
 }

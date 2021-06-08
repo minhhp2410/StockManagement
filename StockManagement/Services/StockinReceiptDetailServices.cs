@@ -10,12 +10,28 @@ namespace StockManagement.Services
     {
         public List<Model.StockinReceiptDetail> _getStockinReceiptDetail(string receiptNumber)
         {
-            return _getStockinReceipts().Where(w => w.ReceiptNumber == receiptNumber).FirstOrDefault().StockinReceiptDetails;
+            try
+            {
+                return _getStockinReceipts().Where(w => w.ReceiptNumber == receiptNumber).FirstOrDefault().StockinReceiptDetails;
+            }
+            catch (Exception)
+            {
+                return new List<Model.StockinReceiptDetail>();
+                throw;
+            }
         }
 
         public  List<Model.StockinReceiptDetail> _addStockinReceiptDetail(List<Model.StockinReceiptDetail> stockinReceiptDetails)
         {
-            return (List<Model.StockinReceiptDetail>)Post(env.stockinReceiptDetailsPath, stockinReceiptDetails, typeof(List<Model.StockinReceiptDetail>));
+            try
+            {
+                return (List<Model.StockinReceiptDetail>)Post(env.stockinReceiptDetailsPath, stockinReceiptDetails, typeof(List<Model.StockinReceiptDetail>));
+            }
+            catch (Exception)
+            {
+                return new List<Model.StockinReceiptDetail>();
+                throw;
+            }
         }
     }
 }

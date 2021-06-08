@@ -22,7 +22,15 @@ namespace StockManagement.Services
         }
         public List<Model.StockinPlanDetail> _addStockinPlanDetail(List<Model.StockinPlanDetail> stockinPlanDetails)
         {
-            return (List<Model.StockinPlanDetail>)Post(env.stockinPlanDetailsPath, stockinPlanDetails, typeof(List<Model.StockinPlanDetail>));
+            try
+            {
+                return (List<Model.StockinPlanDetail>)Post(env.stockinPlanDetailsPath, stockinPlanDetails, typeof(List<Model.StockinPlanDetail>));
+            }
+            catch (Exception)
+            {
+                return new List<Model.StockinPlanDetail>();
+                throw;
+            }
         }
     }
 }

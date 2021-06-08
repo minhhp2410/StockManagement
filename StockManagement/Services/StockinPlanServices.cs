@@ -24,7 +24,15 @@ namespace StockManagement.Services
 
         public Model.StockinPlanDatum _addStockinPlan(Model.StockinPlanDatum stockinPlan)
         {
-            return (Model.StockinPlanDatum)Post(env.stockinPlansPath, stockinPlan, typeof(Model.StockinPlans));
+            try
+            {
+                return (Model.StockinPlanDatum)Post(env.stockinPlansPath, stockinPlan, typeof(Model.StockinPlans));
+            }
+            catch (Exception)
+            {
+                return new Model.StockinPlanDatum();
+                throw;
+            }
         }
     }
 }

@@ -23,7 +23,16 @@ namespace StockManagement.Services
 
         public Model.StockoutPlanDatum _addStockoutPlan(Model.StockoutPlanDatum stockoutPlan)
         {
-            return (Model.StockoutPlanDatum)Post(env.stockoutPlansPath, stockoutPlan, typeof(Model.StockoutPlans));
+            try
+            {
+                return (Model.StockoutPlanDatum)Post(env.stockoutPlansPath, stockoutPlan, typeof(Model.StockoutPlans));
+            }
+            catch (Exception)
+            {
+                return new Model.StockoutPlanDatum();
+                throw;
+            }
+
         }
     }
 }
