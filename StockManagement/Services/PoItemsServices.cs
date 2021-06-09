@@ -21,7 +21,7 @@ namespace StockManagement.Services
         {
             try
             {
-                return getPOs().Where(w => w.PoNumber == poNumber).FirstOrDefault().POItems;
+                return getPOs().Where(w => w.PoNumber == poNumber.ToUpper()).FirstOrDefault().POItems;
             }
             catch (Exception)
             {

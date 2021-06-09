@@ -13,7 +13,7 @@ namespace StockManagement.Services
             try
             {
                 var Quos = (Model.Quotations)Get(env.quotationPath, typeof(Model.Quotations));
-                return Quos.Data.Where(w => w.QuotationNo == QuotationNo).FirstOrDefault().QuotationItems;
+                return Quos.Data.Where(w => w.QuotationNo == QuotationNo.ToUpper()).FirstOrDefault().QuotationItems;
             }
             catch (Exception)
             {

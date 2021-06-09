@@ -14,7 +14,7 @@ namespace StockManagement.Model
         public int? Id { get; set; }
 
         [JsonProperty("planID")]
-        public int PlanID { get; set; }
+        public int? PlanID { get; set; }
 
         [JsonProperty("partNumber")]
         public string PartNumber { get; set; }
@@ -23,7 +23,7 @@ namespace StockManagement.Model
         public string PartName { get; set; }
 
         [JsonProperty("price")]
-        public int Price { get; set; }
+        public int? Price { get; set; }
 
         [JsonProperty("currency")]
         public string Currency { get; set; }
@@ -35,7 +35,7 @@ namespace StockManagement.Model
         public string Unit { get; set; }
 
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
     }
 
     public class StockinPlanDatum

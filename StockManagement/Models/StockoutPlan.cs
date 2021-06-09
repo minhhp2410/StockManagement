@@ -11,10 +11,10 @@ namespace StockManagement.Model
     public class StockoutPlanDetail
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("planID")]
-        public int PlanID { get; set; }
+        public int? PlanID { get; set; }
 
         [JsonProperty("partNumber")]
         public string PartNumber { get; set; }
@@ -23,7 +23,7 @@ namespace StockManagement.Model
         public string PartName { get; set; }
 
         [JsonProperty("price")]
-        public int Price { get; set; }
+        public int? Price { get; set; }
 
         [JsonProperty("currency")]
         public string Currency { get; set; }
@@ -35,13 +35,13 @@ namespace StockManagement.Model
         public string Unit { get; set; }
 
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
     }
 
     public class StockoutPlanDatum
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("planNumber")]
         public string PlanNumber { get; set; }
@@ -80,5 +80,16 @@ namespace StockManagement.Model
 
         [JsonProperty("data")]
         public List<StockoutPlanDatum> Data { get; set; }
+    }
+    public class StockoutPlanDetails
+    {
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("data")]
+        public List<StockoutPlanDetail> Data { get; set; }
     }
 }

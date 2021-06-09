@@ -25,14 +25,13 @@ namespace StockManagement.Services
         {
             try
             {
-                return (Model.StockoutPlanDatum)Post(env.stockoutPlansPath, stockoutPlan, typeof(Model.StockoutPlans));
+                return ((Model.StockoutPlans)Post(env.stockinPlansPath, stockoutPlan, typeof(Model.StockoutPlans))).Data[0];
             }
             catch (Exception)
             {
                 return new Model.StockoutPlanDatum();
                 throw;
             }
-
         }
     }
 }

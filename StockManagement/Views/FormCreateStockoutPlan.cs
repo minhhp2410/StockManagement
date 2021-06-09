@@ -32,20 +32,26 @@ namespace StockManagement.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            planDetails.Clear();
+            List<Model.StockoutPlanDetail> planDetails2 = new List<Model.StockoutPlanDetail>();
             Model.StockoutPlanDatum stockoutPlan = new StockoutPlanDatum()
             {
                 isDeleted = false,
                 Note = txtNote.Text,
                 poNumber = txtSearch.Text,
-                Store = cbbStore.Text
+                Store = cbbStore.Text,
+                Id = null,
+                CreatedAt = null,
+                CreatedBy = "",
+                PlanNumber = "",
+                UpdatedAt = null,
+                StockoutPlanDetails = null
             };
             stockoutPlan = stockoutPlanServices._addStockoutPlan(stockoutPlan);
             for (int i = 0; i < gridView1.RowCount; i++)
             {
                 var row = gridView1.GetRow(i) as Model.StockoutPlanDetail;
-                row.PlanID = stockoutPlan.Id;
-                planDetails.Add(row);
+                row.PlanID = (int)stockoutPlan.Id;
+                planDetails2.Add(row);
             }
             var res = stockoutPlanDetailServices._addStockoutPlanDetail(planDetails);
             if (res.Count > 0)
