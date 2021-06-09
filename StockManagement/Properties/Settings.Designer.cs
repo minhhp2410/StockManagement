@@ -49,7 +49,7 @@ namespace StockManagement.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://bluemoonlab-pmback.herokuapp.com/api/v1/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8000/api/v1/")]
         public string apiEndPoint {
             get {
                 return ((string)(this["apiEndPoint"]));

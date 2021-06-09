@@ -26,7 +26,7 @@ namespace StockManagement.Services
         {
             try
             {
-                return (Model.StockinPlanDatum)Post(env.stockinPlansPath, stockinPlan, typeof(Model.StockinPlans));
+                return ((Model.StockinPlans)Post(env.stockinPlansPath, stockinPlan, typeof(Model.StockinPlans))).Data[0];
             }
             catch (Exception)
             {

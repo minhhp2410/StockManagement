@@ -24,7 +24,7 @@ namespace StockManagement.Services
         {
             try
             {
-                return (List<Model.StockinPlanDetail>)Post(env.stockinPlanDetailsPath, stockinPlanDetails, typeof(List<Model.StockinPlanDetail>));
+                return ((Model.StockinPlanDetails)Post(env.stockinPlanDetailsPath, stockinPlanDetails, typeof(Model.StockinPlanDetails))).Data;
             }
             catch (Exception)
             {

@@ -41,7 +41,7 @@ namespace StockManagement.Model
     public class StockinPlanDatum
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("planNumber")]
         public string PlanNumber { get; set; }
@@ -79,6 +79,17 @@ namespace StockManagement.Model
 
         [JsonProperty("data")]
         public List<StockinPlanDatum> Data { get; set; }
+    }
+    public class StockinPlanDetails
+    {
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("data")]
+        public List<StockinPlanDetail> Data { get; set; }
     }
 
 
