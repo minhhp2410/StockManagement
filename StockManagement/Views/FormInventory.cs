@@ -19,15 +19,16 @@ namespace StockManagement.Views
             InitializeComponent();
             
         }
+        private void inventory_Load(object sender, EventArgs e)
+        {
+            loadInventory();
+        }
+
         void loadInventory()
         {
             gridControl1.DataSource = inventoryServices._getInventoryItems();
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["createdAt"].Visible = false;
-        }
-        private void inventory_Load(object sender, EventArgs e)
-        {
-            loadInventory();
         }
     }
 }

@@ -11,10 +11,10 @@ namespace StockManagement.Model
     public class StockinReceiptDetail
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("receiptID")]
-        public string ReceiptID { get; set; }
+        public int ReceiptID { get; set; }
 
         [JsonProperty("partNumber")]
         public string PartNumber { get; set; }
@@ -41,7 +41,7 @@ namespace StockManagement.Model
     public class StockinReceiptDatum
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("ReceiptNumber")]
         public string ReceiptNumber { get; set; }
@@ -80,5 +80,16 @@ namespace StockManagement.Model
 
         [JsonProperty("data")]
         public List<StockinReceiptDatum> Data { get; set; }
+    }
+    public class StockinReceiptDetails
+    {
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("data")]
+        public List<StockinReceiptDetail> Data { get; set; }
     }
 }

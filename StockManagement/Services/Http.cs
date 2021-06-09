@@ -67,7 +67,7 @@ namespace StockManagement.Services
         public bool Delete(string source, string id)
         {
             var client = new RestClient(apiEP);
-            var req = new RestRequest(source + "/" + id,Method.DELETE);
+            var req = new RestRequest(source+"/"+id ,Method.DELETE);
             req.AddHeader("x-auth-token", token);
             var res = client.Execute(req);
 

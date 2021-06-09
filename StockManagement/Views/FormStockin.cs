@@ -51,12 +51,13 @@ namespace StockManagement.Views
         }
         void deleteReceipt()
         {
-            Model.StockinReceiptDetail data = gridView1.GetFocusedRow() as Model.StockinReceiptDetail;
-            if (MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.ReceiptID, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                if (stockinReceiptServices._deleteStockinReceipt(data.ReceiptID.ToString()))
+            Model.StockinReceiptDatum data = gridView1.GetFocusedRow() as Model.StockinReceiptDatum;
+             if(MessageBox.Show("Bạn chắc chắn muốn xóa phiếu " + data.Id, "Hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (stockinReceiptServices._deleteStockinReceipt(data.Id.ToString()))
                 {
 
                 }
+            reLoad();
         }
         private void simpleButton2_Click(object sender, EventArgs e)
         {

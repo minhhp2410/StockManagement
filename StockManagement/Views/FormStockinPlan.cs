@@ -21,6 +21,14 @@ namespace StockManagement.Views
             InitializeComponent();
         }
 
+        public void reLoad()
+        {
+            gridControl1.DataSource = stockinPlanServices._getStockinPlans();
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["isDeleted"]);
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FormCreateStockinPlan createStockinPlan = new FormCreateStockinPlan();
@@ -33,19 +41,6 @@ namespace StockManagement.Views
         {
 
         }
-
-        public void reLoad()
-        {
-            gridControl1.DataSource = stockinPlanServices._getStockinPlans();
-            gridView1.Columns.Remove(gridView1.Columns["Id"]);
-            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["isDeleted"]);
-        }
-        private void stockinplan_Load(object sender, EventArgs e)
-        {
-                reLoad();   
-        }
-
         private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //StockinPlanData data = gridView1.GetFocusedRow() as StockinPlanData;
@@ -55,6 +50,11 @@ namespace StockManagement.Views
             //createStockinPlan.quotationNumber = data.quotationNumber;
             //createStockinPlan.StartPosition = FormStartPosition.CenterScreen;
             //createStockinPlan.Show();
+        }
+
+        private void stockinplan_Load(object sender, EventArgs e)
+        {
+                reLoad();   
         }
     }
 }

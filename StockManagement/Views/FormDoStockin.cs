@@ -18,15 +18,72 @@ namespace StockManagement.Views
 {
     public partial class FormDoStockin : DevExpress.XtraEditors.XtraForm
     {
-        //public string receiptID = "", quotationNumber = "", note = "";
         public FormStockin f = new FormStockin();
-        ////List<Model.DataInventory> inventories = new List<Model.DataInventory>();
-        //List<Model.ReceiptDetail> ReceiptDetails = new List<Model.ReceiptDetail>();
-        private void simpleButton1_Click(object sender, EventArgs e)
+        public string receiptID = "", quotationNumber = "", note = "";
+        List<Model.DataInventory> inventories = new List<Model.DataInventory>();
+        Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
+        List<Model.StockinReceiptDetail> ReceiptDetails = new List<Model.StockinReceiptDetail>();
+        Services.StockinReceiptDetailServices stockinReceiptDetailServices = new Services.StockinReceiptDetailServices();
+        Services.StockinReceiptServices stockinReceiptServices = new Services.StockinReceiptServices();
+        Services.StockinPlanDetailServices stockinPlanDetailServices = new Services.StockinPlanDetailServices();
+        public FormDoStockin()
         {
-            //Model.UserAction.doStockin(gridView1, Properties.Settings.Default.stockinReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
-            
-            //f.reLoad();
+            InitializeComponent();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            //string res = Model.UserAction.getBarcodeItems("13/05/2021");
+            //Barcode BarcodeItems = JsonConvert.DeserializeObject<Barcode>(res);
+            //BarcodeItems.data.ForEach(i =>
+            //{
+            //    Model.UserAction.updateBarcodeStatus(i);
+            //});
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ReceiptDetails= new List<StockinReceiptDetail>();
+            if(txtSearch.Text.ToUpper().Contains("KHN"))
+            {
+                var items = stockinPlanDetailServices._getStockinPlanDetail(txtSearch.Text.ToUpper());
+                items.ForEach(i =>
+                {
+                    ReceiptDetails.Add(new Model.StockinReceiptDetail
+                    {
+                        Currency = i.Currency,
+                        PartName=i.PartName,
+                        PartNumber=i.PartNumber,
+                        Position="",
+                        Price=(int)i.Price,
+                        Quantity=(int)i.Quantity,
+                        Unit=i.Unit,
+                    });
+                });
+            }
+            else
+            {
+                var items = quotationItemsServices._getQuotationItems(txtSearch.Text.ToUpper());
+                items.ForEach(i =>
+                {
+                    ReceiptDetails.Add(new Model.StockinReceiptDetail
+                    {
+                        Currency = i.Currency,
+                        PartName = i.PartName,
+                        PartNumber = i.PartNumber,
+                        Position = "",
+                        Price = i.UnitPrice,
+                        Quantity = i.Quantity,
+                        Unit = ""
+                    });
+                });
+            }
+            gridControl1.DataSource = ReceiptDetails;
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["ReceiptId"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
         }
 
         private void CreateStockinReceipt_Load(object sender, EventArgs e)
@@ -58,8 +115,6 @@ namespace StockManagement.Views
             //}
         }
 
-
-
         private void gridControl1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -70,69 +125,32 @@ namespace StockManagement.Views
             }
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void simpleButton1_Click(object sender, EventArgs e)
         {
-            //string res = Model.UserAction.getBarcodeItems("13/05/2021");
-            //Barcode BarcodeItems = JsonConvert.DeserializeObject<Barcode>(res);
-            //BarcodeItems.data.ForEach(i =>
-            //{
-            //    Model.UserAction.updateBarcodeStatus(i);
-            //});
-           
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //ReceiptDetails = new List<ReceiptDetail>();
-            //if (!txtSearch.Text.Contains("KHN"))
-            //{
-            //    string res = Model.UserAction.getQuotationItems(Properties.Settings.Default.quotationItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
-            //    JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
-            //    quoationItems.Data.ToList().ForEach(i =>
-            //    {
-            //        ReceiptDetails.Add(new Model.ReceiptDetail()
-            //        {
-            //            partNumber = i.PartNumber,
-            //            partName = i.PartName,
-            //            position = i.Position,
-            //            price = i.UnitPrice,
-            //            currency = i.Currency,
-            //            quantity = i.Quantity,
-            //            unit = i.Unit
-            //        });
-            //    });
-            //    gridControl1.DataSource = ReceiptDetails;
-            //    gridControl1.Update();
-            //}
-            //else
-            //{
-            //    List<ReceiptDetail> Items = Model.UserAction.getReceiptList(Properties.Settings.Default.stockinPlanDetailsPath, txtSearch.Text);
-            //    Items.ForEach(i =>
-            //    {
-            //        ReceiptDetails.Add(new Model.ReceiptDetail()
-            //        {
-            //            partNumber = i.partNumber,
-            //            partName = i.partName,
-            //            position = i.position,
-            //            price = i.price,
-            //            currency = i.currency,
-            //            quantity = i.quantity,
-            //            unit = i.unit
-            //        });
-            //    });
-            //    gridControl1.DataSource = ReceiptDetails;
-            //    gridControl1.Update();
-            //}    
-            
-            //gridView1.Columns.Remove(gridView1.Columns["id"]);
-            //gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
-            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-        }
-
-        public FormDoStockin()
-        {
-            InitializeComponent();
+            List<Model.StockinReceiptDetail> ReceiptDetails2 = new List<Model.StockinReceiptDetail>();
+            Model.StockinReceiptDatum stockinReceipt = new StockinReceiptDatum()
+            {
+                isDeleted = false,
+                Note = txtNote.Text,
+                QuotationNumber = txtSearch.Text,
+                Store = cbbStore.Text,
+                Id = null,
+                CreatedAt = null,
+                CreatedBy = "",
+                ReceiptNumber = "",
+                UpdatedAt = null,
+                StockinReceiptDetails = null
+            };
+            stockinReceipt = stockinReceiptServices._addStockinReceipt(stockinReceipt);
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(i) as Model.StockinReceiptDetail;
+                row.ReceiptID = (int)stockinReceipt.Id;
+                ReceiptDetails2.Add(row);
+            }
+            var res = stockinReceiptDetailServices._addStockinReceiptDetail(ReceiptDetails);
+            if (res.Count > 0)
+                f.reLoad();
         }
     }
 }

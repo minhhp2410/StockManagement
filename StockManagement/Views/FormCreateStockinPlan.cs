@@ -17,19 +17,86 @@ namespace StockManagement.Views
 {
     public partial class FormCreateStockinPlan : DevExpress.XtraEditors.XtraForm
     {
-        public string planID="",quotationNumber="",note="";
         public FormStockinPlan f = new FormStockinPlan();
+        public string planID = "", quotationNumber = "", note = "";
         List<Model.DataInventory> inventories = new List<Model.DataInventory>();
+        Services.InventoryServices inventoryServices = new Services.InventoryServices();
         List<Model.StockinPlanDetail> planDetails = new List<Model.StockinPlanDetail>();
         Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
-        Services.StockinPlanServices stockinPlanServices = new Services.StockinPlanServices();
-        Services.InventoryServices inventoryServices = new Services.InventoryServices();
         Services.StockinPlanDetailServices stockinPlanDetailServices = new Services.StockinPlanDetailServices();
+        Services.StockinPlanServices stockinPlanServices = new Services.StockinPlanServices();
         public FormCreateStockinPlan()
         {
             InitializeComponent();
         }
 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            planDetails = new List<Model.StockinPlanDetail>();
+            var items = quotationItemsServices._getQuotationItems(txtSearch.Text);
+
+            items.ForEach(i =>
+            {
+                planDetails.Add(new Model.StockinPlanDetail
+                {
+                    PartNumber = i.PartNumber,
+                    PartName = i.PartName,
+                    Currency = i.Currency,
+                    Price = i.UnitPrice,
+                    Quantity = i.Quantity,
+                    Unit = "",
+                    Position = cbbStore.Text
+                });
+            });
+
+            gridControl1.DataSource = planDetails;
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["PlanID"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
+
+
+        }
+
+        private void CreateStockinPlan_Load(object sender, EventArgs e)
+        {
+            if (planID != "")
+            {
+                gridControl1.DataSource = stockinPlanDetailServices._getStockinPlanDetail(planID);
+                groupControl1.Text = "thông tin chi tiết " + planID;
+                this.Text = "thông tin chi tiết " + planID;
+                btnSearch.Enabled = false;
+                btnSave.Enabled = false;
+            }
+            else
+            {
+                gridControl1.DataSource = new List<Model.StockinPlanDetail>();
+            }
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["PlanID"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
+            ComboBoxItemCollection collection = cbbProduct.Properties.Items;
+            inventories = inventoryServices._getInventoryItems();
+            if (inventories != null && inventories.Count > 0)
+                collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
+        }
+
+        private void gridControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                object row = gridView1.GetFocusedRow();
+                gridView1.DeleteRow(gridView1.FindRow(row));
+                planDetails.Remove(row as Model.StockinPlanDetail);
+            }
+        }
+
+        private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -58,12 +125,6 @@ namespace StockManagement.Views
             if(res.Count>0)
             f.reLoad();
         }
-
-        private void gridControl1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             if(cbbProduct.Text!= "")
@@ -92,69 +153,6 @@ namespace StockManagement.Views
                 //    }
                 //    MessageBox.Show("Săn phẩm đã tồn tại");
             }
-        }
-
-        private void gridControl1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode== Keys.Delete)
-            {
-                object row = gridView1.GetFocusedRow();
-                gridView1.DeleteRow(gridView1.FindRow(row));
-                planDetails.Remove(row as Model.StockinPlanDetail);
-            }    
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            planDetails = new List<Model.StockinPlanDetail>();
-            var items=quotationItemsServices._getQuotationItems(txtSearch.Text);
-
-            items.ForEach(i =>
-            {
-                planDetails.Add(new Model.StockinPlanDetail
-                {
-                    PartNumber = i.PartNumber,
-                    PartName = i.PartName,
-                    Currency = i.Currency,
-                    Price = i.UnitPrice,
-                    Quantity = i.Quantity,
-                    Unit = "",
-                    Position = cbbStore.Text
-                });
-            });
-
-            gridControl1.DataSource = planDetails;
-            gridView1.Columns.Remove(gridView1.Columns["Id"]);
-            gridView1.Columns.Remove(gridView1.Columns["PlanID"]);
-            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
-
-
-        }
-
-        private void CreateStockinPlan_Load(object sender, EventArgs e)
-        {
-            if (planID!="")
-            {
-                gridControl1.DataSource = stockinPlanDetailServices._getStockinPlanDetail(planID);
-                groupControl1.Text = "thông tin chi tiết " + planID;
-                this.Text= "thông tin chi tiết " + planID;
-                btnSearch.Enabled = false;
-                btnSave.Enabled = false;
-            }
-            else
-            {
-                gridControl1.DataSource = new List<Model.StockinPlanDetail>();
-            }
-            gridView1.Columns.Remove(gridView1.Columns["Id"]);
-            gridView1.Columns.Remove(gridView1.Columns["PlanID"]);
-            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
-            ComboBoxItemCollection collection = cbbProduct.Properties.Items;
-            inventories = inventoryServices._getInventoryItems();
-            if(inventories!=null && inventories.Count>0)
-            collection.AddRange(inventories.Select(s=> s.partNumber+"-"+s.partName as object).ToArray());
         }
     }
 }

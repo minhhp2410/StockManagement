@@ -22,7 +22,15 @@ namespace StockManagement.Services
         }
         public Model.StockinReceiptDatum _addStockinReceipt(Model.StockinReceiptDatum stockinReceipt)
         {
-            return ((Model.StockinReceiptDatum)Post(env.stockinReceiptsPath, stockinReceipt, typeof(Model.StockinReceiptDatum)));
+            try
+            {
+                return ((Model.StockinReceipts)Post(env.stockinReceiptsPath, stockinReceipt, typeof(Model.StockinReceipts))).Data[0];
+            }
+            catch (Exception)
+            {
+                return new Model.StockinReceiptDatum();
+                throw;
+            }
         }
 
         public bool _deleteStockinReceipt(string id)
