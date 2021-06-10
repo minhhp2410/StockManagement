@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockManagement.Services;
 
 namespace StockManagement.Views
 {
@@ -18,16 +19,42 @@ namespace StockManagement.Views
     {
         public string receiptID = "", poNumber = "", note = "";
         public FormStockout f = new FormStockout();
-        //List<Model.DataInventory> inventories = new List<Model.DataInventory>();
-        //List<Model.ReceiptDetail> receiptDetails = new List<Model.ReceiptDetail>();
+        List<Model.DataInventory> inventories = new List<Model.DataInventory>();
+        List<Model.StockoutReceiptDetail> receiptDetails = new List<Model.StockoutReceiptDetail>();
+        PoItemsServices poItemsServices = new PoItemsServices();
+        Services.StockoutReceiptDetailServices stockoutReceiptDetailServices = new Services.StockoutReceiptDetailServices();
+        Services.StockoutReceiptServices stockoutReceiptServices = new Services.StockoutReceiptServices();
+        Services.StockoutPlanDetailServices stockoutPlanDetailServices = new Services.StockoutPlanDetailServices();
         public FormDoStockout()
         {
             InitializeComponent();
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            //Model.UserAction.doStockout(gridView1, Properties.Settings.Default.stockoutReceiptDetailsPath, txtNote.Text, txtSearch.Text, cbbStore.Text);
-            f.reLoad();
+            List<Model.StockoutReceiptDetail> ReceiptDetails2 = new List<Model.StockoutReceiptDetail>();
+            Model.StockoutReceiptDatum stockoutReceipt = new StockoutReceiptDatum()
+            {
+                isDeleted = false,
+                Note = txtNote.Text,
+                PoNumber = txtSearch.Text,
+                Store = cbbStore.Text,
+                Id = null,
+                CreatedAt = null,
+                CreatedBy = "",
+                ReceiptNumber = "",
+                UpdatedAt = null,
+                StockoutReceiptDetails = null
+            };
+            stockoutReceipt = stockoutReceiptServices._addStockoutReceipt(stockoutReceipt);
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(i) as Model.StockoutReceiptDetail;
+                row.ReceiptID = (int)stockoutReceipt.Id;
+                ReceiptDetails2.Add(row);
+            }
+            var res = stockoutReceiptDetailServices._addStockoutReceiptDetail(receiptDetails);
+            if (res.Count > 0)
+                f.reLoad();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -70,58 +97,54 @@ namespace StockManagement.Views
         {
             if (e.KeyCode == Keys.Delete)
             {
-                object row = gridView1.GetFocusedRow();
-                gridView1.DeleteRow(gridView1.FindRow(row));
+                //object row = gridView1.GetFocusedRow();
+                //gridView1.DeleteRow(gridView1.FindRow(row));
                 //receiptDetails.Remove(row as ReceiptDetail);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //receiptDetails = new List<ReceiptDetail>();
-            //if (!txtSearch.Text.Contains("KHX"))
-            //{
-            //    string res = Model.UserAction.getPoItems(Properties.Settings.Default.poItemsPath, RestSharp.Method.GET, int.Parse(txtSearch.Text));
-            //    JsonHeadQuoationItem quoationItems = JsonConvert.DeserializeObject<JsonHeadQuoationItem>(res);
-            //    quoationItems.Data.ToList().ForEach(i =>
-            //    {
-            //        receiptDetails.Add(new Model.ReceiptDetail()
-            //        {
-            //            partNumber = i.PartNumber,
-            //            partName = i.PartName,
-            //            position = i.Position,
-            //            price = i.UnitPrice,
-            //            currency = i.Currency,
-            //            quantity = i.Quantity,
-            //            unit = i.Unit
-            //        });
-            //    });
-            //    gridControl1.DataSource = receiptDetails;
-            //    gridControl1.Update();
-            //}
-            //else
-            //{
-            //    List<ReceiptDetail> Items = Model.UserAction.getReceiptList(Properties.Settings.Default.stockoutPlanDetailsPath, txtSearch.Text);
-            //    Items.ForEach(i =>
-            //    {
-            //        receiptDetails.Add(new Model.ReceiptDetail()
-            //        {
-            //            partNumber = i.partNumber,
-            //            partName = i.partName,
-            //            position = i.position,
-            //            price = i.price,
-            //            currency = i.currency,
-            //            quantity = i.quantity,
-            //            unit = i.unit
-            //        });
-            //    });
-            //    gridControl1.DataSource = receiptDetails;
-            //    gridControl1.Update();
-            //}
-            //gridView1.Columns.Remove(gridView1.Columns["id"]);
-            //gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
-            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
+            receiptDetails = new List<StockoutReceiptDetail>();
+            if (txtSearch.Text.ToUpper().Contains("KHX"))
+            {
+                var items = stockoutPlanDetailServices._getStockoutPlanDetail(txtSearch.Text.ToUpper());
+                items.ForEach(i =>
+                {
+                    receiptDetails.Add(new Model.StockoutReceiptDetail
+                    {
+                        Currency = i.Currency,
+                        PartName = i.PartName,
+                        PartNumber = i.PartNumber,
+                        Position = "",
+                        Price = (int)i.Price,
+                        Quantity = (int)i.Quantity,
+                        Unit = i.Unit,
+                    });
+                });
+            }
+            else
+            {
+                var items = poItemsServices._getPOItems(txtSearch.Text.ToUpper());
+                items.ForEach(i =>
+                {
+                    receiptDetails.Add(new Model.StockoutReceiptDetail
+                    {
+                        Currency = i.Currency,
+                        PartName = i.PartName,
+                        PartNumber = i.PartNumber,
+                        Position = "",
+                        Price = i.UnitPrice,
+                        Quantity = i.Quantity,
+                        Unit = ""
+                    });
+                });
+            }
+            gridControl1.DataSource = receiptDetails;
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["ReceiptID"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
         }
 
     }

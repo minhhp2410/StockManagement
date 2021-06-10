@@ -42,7 +42,6 @@ namespace StockManagement.Views
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Count = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbbStore.Properties)).BeginInit();
@@ -65,18 +64,17 @@ namespace StockManagement.Views
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1016, 196);
+            this.groupControl1.Size = new System.Drawing.Size(903, 165);
             this.groupControl1.TabIndex = 6;
             this.groupControl1.Text = "Xuất kho";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(487, 34);
+            this.label1.Location = new System.Drawing.Point(433, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(311, 19);
+            this.label1.Size = new System.Drawing.Size(263, 16);
             this.label1.TabIndex = 14;
             this.label1.Text = "Lấy list sản phẩm theo mã PO/Kế hoạch xuất";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -84,10 +82,9 @@ namespace StockManagement.Views
             // btnPrint
             // 
             this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnPrint.Location = new System.Drawing.Point(898, 69);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Location = new System.Drawing.Point(798, 58);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(112, 51);
+            this.btnPrint.Size = new System.Drawing.Size(100, 43);
             this.btnPrint.TabIndex = 6;
             this.btnPrint.Text = "In";
             // 
@@ -95,33 +92,30 @@ namespace StockManagement.Views
             // 
             this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labelControl3.Location = new System.Drawing.Point(14, 65);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Location = new System.Drawing.Point(12, 55);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(74, 24);
+            this.labelControl3.Size = new System.Drawing.Size(66, 20);
             this.labelControl3.TabIndex = 7;
             this.labelControl3.Text = "Store:";
             // 
             // cbbStore
             // 
             this.cbbStore.EditValue = "HP";
-            this.cbbStore.Location = new System.Drawing.Point(94, 64);
-            this.cbbStore.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbbStore.Location = new System.Drawing.Point(84, 54);
             this.cbbStore.Name = "cbbStore";
             this.cbbStore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbStore.Properties.Items.AddRange(new object[] {
             "HP",
             "HN"});
-            this.cbbStore.Size = new System.Drawing.Size(112, 26);
+            this.cbbStore.Size = new System.Drawing.Size(100, 22);
             this.cbbStore.TabIndex = 3;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(368, 31);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearch.Location = new System.Drawing.Point(327, 26);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(112, 26);
+            this.btnSearch.Size = new System.Drawing.Size(100, 22);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -130,19 +124,17 @@ namespace StockManagement.Views
             // txtSearch
             // 
             this.txtSearch.EditValue = "";
-            this.txtSearch.Location = new System.Drawing.Point(94, 31);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Location = new System.Drawing.Point(84, 26);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(267, 26);
+            this.txtSearch.Size = new System.Drawing.Size(237, 22);
             this.txtSearch.TabIndex = 1;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSave.Location = new System.Drawing.Point(898, 127);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Location = new System.Drawing.Point(798, 107);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(112, 51);
+            this.btnSave.Size = new System.Drawing.Size(100, 43);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Xuất kho";
             this.btnSave.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -151,10 +143,9 @@ namespace StockManagement.Views
             // 
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labelControl2.Location = new System.Drawing.Point(14, 34);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Location = new System.Drawing.Point(12, 29);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(74, 19);
+            this.labelControl2.Size = new System.Drawing.Size(66, 16);
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Tìm kiếm:";
             // 
@@ -162,33 +153,29 @@ namespace StockManagement.Views
             // 
             this.txtNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNote.Location = new System.Drawing.Point(94, 97);
-            this.txtNote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNote.Location = new System.Drawing.Point(84, 82);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(796, 80);
+            this.txtNote.Size = new System.Drawing.Size(708, 68);
             this.txtNote.TabIndex = 4;
             // 
             // labelControl1
             // 
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labelControl1.Location = new System.Drawing.Point(14, 96);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Location = new System.Drawing.Point(12, 81);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(74, 24);
+            this.labelControl1.Size = new System.Drawing.Size(66, 20);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Note:";
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gridControl1.Location = new System.Drawing.Point(0, 196);
+            this.gridControl1.Location = new System.Drawing.Point(0, 165);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1016, 347);
+            this.gridControl1.Size = new System.Drawing.Size(903, 292);
             this.gridControl1.TabIndex = 7;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -196,29 +183,16 @@ namespace StockManagement.Views
             // 
             // gridView1
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Count});
-            this.gridView1.DetailHeight = 416;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
-            // Count
-            // 
-            this.Count.Caption = "Count";
-            this.Count.MinWidth = 25;
-            this.Count.Name = "Count";
-            this.Count.Visible = true;
-            this.Count.VisibleIndex = 0;
-            this.Count.Width = 84;
-            // 
             // FormDoStockout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 543);
+            this.ClientSize = new System.Drawing.Size(903, 457);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormDoStockout";
             this.Text = "Xuất kho";
             this.Load += new System.EventHandler(this.CreateStockoutReceipt_Load);
@@ -248,6 +222,5 @@ namespace StockManagement.Views
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraGrid.Columns.GridColumn Count;
     }
 }

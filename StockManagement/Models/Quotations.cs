@@ -77,10 +77,10 @@ namespace StockManagement.Model
         public object ApprovedTime { get; set; }
 
         [JsonProperty("createdAt")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty("updatedAt")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [JsonProperty("PO")]
         public PO PO { get; set; }

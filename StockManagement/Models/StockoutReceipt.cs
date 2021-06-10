@@ -12,10 +12,10 @@ namespace StockManagement.Model
     public class StockoutReceiptDetail
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("receiptID")]
-        public string ReceiptID { get; set; }
+        public int ReceiptID { get; set; }
 
         [JsonProperty("partNumber")]
         public string PartNumber { get; set; }
@@ -42,7 +42,7 @@ namespace StockManagement.Model
     public class StockoutReceiptDatum
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("ReceiptNumber")]
         public string ReceiptNumber { get; set; }
@@ -62,10 +62,10 @@ namespace StockManagement.Model
         public string CreatedBy { get; set; }
 
         [JsonProperty("createdAt")]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty("updatedAt")]
-        public string UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [JsonProperty("StockoutReceiptDetails")]
         public List<StockoutReceiptDetail> StockoutReceiptDetails { get; set; }
@@ -82,6 +82,17 @@ namespace StockManagement.Model
 
         [JsonProperty("data")]
         public List<StockoutReceiptDatum> Data { get; set; }
+    }
+    public class StockoutReceiptDetails
+    {
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("data")]
+        public List<StockoutReceiptDetail> Data { get; set; }
     }
 
 }

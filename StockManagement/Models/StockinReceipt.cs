@@ -61,10 +61,10 @@ namespace StockManagement.Model
         public string CreatedBy { get; set; }
 
         [JsonProperty("createdAt")]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty("updatedAt")]
-        public string UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [JsonProperty("StockinReceiptDetails")]
         public List<StockinReceiptDetail> StockinReceiptDetails { get; set; }

@@ -81,7 +81,7 @@ namespace StockManagement.Views
             }
             gridControl1.DataSource = ReceiptDetails;
             gridView1.Columns.Remove(gridView1.Columns["Id"]);
-            gridView1.Columns.Remove(gridView1.Columns["ReceiptId"]);
+            gridView1.Columns.Remove(gridView1.Columns["ReceiptID"]);
             gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
         }

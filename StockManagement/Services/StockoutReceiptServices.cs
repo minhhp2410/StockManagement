@@ -24,7 +24,7 @@ namespace StockManagement.Services
         {
             try
             {
-                return ((Model.StockoutReceiptDatum)Post(env.stockoutReceiptsPath, stockoutReceipt, typeof(Model.StockoutReceiptDatum)));
+                return ((Model.StockoutReceipts)Post(env.stockoutReceiptsPath, stockoutReceipt, typeof(Model.StockoutReceipts))).Data[0];
             }
             catch (Exception)
             {
@@ -35,7 +35,15 @@ namespace StockManagement.Services
 
         public bool _deleteStockoutReceipt(string id)
         {
-            return Delete(env.stockoutReceiptsPath, id);
-        }
+            try
+            {
+                return Delete(env.stockoutReceiptsPath, id);
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+}
     }
 }
