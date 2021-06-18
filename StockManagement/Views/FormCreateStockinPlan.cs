@@ -77,10 +77,10 @@ namespace StockManagement.Views
             gridView1.Columns.Remove(gridView1.Columns["PlanID"]);
             gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
             gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
-            ComboBoxItemCollection collection = cbbProduct.Properties.Items;
-            inventories = inventoryServices._getInventoryItems();
-            if (inventories != null && inventories.Count > 0)
-                collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
+            //ComboBoxItemCollection collection = cbbProduct.Properties.Items;
+            //inventories = inventoryServices._getInventoryItems();
+            //if (inventories != null && inventories.Count > 0)
+            //    collection.AddRange(inventories.Select(s => s.partNumber + "-" + s.partName as object).ToArray());
         }
 
         private void gridControl1_KeyDown(object sender, KeyEventArgs e)
@@ -127,32 +127,32 @@ namespace StockManagement.Views
         }
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            if(cbbProduct.Text!= "")
-            {
-                //    string partNumber = cbbProduct.Text.Split('-')[0];
-                //    Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
-                //    List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
-                //    planDetailss.AddRange(planDetails.ToArray());
-                //    if (planDetails.FindIndex(a => a.partNumber == data.partNumber) < 0)
-                //    {
+            //if(cbbProduct.Text!= "")
+            //{
+            //    //    string partNumber = cbbProduct.Text.Split('-')[0];
+            //    //    Model.DataInventory data = inventories.Where(w => w.partNumber == partNumber).FirstOrDefault();
+            //    //    List<Model.PlanDetail> planDetailss = new List<Model.PlanDetail>();
+            //    //    planDetailss.AddRange(planDetails.ToArray());
+            //    //    if (planDetails.FindIndex(a => a.partNumber == data.partNumber) < 0)
+            //    //    {
 
-                //        planDetailss.Add(new Model.PlanDetail
-                //        {
-                //            partName = data.partName,
-                //            partNumber = data.partNumber,
-                //            position = data.position,
-                //            price = data.price,
-                //            quantity = 0,
-                //            currency = data.currency,
-                //            unit = data.unit
-                //        });
-                //        gridControl1.DataSource = planDetailss;
-                //        planDetails.Clear();
-                //        planDetails.AddRange(planDetailss.ToArray());
-                //        return;
-                //    }
-                //    MessageBox.Show("Săn phẩm đã tồn tại");
-            }
+            //    //        planDetailss.Add(new Model.PlanDetail
+            //    //        {
+            //    //            partName = data.partName,
+            //    //            partNumber = data.partNumber,
+            //    //            position = data.position,
+            //    //            price = data.price,
+            //    //            quantity = 0,
+            //    //            currency = data.currency,
+            //    //            unit = data.unit
+            //    //        });
+            //    //        gridControl1.DataSource = planDetailss;
+            //    //        planDetails.Clear();
+            //    //        planDetails.AddRange(planDetailss.ToArray());
+            //    //        return;
+            //    //    }
+            //    //    MessageBox.Show("Săn phẩm đã tồn tại");
+            //}
         }
     }
 }
