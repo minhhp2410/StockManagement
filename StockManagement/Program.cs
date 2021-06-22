@@ -17,7 +17,7 @@
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormCreateStockoutPlan());
+            Application.Run(new FormHome());
         }
     }
 }

@@ -57,6 +57,9 @@ namespace StockManagement.Model
         [JsonProperty("isDeleted")]
         public bool isDeleted { get; set; }
 
+        [JsonProperty("isImported")]
+        public bool isImported { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
 
