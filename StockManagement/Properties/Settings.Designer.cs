@@ -49,7 +49,7 @@ namespace StockManagement.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://bluemoonlab-pmback.herokuapp.com/api/v1/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8000/api/v1/")]
         public string apiEndPoint {
             get {
                 return ((string)(this["apiEndPoint"]));
@@ -188,6 +188,24 @@ namespace StockManagement.Properties {
         public string barcodePath {
             get {
                 return ((string)(this["barcodePath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("stockins")]
+        public string stockinPath {
+            get {
+                return ((string)(this["stockinPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("stockouts")]
+        public string stockoutPath {
+            get {
+                return ((string)(this["stockoutPath"]));
             }
         }
     }

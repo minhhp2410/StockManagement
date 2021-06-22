@@ -120,6 +120,8 @@
     <Compile Include="Services\StockinPlanServices.cs" />
     <Compile Include="Services\StockinReceiptDetailServices.cs" />
     <Compile Include="Services\StockinReceiptServices.cs" />
+    <Compile Include="Services\StockoutServices.cs" />
+    <Compile Include="Services\StockinServices.cs" />
     <Compile Include="Services\StockoutPlanDetailServices.cs" />
     <Compile Include="Services\StockoutPlanServices.cs" />
     <Compile Include="Services\StockoutReceiptDetailServices.cs" />

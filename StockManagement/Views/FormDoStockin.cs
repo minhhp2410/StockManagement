@@ -19,16 +19,54 @@ namespace StockManagement.Views
     public partial class FormDoStockin : DevExpress.XtraEditors.XtraForm
     {
         public FormStockin f = new FormStockin();
-        public string receiptID = "", quotationNumber = "", note = "";
-        List<Model.DataInventory> inventories = new List<Model.DataInventory>();
         Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
         List<Model.StockinReceiptDetail> ReceiptDetails = new List<Model.StockinReceiptDetail>();
         Services.StockinReceiptDetailServices stockinReceiptDetailServices = new Services.StockinReceiptDetailServices();
         Services.StockinReceiptServices stockinReceiptServices = new Services.StockinReceiptServices();
         Services.StockinPlanDetailServices stockinPlanDetailServices = new Services.StockinPlanDetailServices();
+        Services.StockinServices stockinServices = new Services.StockinServices();
+
         public FormDoStockin()
         {
             InitializeComponent();
+        }
+
+        Model.DataInventory convertToInventoryProduct(Model.StockinReceiptDetail detail, string store)
+        {
+            if (detail.Id != null)
+                return new DataInventory()
+                {
+                    partNumber=detail.PartNumber,
+                    partName= detail.PartName,
+                    store= store,
+                    actualQty=detail.Quantity,
+                    currency=detail.Currency,
+                    price=detail.Price,
+                    position=detail.Position,
+                    unit= detail.Unit,
+                    createdAt=null,
+                    updatedAt=null,
+                    id=null
+                };
+            return new DataInventory();
+        }
+
+        void dostockin(List<Model.StockinReceiptDetail> detail)
+        {
+            detail.ForEach(d => {
+                var x = convertToInventoryProduct(d, cbbStore.Text);
+               if (x.id!=null)
+                {
+                    stockinServices.doStockin(x);
+                }    
+            });
+        }
+
+        void insertDetail(List<Model.StockinReceiptDetail> detail)
+        {
+            detail.ForEach(rec => {
+                stockinReceiptDetailServices._addStockinReceiptDetail(rec);
+            });
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -88,31 +126,7 @@ namespace StockManagement.Views
 
         private void CreateStockinReceipt_Load(object sender, EventArgs e)
         {
-            //if (receiptID != "")
-            //{
-            //    gridControl1.DataSource = Model.UserAction.getPlanList(Properties.Settings.Default.stockinReceiptDetailsPath, receiptID);
-            //    groupControl1.Text = "thông tin chi tiết " + receiptID;
-            //    this.Text = "thông tin chi tiết " + receiptID;
-            //    btnSearch.Enabled = false;
-            //    btnSave.Enabled = false;
-            //    txtNote.Text = note;
-            //    txtSearch.Text = quotationNumber;
-            //}
-            //else
-            //{
-            //    gridControl1.DataSource = new List<Model.ReceiptDetail>();
-            //}
-            //gridView1.Columns.Remove(gridView1.Columns["id"]);
-            //gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
-            //gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            //gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
-            //for(int i=0;i<gridView1.Columns.Count;i++)
-            //{
-            //    if(gridView1.Columns[i].FieldName!="actualQty")
-            //    {
-            //        gridView1.Columns[i].OptionsColumn.AllowEdit = false;
-            //    }    
-            //}
+
         }
 
         private void gridControl1_KeyDown(object sender, KeyEventArgs e)
@@ -127,6 +141,7 @@ namespace StockManagement.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+
             List<Model.StockinReceiptDetail> ReceiptDetails2 = new List<Model.StockinReceiptDetail>();
             Model.StockinReceiptDatum stockinReceipt = new StockinReceiptDatum()
             {
@@ -141,16 +156,19 @@ namespace StockManagement.Views
                 UpdatedAt = null,
                 StockinReceiptDetails = null
             };
+
             stockinReceipt = stockinReceiptServices._addStockinReceipt(stockinReceipt);
+            if(stockinReceipt.Id != null)
             for (int i = 0; i < gridView1.RowCount; i++)
             {
                 var row = gridView1.GetRow(i) as Model.StockinReceiptDetail;
                 row.ReceiptID = (int)stockinReceipt.Id;
                 ReceiptDetails2.Add(row);
+
             }
-            var res = stockinReceiptDetailServices._addStockinReceiptDetail(ReceiptDetails);
-            if (res.Count > 0)
-                f.reLoad();
+            insertDetail(ReceiptDetails2);
+            dostockin(ReceiptDetails2);
+            f.reLoad();
         }
     }
 }

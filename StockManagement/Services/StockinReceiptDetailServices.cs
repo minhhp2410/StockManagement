@@ -21,15 +21,15 @@ namespace StockManagement.Services
             }
         }
 
-        public  List<Model.StockinReceiptDetail> _addStockinReceiptDetail(List<Model.StockinReceiptDetail> stockinReceiptDetails)
+        public  Model.StockinReceiptDetail _addStockinReceiptDetail(Model.StockinReceiptDetail stockinReceiptDetails)
         {
             try
             {
-                return ((Model.StockinReceiptDetails)Post(env.stockinReceiptDetailsPath, stockinReceiptDetails, typeof(Model.StockinReceiptDetails))).Data;
+                return ((Model.StockinReceiptDetail)Post(env.stockinReceiptDetailsPath, stockinReceiptDetails, typeof(Model.StockinReceiptDetail)));
             }
             catch (Exception)
             {
-                return new List<Model.StockinReceiptDetail>();
+                return new Model.StockinReceiptDetail();
                 throw;
             }
         }

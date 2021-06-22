@@ -9,7 +9,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="apiEndPoint" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">https://bluemoonlab-pmback.herokuapp.com/api/v1/</Value>
+      <Value Profile="(Default)">http://localhost:8000/api/v1/</Value>
     </Setting>
     <Setting Name="stock" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SK</Value>
@@ -55,6 +55,12 @@
     </Setting>
     <Setting Name="barcodePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Barcodes</Value>
+    </Setting>
+    <Setting Name="stockinPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">stockins</Value>
+    </Setting>
+    <Setting Name="stockoutPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">stockouts</Value>
     </Setting>
   </Settings>
 </SettingsFile>
