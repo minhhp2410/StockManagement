@@ -30,7 +30,6 @@ namespace StockManagement.Views
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.cbbStore = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -52,7 +51,6 @@ namespace StockManagement.Views
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.label1);
             this.groupControl1.Controls.Add(this.btnPrint);
             this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.cbbStore);
@@ -69,16 +67,6 @@ namespace StockManagement.Views
             this.groupControl1.TabIndex = 6;
             this.groupControl1.Text = "Xuất kho";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(433, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(263, 16);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Lấy list sản phẩm theo mã PO/Kế hoạch xuất";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // btnPrint
             // 
             this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -87,6 +75,7 @@ namespace StockManagement.Views
             this.btnPrint.Size = new System.Drawing.Size(100, 43);
             this.btnPrint.TabIndex = 6;
             this.btnPrint.Text = "In";
+            this.btnPrint.Visible = false;
             // 
             // labelControl3
             // 
@@ -221,6 +210,5 @@ namespace StockManagement.Views
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.Label label1;
     }
 }

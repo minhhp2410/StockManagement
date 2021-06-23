@@ -19,11 +19,12 @@ namespace StockManagement.Views
     public partial class FormDoStockin : DevExpress.XtraEditors.XtraForm
     {
         public FormStockin f = new FormStockin();
+        List<Model.StockinReceiptDetail> receiptDetails = new List<Model.StockinReceiptDetail>();
+        StockinPlanDatum stockinPlan = new StockinPlanDatum();
         Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
-        List<Model.StockinReceiptDetail> ReceiptDetails = new List<Model.StockinReceiptDetail>();
         Services.StockinReceiptDetailServices stockinReceiptDetailServices = new Services.StockinReceiptDetailServices();
         Services.StockinReceiptServices stockinReceiptServices = new Services.StockinReceiptServices();
-        Services.StockinPlanDetailServices stockinPlanDetailServices = new Services.StockinPlanDetailServices();
+        Services.StockinPlanServices stockinPlanServices = new Services.StockinPlanServices();
         Services.StockinServices stockinServices = new Services.StockinServices();
 
         public FormDoStockin()
@@ -31,6 +32,13 @@ namespace StockManagement.Views
             InitializeComponent();
         }
 
+        void removeUnuseInfo()
+        {
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["ReceiptID"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
+        }
         Model.DataInventory convertToInventoryProduct(Model.StockinReceiptDetail detail, string store)
         {
             if (detail.Id != null)
@@ -51,22 +59,45 @@ namespace StockManagement.Views
             return new DataInventory();
         }
 
-        void dostockin(List<Model.StockinReceiptDetail> detail)
+        bool markPlanAsImported(StockinPlanDatum stockinPlan)
         {
-            detail.ForEach(d => {
-                var x = convertToInventoryProduct(d, cbbStore.Text);
-               if (x.id!=null)
-                {
-                    stockinServices.doStockin(x);
-                }    
-            });
+            return stockinPlanServices._markImported(stockinPlan);
         }
 
-        void insertDetail(List<Model.StockinReceiptDetail> detail)
+        bool doStockin(List<Model.StockinReceiptDetail> detail)
         {
-            detail.ForEach(rec => {
-                stockinReceiptDetailServices._addStockinReceiptDetail(rec);
-            });
+            try
+            {
+                detail.ForEach(d => {
+                    var x = convertToInventoryProduct(d, cbbStore.Text);
+                    if (x.id != null)
+                    {
+                        stockinServices.doStockin(x);
+                    }
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        bool insertDetail(List<Model.StockinReceiptDetail> detail)
+        {
+            try
+            {
+                detail.ForEach(rec => {
+                    stockinReceiptDetailServices._addStockinReceiptDetail(rec);
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -82,46 +113,50 @@ namespace StockManagement.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ReceiptDetails= new List<StockinReceiptDetail>();
-            if(txtSearch.Text.ToUpper().Contains("KHN"))
+            receiptDetails= new List<StockinReceiptDetail>();
+            stockinPlan = stockinPlanServices._getStockinPlans().Where(w=>w.PlanNumber==txtSearch.Text).FirstOrDefault();
+            var planItems = stockinPlan.StockinPlanDetails;
+            var quoItems = quotationItemsServices._getQuotationItems(txtSearch.Text);
+            if(planItems.Count>0)
             {
-                var items = stockinPlanDetailServices._getStockinPlanDetail(txtSearch.Text.ToUpper());
-                items.ForEach(i =>
+                planItems.ForEach(i =>
                 {
-                    ReceiptDetails.Add(new Model.StockinReceiptDetail
-                    {
-                        Currency = i.Currency,
-                        PartName=i.PartName,
-                        PartNumber=i.PartNumber,
-                        Position="",
-                        Price=(int)i.Price,
-                        Quantity=(int)i.Quantity,
-                        Unit=i.Unit,
-                    });
-                });
-            }
-            else
-            {
-                var items = quotationItemsServices._getQuotationItems(txtSearch.Text.ToUpper());
-                items.ForEach(i =>
-                {
-                    ReceiptDetails.Add(new Model.StockinReceiptDetail
+
+                    receiptDetails.Add(new Model.StockinReceiptDetail
                     {
                         Currency = i.Currency,
                         PartName = i.PartName,
                         PartNumber = i.PartNumber,
                         Position = "",
-                        Price = i.UnitPrice,
-                        Quantity = i.Quantity,
-                        Unit = ""
+                        Price = (int)i.Price,
+                        Quantity = (int)i.Quantity,
+                        Unit = i.Unit,
                     });
                 });
             }
-            gridControl1.DataSource = ReceiptDetails;
-            gridView1.Columns.Remove(gridView1.Columns["Id"]);
-            gridView1.Columns.Remove(gridView1.Columns["ReceiptID"]);
-            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
+            else
+                if(quoItems.Count>0)
+                {
+                    quoItems.ForEach(i =>
+                    {
+                        receiptDetails.Add(new Model.StockinReceiptDetail
+                        {
+                            Currency = i.Currency,
+                            PartName = i.PartName,
+                            PartNumber = i.PartNumber,
+                            Position = "",
+                            Price = i.UnitPrice,
+                            Quantity = i.Quantity,
+                            Unit = ""
+                        });
+                    });
+                }
+            else
+            {
+                MessageBox.Show("Mã không tồn tại");
+            }
+            gridControl1.DataSource = receiptDetails;
+            removeUnuseInfo();
         }
 
         private void CreateStockinReceipt_Load(object sender, EventArgs e)
@@ -142,7 +177,7 @@ namespace StockManagement.Views
         private void simpleButton1_Click(object sender, EventArgs e)
         {
 
-            List<Model.StockinReceiptDetail> ReceiptDetails2 = new List<Model.StockinReceiptDetail>();
+            List<Model.StockinReceiptDetail> receiptDetails2 = new List<Model.StockinReceiptDetail>();
             Model.StockinReceiptDatum stockinReceipt = new StockinReceiptDatum()
             {
                 isDeleted = false,
@@ -158,17 +193,24 @@ namespace StockManagement.Views
             };
 
             stockinReceipt = stockinReceiptServices._addStockinReceipt(stockinReceipt);
-            if(stockinReceipt.Id != null)
-            for (int i = 0; i < gridView1.RowCount; i++)
+            if (stockinReceipt.Id != null)
             {
-                var row = gridView1.GetRow(i) as Model.StockinReceiptDetail;
-                row.ReceiptID = (int)stockinReceipt.Id;
-                ReceiptDetails2.Add(row);
-
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    var row = gridView1.GetRow(i) as Model.StockinReceiptDetail;
+                    row.ReceiptID = (int)stockinReceipt.Id;
+                    receiptDetails2.Add(row);
+                }
+                if (insertDetail(receiptDetails2))
+                    if (doStockin(receiptDetails2))
+                    {
+                        if (markPlanAsImported(stockinPlan))
+                        {
+                            f.reLoad();
+                            MessageBox.Show("Đã nhập kho");
+                        }
+                    }
             }
-            insertDetail(ReceiptDetails2);
-            dostockin(ReceiptDetails2);
-            f.reLoad();
         }
     }
 }

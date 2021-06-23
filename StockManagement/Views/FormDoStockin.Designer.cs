@@ -75,6 +75,7 @@ namespace StockManagement.Views
             this.btnPrint.Size = new System.Drawing.Size(100, 43);
             this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "In";
+            this.btnPrint.Visible = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // labelControl3

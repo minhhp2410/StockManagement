@@ -34,5 +34,19 @@ namespace StockManagement.Services
                 throw;
             }
         }
+        public bool _markImported(Model.StockinPlanDatum stockinPlan)
+        {
+            try
+            {
+                RestSharp.Parameter parameter = new RestSharp.Parameter("planNumber", stockinPlan.PlanNumber, RestSharp.ParameterType.UrlSegment);
+                Put(env.stockinPlansPath, parameter, stockinPlan, typeof(Model.StockinPlans));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
     }
 }

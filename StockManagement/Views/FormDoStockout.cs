@@ -17,21 +17,82 @@ namespace StockManagement.Views
 {
     public partial class FormDoStockout : DevExpress.XtraEditors.XtraForm
     {
-        public string receiptID = "", poNumber = "", note = "";
         public FormStockout f = new FormStockout();
-        List<Model.DataInventory> inventories = new List<Model.DataInventory>();
         List<Model.StockoutReceiptDetail> receiptDetails = new List<Model.StockoutReceiptDetail>();
+        StockoutPlanDatum stockoutPlan = new StockoutPlanDatum();
         PoItemsServices poItemsServices = new PoItemsServices();
         Services.StockoutReceiptDetailServices stockoutReceiptDetailServices = new Services.StockoutReceiptDetailServices();
         Services.StockoutReceiptServices stockoutReceiptServices = new Services.StockoutReceiptServices();
-        Services.StockoutPlanDetailServices stockoutPlanDetailServices = new Services.StockoutPlanDetailServices();
+        Services.StockoutPlanServices stockoutPlanServices = new Services.StockoutPlanServices();
+        Services.StockoutServices stockoutServices = new StockoutServices();
         public FormDoStockout()
         {
             InitializeComponent();
         }
+        Model.DataInventory convertToInventoryProduct(Model.StockoutReceiptDetail detail, string store)
+        {
+            if (detail.Id != null)
+                return new DataInventory()
+                {
+                    partNumber = detail.PartNumber,
+                    partName = detail.PartName,
+                    store = store,
+                    actualQty = detail.Quantity,
+                    currency = detail.Currency,
+                    price = detail.Price,
+                    position = detail.Position,
+                    unit = detail.Unit,
+                    createdAt = null,
+                    updatedAt = null,
+                    id = null
+                };
+            return new DataInventory();
+        }
+
+        bool doStockout(List<Model.StockoutReceiptDetail> detail)
+        {
+            try
+            {
+                detail.ForEach(d => {
+                    var x = convertToInventoryProduct(d, cbbStore.Text);
+                    if (x.id != null)
+                    {
+                        stockoutServices.doStockout(x);
+                    }
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        bool insertDetail(List<Model.StockoutReceiptDetail> detail)
+        {
+            try
+            {
+                detail.ForEach(rec => {
+                    stockoutReceiptDetailServices._addStockoutReceiptDetail(rec);
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        void removeUnuseInfo()
+        {
+            gridView1.Columns.Remove(gridView1.Columns["Id"]);
+            gridView1.Columns.Remove(gridView1.Columns["ReceiptID"]);
+            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
+            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
+        }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            List<Model.StockoutReceiptDetail> ReceiptDetails2 = new List<Model.StockoutReceiptDetail>();
+            List<Model.StockoutReceiptDetail> receiptDetails2 = new List<Model.StockoutReceiptDetail>();
             Model.StockoutReceiptDatum stockoutReceipt = new StockoutReceiptDatum()
             {
                 isDeleted = false,
@@ -45,16 +106,24 @@ namespace StockManagement.Views
                 UpdatedAt = null,
                 StockoutReceiptDetails = null
             };
+
             stockoutReceipt = stockoutReceiptServices._addStockoutReceipt(stockoutReceipt);
-            for (int i = 0; i < gridView1.RowCount; i++)
+            if (stockoutReceipt.Id != null)
             {
-                var row = gridView1.GetRow(i) as Model.StockoutReceiptDetail;
-                row.ReceiptID = (int)stockoutReceipt.Id;
-                ReceiptDetails2.Add(row);
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    var row = gridView1.GetRow(i) as Model.StockoutReceiptDetail;
+                    row.ReceiptID = (int)stockoutReceipt.Id;
+                    receiptDetails2.Add(row);
+
+                }
+                if (insertDetail(receiptDetails2))
+                    if (doStockout(receiptDetails2))
+                    {
+                        f.reLoad();
+                        MessageBox.Show("Đã xuất kho");
+                    }
             }
-            var res = stockoutReceiptDetailServices._addStockoutReceiptDetail(receiptDetails);
-            if (res.Count > 0)
-                f.reLoad();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -66,24 +135,6 @@ namespace StockManagement.Views
 
         private void CreateStockoutReceipt_Load(object sender, EventArgs e)
         {
-            if (receiptID != "")
-            {
-                //gridControl1.DataSource = Model.UserAction.getReceiptList(Properties.Settings.Default.stockoutReceiptDetailsPath, receiptID);
-                //groupControl1.Text = "thông tin chi tiết " + receiptID;
-                //this.Text = "thông tin chi tiết " + receiptID;
-                //btnSearch.Enabled = false;
-                //btnSave.Enabled = false;
-                //txtNote.Text = note;
-                //txtSearch.Text = poNumber;
-            }
-            else
-            {
-                //gridControl1.DataSource = new List<Model.ReceiptDetail>();
-            }
-            gridView1.Columns.Remove(gridView1.Columns["id"]);
-            gridView1.Columns.Remove(gridView1.Columns["receiptID"]);
-            gridView1.Columns.Remove(gridView1.Columns["updatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["createdAt"]);
             for (int i = 0; i < gridView1.Columns.Count; i++)
             {
                 if (gridView1.Columns[i].FieldName != "actualQty")
@@ -106,10 +157,12 @@ namespace StockManagement.Views
         private void button1_Click(object sender, EventArgs e)
         {
             receiptDetails = new List<StockoutReceiptDetail>();
-            if (txtSearch.Text.ToUpper().Contains("KHX"))
+            stockoutPlan = stockoutPlanServices._getStockoutPlans().Where(w => w.PlanNumber == txtSearch.Text).FirstOrDefault();
+            var planItems = stockoutPlan.StockoutPlanDetails;
+            var poItems = poItemsServices._getPOItems(txtSearch.Text);
+            if (planItems.Count > 0)
             {
-                var items = stockoutPlanDetailServices._getStockoutPlanDetail(txtSearch.Text.ToUpper());
-                items.ForEach(i =>
+                planItems.ForEach(i =>
                 {
                     receiptDetails.Add(new Model.StockoutReceiptDetail
                     {
@@ -124,9 +177,9 @@ namespace StockManagement.Views
                 });
             }
             else
+                if (poItems.Count > 0)
             {
-                var items = poItemsServices._getPOItems(txtSearch.Text.ToUpper());
-                items.ForEach(i =>
+                poItems.ForEach(i =>
                 {
                     receiptDetails.Add(new Model.StockoutReceiptDetail
                     {
@@ -140,11 +193,12 @@ namespace StockManagement.Views
                     });
                 });
             }
+            else
+            {
+                MessageBox.Show("Mã không tồn tại");
+            }
             gridControl1.DataSource = receiptDetails;
-            gridView1.Columns.Remove(gridView1.Columns["Id"]);
-            gridView1.Columns.Remove(gridView1.Columns["ReceiptID"]);
-            gridView1.Columns.Remove(gridView1.Columns["UpdatedAt"]);
-            gridView1.Columns.Remove(gridView1.Columns["CreatedAt"]);
+            removeUnuseInfo();
         }
 
     }
