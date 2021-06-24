@@ -115,6 +115,11 @@ namespace StockManagement.Views
         {
             receiptDetails= new List<StockinReceiptDetail>();
             stockinPlan = stockinPlanServices._getStockinPlans().Where(w=>w.PlanNumber==txtSearch.Text).FirstOrDefault();
+            if(stockinPlan.isImported)
+            {
+                MessageBox.Show("kế hoạch mã " + txtSearch.Text + " đã sử dụng");
+                return;
+            }    
             var planItems = stockinPlan.StockinPlanDetails;
             var quoItems = quotationItemsServices._getQuotationItems(txtSearch.Text);
             if(planItems.Count>0)

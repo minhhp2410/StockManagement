@@ -158,6 +158,11 @@ namespace StockManagement.Views
         {
             receiptDetails = new List<StockoutReceiptDetail>();
             stockoutPlan = stockoutPlanServices._getStockoutPlans().Where(w => w.PlanNumber == txtSearch.Text).FirstOrDefault();
+            if (stockoutPlan.isImported)
+            {
+                MessageBox.Show("kế hoạch mã " + txtSearch.Text + " đã sử dụng");
+                return;
+            }
             var planItems = stockoutPlan.StockoutPlanDetails;
             var poItems = poItemsServices._getPOItems(txtSearch.Text);
             if (planItems.Count > 0)
