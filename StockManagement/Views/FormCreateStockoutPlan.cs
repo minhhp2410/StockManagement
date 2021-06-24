@@ -24,6 +24,23 @@ namespace StockManagement.Views
             InitializeComponent();
         }
 
+        bool insertDetail(List<Model.StockoutPlanDetail> detail)
+        {
+            try
+            {
+                detail.ForEach(rec => {
+                    stockoutPlanDetailServices._addStockoutPlanDetail(rec);
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+
+        }
+
         void removeUnuseInfo()
         {
             gridView1.Columns.Remove(gridView1.Columns["Id"]);
@@ -96,8 +113,7 @@ namespace StockManagement.Views
                 row.PlanID = (int)stockoutPlan.Id;
                 planDetails2.Add(row);
             }
-            var res = stockoutPlanDetailServices._addStockoutPlanDetail(planDetails);
-            if (res.Count > 0)
+            if (insertDetail(planDetails2))
                 f.reLoad();
         }
 

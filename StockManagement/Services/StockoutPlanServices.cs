@@ -38,8 +38,7 @@ namespace StockManagement.Services
         {
             try
             {
-                RestSharp.Parameter parameter = new RestSharp.Parameter("planNumber", stockoutPlan.PlanNumber, RestSharp.ParameterType.UrlSegment);
-                Put(env.stockinPlansPath, parameter, stockoutPlan, typeof(Model.StockoutPlans));
+                Put(env.stockinPlansPath,stockoutPlan.PlanNumber, typeof(Model.StockoutPlans));
                 return true;
             }
             catch (Exception)

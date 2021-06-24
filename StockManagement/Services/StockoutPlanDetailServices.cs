@@ -20,15 +20,15 @@ namespace StockManagement.Services
                 throw;
             }
         }
-        public List<Model.StockoutPlanDetail> _addStockoutPlanDetail(List<Model.StockoutPlanDetail> stockoutPlanDetails)
+        public Model.StockoutPlanDetail _addStockoutPlanDetail(Model.StockoutPlanDetail stockoutPlanDetail)
         {
             try
             {
-                return ((Model.StockoutPlanDetails)Post(env.stockoutPlanDetailsPath, stockoutPlanDetails, typeof(Model.StockoutPlanDetails))).Data;
+                return ((Model.StockoutPlanDetail)Post(env.stockoutPlanDetailsPath, stockoutPlanDetail, typeof(Model.StockoutPlanDetail)));
             }
             catch (Exception)
             {
-                return new List<Model.StockoutPlanDetail>();
+                return new Model.StockoutPlanDetail();
                 throw;
             }
         }

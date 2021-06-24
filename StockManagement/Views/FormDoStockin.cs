@@ -202,6 +202,7 @@ namespace StockManagement.Views
                     receiptDetails2.Add(row);
                 }
                 if (insertDetail(receiptDetails2))
+                {
                     if (doStockin(receiptDetails2))
                     {
                         if (markPlanAsImported(stockinPlan))
@@ -210,6 +211,7 @@ namespace StockManagement.Views
                             MessageBox.Show("Đã nhập kho");
                         }
                     }
+                }
             }
         }
     }

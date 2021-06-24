@@ -38,9 +38,10 @@ namespace StockManagement.Services
         {
             try
             {
-                RestSharp.Parameter parameter = new RestSharp.Parameter("planNumber", stockinPlan.PlanNumber, RestSharp.ParameterType.UrlSegment);
-                Put(env.stockinPlansPath, parameter, stockinPlan, typeof(Model.StockinPlans));
-                return true;
+                var res= (Model.StockinPlans)Put(env.stockinPlansPath,stockinPlan.PlanNumber, typeof(Model.StockinPlans));
+                if(res.Message== "Stock in plan imported!")
+                    return true;
+                return false;
             }
             catch (Exception)
             {

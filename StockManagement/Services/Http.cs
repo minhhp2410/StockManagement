@@ -74,14 +74,13 @@ namespace StockManagement.Services
             return res.StatusCode == System.Net.HttpStatusCode.OK ? true : false;
         }
 
-        public object Put(string source,Parameter parameter, object body, Type type)
+        public object Put(string source, string identityNumber, Type type)
         {
             RestClient client = new RestClient(apiEP);
-            RestRequest req = new RestRequest(source, Method.PUT);
+            RestRequest req = new RestRequest(source+"/"+identityNumber, Method.PUT);
             req.AddHeader("x-auth-token", token);
-            req.AddParameter(parameter);
-            var json = JsonConvert.SerializeObject(body);
-            req.AddParameter("application/json; charset:utf-8", json, ParameterType.RequestBody);
+            //var json = JsonConvert.SerializeObject(body);
+            //req.AddParameter("application/json; charset:utf-8", json, ParameterType.RequestBody);
             var res = client.Execute(req);
             return JsonConvert.DeserializeObject(res.Content, type);
         }

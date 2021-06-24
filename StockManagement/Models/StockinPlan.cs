@@ -94,6 +94,10 @@ namespace StockManagement.Model
         [JsonProperty("data")]
         public List<StockinPlanDetail> Data { get; set; }
     }
-
+    public class MarkAsImported
+    {
+        [JsonProperty("isImported")]
+        public bool isImported { get; set; }
+    }
 
 }

@@ -18,9 +18,6 @@ namespace StockManagement.Views
     public partial class FormCreateStockinPlan : DevExpress.XtraEditors.XtraForm
     {
         public FormStockinPlan f = new FormStockinPlan();
-        public string planID = "", quotationNumber = "", note = "";
-        //List<Model.DataInventory> inventories = new List<Model.DataInventory>();
-        //Services.InventoryServices inventoryServices = new Services.InventoryServices();
         List<Model.StockinPlanDetail> planDetails = new List<Model.StockinPlanDetail>();
         Services.QuotationItemsServices quotationItemsServices = new Services.QuotationItemsServices();
         Services.StockinPlanDetailServices stockinPlanDetailServices = new Services.StockinPlanDetailServices();
@@ -28,6 +25,23 @@ namespace StockManagement.Views
         public FormCreateStockinPlan()
         {
             InitializeComponent();
+        }
+
+        bool insertDetail(List<Model.StockinPlanDetail> detail)
+        {
+            try
+            {
+                detail.ForEach(rec => {
+                    stockinPlanDetailServices._addStockinPlanDetail(rec);
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+
         }
 
         void removeUnuseInfo()
@@ -64,18 +78,6 @@ namespace StockManagement.Views
 
         private void CreateStockinPlan_Load(object sender, EventArgs e)
         {
-            if (planID != "")
-            {
-                gridControl1.DataSource = stockinPlanDetailServices._getStockinPlanDetail(planID);
-                groupControl1.Text = "thông tin chi tiết " + planID;
-                this.Text = "thông tin chi tiết " + planID;
-                btnSearch.Enabled = false;
-                btnSave.Enabled = false;
-            }
-            else
-            {
-                gridControl1.DataSource = new List<Model.StockinPlanDetail>();
-            }
             removeUnuseInfo();
         }
 
@@ -118,8 +120,7 @@ namespace StockManagement.Views
                 row.PlanID = (int)stockinPlan.Id;
                 planDetails2.Add(row);
             }
-            var res= stockinPlanDetailServices._addStockinPlanDetail(planDetails);
-            if(res.Count>0)
+            if(insertDetail(planDetails2))
             f.reLoad();
         }
     }
