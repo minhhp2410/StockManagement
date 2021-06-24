@@ -191,7 +191,7 @@ namespace StockManagement.Views
                 Store = cbbStore.Text,
                 Id = null,
                 CreatedAt = null,
-                CreatedBy = "",
+                CreatedBy = Properties.Settings.Default.PIC,
                 ReceiptNumber = "",
                 UpdatedAt = null,
                 StockinReceiptDetails = null

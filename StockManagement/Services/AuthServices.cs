@@ -21,10 +21,11 @@ namespace StockManagement.Services
                 token = res.message;
                 var handler = new JwtSecurityTokenHandler();
                 var decodedToken = handler.ReadJwtToken(token);
-                //roles = decodedToken.Claims.ElementAt(3).Value;//heroku
-                roles = decodedToken.Claims.ElementAt(2).Value;
+                roles = decodedToken.Claims.ElementAt(3).Value;//heroku
+                //roles = decodedToken.Claims.ElementAt(2).Value;
                 Settings.Default.token = token;
                 Settings.Default.roles = roles;
+                Settings.Default.PIC = decodedToken.Claims.ElementAt(1).Value;
                 Settings.Default.Save();
             }
             catch
